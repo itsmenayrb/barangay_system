@@ -1,0 +1,143 @@
+/* FORM VALIDATION STYLE */
+.form-error {
+    width: 92%;
+    margin: 0px auto;
+    padding: 10px;
+    border: 1px solid #a94442;
+    color: #a94442;
+    background: #f2dede;
+    border-radius: 5px;
+    text-align: left;
+}
+
+.form-success {
+    color: #3c763d;
+    background: #dff0d8;
+    border: 1px solid #3c763d;
+    margin: 0 auto;
+    padding: 5px;
+    border-radius: 5px;
+    width: 92%;
+    text-align: center;
+}
+
+.error{
+    color: red;
+    font-size: 0.8em;
+}
+
+/* SIDEBAR MENU */
+.sidenav {
+    height: 100%; /* 100% Full-height */
+    width: 0; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Stay on top */
+    top: 0; /* Stay at the top */
+    left: 0;
+    background-color: #111; /* Black*/
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 60px; /* Place content 60px from the top */
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+}
+
+/* The navigation menu links */
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+/* Position and style the close button (top right corner) */
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+#main {
+    transition: margin-left .5s;
+    padding: 20px;
+}
+  /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+}
+/* LOGIN STYLE */
+#login-container{
+    padding: 10px;
+    max-width: 500px;
+    width: 100%;
+    margin-top: 50px;
+}
+
+#login-container form{
+    width: 90%;
+    margin: 0 auto;
+}
+
+/* REGISTER STYLE */
+#register-container{
+    padding: 10px;
+    width: 40%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    box-shadow: 0.5px 0.5px 0.5px 0.5px;
+    background-image: url("../img/ph-flag-eagle.jpg");
+    background-size: auto;
+}
+
+#admin-reg-form{
+    width: 90%;
+    margin: 0 auto;
+}
+
+/* GENERAL */
+
+body{
+    background: mintcream;
+}
+
+/* MESSAGE Style */
+
+.card-header .card-tools{
+    position:absolute;
+    right:1rem;
+    top:.5rem
+}
+
+.card-header .card-tools [data-toggle=tooltip]{
+    position:relative
+}
+
+.card-body .mailbox-messages .table{
+    margin:0;
+}
+
+.card-body .mailbox-controls{
+    padding:5px;
+}
+
+.card-body .mailbox-controls .with-border{
+    border-bottom: 1px solid rgba(0,0,0,.125);
+}
+
+.card-body .mailbox-messages>.table{margin:0}
+
+/* ATTENDANCE */
+
+.btnAttendance {
+    display: none;
+}

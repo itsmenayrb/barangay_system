@@ -1,0 +1,357 @@
+/*
+    NAVIGATION CSS!!!
+    NAVIGATION CSS!!!
+*/
+.navbar{
+    border-radius: 0;
+    margin-bottom: 0;
+}
+
+/*
+    CONTAINERS page!!!
+    CONTAINERS page!!!
+*/
+#loginContainer{
+    max-width: 500px;
+    width: 100%;
+    padding: 15px;
+    margin-top: 10px;
+    border: 2px solid #eee;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    box-shadow: #f1f1f1 5px;
+}
+
+#fpContainer{
+    width: 70%;
+    padding: 15px;
+    margin-top: 10px;
+    border: 2px solid #eee;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    box-shadow: #f1f1f1 5px;
+}
+/*
+    JUMBOTRON CSS!!!
+    JUMBOTRON CSS!!!
+*/
+
+.jumbotron{
+    background-image: url("img/pic-jumbotron.jpg");
+    background-size: cover;
+    padding: 10px;
+    margin-bottom: 0;
+}
+
+#newsWrapper{
+    padding: 20px;
+    background-color:  #104382;
+    background-size: cover;
+}
+/*
+    CAROUSEL CSS!!!
+    CAROUSEL CSS!!!
+*/
+
+
+.carousel h2{
+    font-family: "Baskerville Old Face";
+    font-size: xx-large;
+}
+
+.carousel-inner .carousel-item img{
+    width: auto;
+    height: 350px;
+}
+
+.carousel-inner{
+    background: linear-gradient(#fcf8e3,#f5e79e,#99ff99);
+}
+
+#carouselCaption1{
+    top: 20px;
+    margin-left: 480px;
+    text-align: center;
+    color: black;
+}
+
+#carouselCaption2{
+    top: 20px;
+    margin-left: 180px;
+    text-align: left;
+    color: black;
+}
+
+#carouselCaption3{
+    top: 20px;
+    margin-left: 330px;
+    text-align: left;
+    color: black;
+}
+
+h2 strong{
+    font-size: 7vw;
+}
+
+/* PANEL */
+
+p{
+    text-indent: 15px;
+}
+
+.panel-body ol li{
+    background: #f1f1f1;
+}
+
+/* FORGOT PASSWORD STYLE */
+
+#security-question-form{
+    width: 80%;
+    margin: 20px auto;
+}
+
+#email-form{
+    width: 70%;
+    margin: 80px auto;
+}
+
+#fpContainer .carousel .carousel-inner{
+    width: 100%;
+    height: 450px;
+}
+
+#con-security-question-form{
+    width: 80%;
+    margin: 0 auto;
+    padding-bottom: 20px;
+}
+
+/* RESULT DISPLAY */
+.error{
+    color: red;
+    font-size: 0.8em;
+}
+.form-error {
+    width: 92%;
+    margin: 10px auto;
+    padding: 10px;
+    border: 1px solid #a94442;
+    color: #a94442;
+    background: #f2dede;
+    border-radius: 5px;
+    text-align: left;
+}
+
+.form-success {
+    color: #3c763d;
+    background: #dff0d8;
+    border: 1px solid #3c763d;
+    margin: 10px auto;
+    padding: 5px;
+    border-radius: 5px;
+    width: 92%;
+    text-align: center;
+}
+
+.input-error{
+    border: 1px solid red;
+}
+
+input[type=text] , input[type=password] , input[type=email]{
+    border-color: rgba(34, 34, 34, 0.65);
+}
+
+#reg-securityquestionone, #reg-securityquestiontwo, #reg-suffix, #reg-prefix{
+    border-color: rgba(34, 34, 34, 0.65);
+}
+
+/* PROFILE CSS!!
+PROFILE CSS!!
+PROFILE CSS!! */
+
+.main-section{
+    background: white;
+    border: 0 none;
+    border-radius: 3px;
+    box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+    padding: 20px 30px;
+    box-sizing: border-box;
+    width: 80%;
+    margin: 0 10%;
+    position: relative;
+}
+
+.main-section legend{
+    color:black;
+    font-size: 15px;
+    text-transform: capitalize;
+}
+
+/* REGISTRATION */
+
+.progressbarBackground{
+    background: linear-gradient(rgba(196, 102, 0, 0.6), rgba(155, 89, 182, 0.6));
+    box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+    box-sizing: border-box;
+    position: relative;
+    width: 80%;
+    margin: 0 auto;
+    height: 70px;
+}
+
+#registration-form{
+    width: 70%;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    text-align: center;
+    position: relative;
+}
+
+#registration-form fieldset {
+    background: white;
+    border: 0 none;
+    border-radius: 3px;
+    box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+    padding: 20px 30px;
+    box-sizing: border-box;
+    width: 80%;
+    margin: 0 10%;
+    position: relative;
+}
+
+#registration-form fieldset:not(:first-of-type) {
+    display: none;
+}
+
+#registration-form input, #registration-form textarea{
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: montserrat;
+    color: #2C3E50;
+    font-size: 13px;
+}
+
+#registration-form select{
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: montserrat;
+    color: #2C3E50;
+}
+
+#registration-form .action-button {
+    width: 100px;
+    background: #27AE60;
+    font-weight: bold;
+    color: white;
+    border: 0 none;
+    border-radius: 1px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin: 10px 5px;
+}
+
+#registration-form .action-button:hover, #registration-form .action-button:focus {
+    box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
+}
+
+.fs-title {
+    font-size: 15px;
+    text-transform: uppercase;
+    color: #2C3E50;
+    margin-bottom: 10px;
+}
+
+.fs-subtitle {
+    font-weight: normal;
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+
+#progressbar {
+    overflow: hidden;
+    /*CSS counters to number the steps*/
+    counter-reset: step;
+}
+
+#progressbar li {
+    margin-top: 15px;
+    list-style-type: none;
+    color: white;
+    text-transform: uppercase;
+    font-size: 9px;
+    width: 45%;
+    float: left;
+    position: relative;
+}
+
+#progressbar li:before {
+    content: counter(step);
+    counter-increment: step;
+    width: 20px;
+    line-height: 20px;
+    display: block;
+    font-size: 10px;
+    color: #333;
+    background: white;
+    border-radius: 3px;
+    margin: 0 auto 5px auto;
+}
+
+#progressbar li:after {
+    content: '';
+    width: 100%;
+    height: 2px;
+    background: white;
+    position: absolute;
+    left: -50%;
+    top: 9px;
+    z-index: -1; /*put it behind the numbers*/
+}
+
+#progressbar li:first-child:after {
+    content: none; 
+}
+
+#progressbar li.active:before,  #progressbar li.active:after{
+    background: #27AE60;
+    color: white;
+}
+
+/* FOOTER */
+section {
+    display: relative;
+}
+footer{
+    display: relative;
+}
+
+/* login form */
+
+#login-form{
+    width: 90%;
+    margin: 0 auto;
+}
+
+/* CONTACT MODALS */
+
+#complaintModal{
+    margin-top: -20px;
+}
+
+#complaintModal .modal-dialog{
+    overflow-y: initial !important
+}
+
+#complaintModal .modal-body{
+    max-height: calc(100vh - 200px);
+    overflow-y: auto;
+}
