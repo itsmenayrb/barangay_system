@@ -1,7 +1,11 @@
+<!--This php file is for attendance
+-- Display over all data regarding to attendance
+-- such as timesheet for time-in, time-out, etc -->
 <?php include 'header.php'; ?>
-<?php if(!isset($_SESSION['Position'])) :?>
+<?php if(!isset($_SESSION['Position'])) :?> <!-- If user is not logged in -->
     <?php header("Location: index.php"); ?>
 <?php endif ?>
+<!-- navigation -->
 <span class="fas fa-bars fa-3x float-left" style="margin-top: 15px; margin-left: 15px;" onclick="openNav()"></span>
 <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
@@ -13,6 +17,7 @@
     <div class="dropdown-divider" style="width: 80%; margin: 0 auto;"></div>
     <a href="signout.php">Sign Out</a>
 </div>
+<!-- content -->
 <div id="main">
 	<div class="container">
 		<nav class="navbar navbar-expand-smd navbar-dark bg-dark">
@@ -31,12 +36,14 @@
 			<div class="col-md-6">
 				<div class="card">
 					<div class="card-header">
-						<h4 class="card-title float-left">Employees</h4>
+						<h4 class="card-title float-left">Barangay Officials</h4>
 					</div>
 					<div class="card-body">
 						<form method="post" action="attendance.php">
 							<div class="container">
 								<div class="form-group">
+								<!-- All new registered barangay officials should automatically add
+								-- to dropdown list of attendance -->
 									<select name="employeeSelector" id="employeeSelector" class="form-control">
 										<option value="recent">Recent</option>
 										<?php
@@ -61,7 +68,7 @@
 			<div class="col-md-6">
 				<div class="card">
 					<div class="card-header">
-						<h4 class="card-title">Attendance</h4>
+						<h4 class="card-title">Attendance</h4> <!-- ATTENDANCE -->
 					</div>
 					<div class="card-body">
 						<div class="container">
@@ -75,6 +82,9 @@
 								<div class="row">
 									<div class="col-md-8">
 										<div class="form-group">
+										<!-- ACTION SELECTOR FOR ATTENDANCE
+										-- di ako maka-isip ng way kung pano magiging process pero
+										-- okay naman daw to sabi ni sir. HAHA -->
 											<select class="form-control" id="attendanceSelector" name="attendance">
 												<option value="" selected>(Select an action)</option>
 												<option value="TimeIN">Time In</option>
@@ -104,6 +114,7 @@
 				</div>
 			</div>
 		</div>
+		<!-- TIMESHEET -->
 		<div class="row" style="margin-top: 10px;margin-bottom: 10px;">
 			<div class="col-md-12">
 			<div class="card card-primary card-outline-primary">
@@ -127,6 +138,7 @@
 								</tr>
 							</thead>
 							<tr>
+							<!-- Query to display data based on the selected option above -->
 								<?php
 									if(!isset($_POST['employeeSelector'])){
 										$checker = (NULL);

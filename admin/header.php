@@ -1,3 +1,5 @@
+<!-- this page is for all the links and scripts --
+-- that will run to website -->
 <?php
     include '../includes/dbh.inc.php';
     include 'server.php';

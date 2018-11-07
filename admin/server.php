@@ -1,8 +1,13 @@
+<!-- This page will handle all the forms
+in admin site -->
 <?php
     session_start();
     include '../includes/functions.inc.php';
     include '../includes/dbh.inc.php';
 
+    //// Initializing Variables
+    //// Initializing Variables
+    //// Initializing Variables
     $username = "";
     $email = "";
     $fname = "";
@@ -64,6 +69,9 @@
         }
 
         if(count($errors) == 0){
+            // BARANGAY CHAIRMAN
+            // BARANGAY CHAIRMAN
+            // BARANGAY CHAIRMAN
             if($position == "Barangay Chairman"){
                 $sql=$conn->prepare("SELECT Position FROM employee WHERE Position=?");
                 $sql->bind_param("s",$position);
@@ -95,6 +103,9 @@
                     $conn = null;
                 }
             }
+            // BARANGAY COUNCILOR
+            // BARANGAY COUNCILOR
+            // BARANGAY COUNCILOR
             elseif ($position == "Barangay Councilor") {
                 $sql=$conn->prepare("SELECT Position FROM employee WHERE Position=?");
                 $sql->bind_param("s",$position);
@@ -126,6 +137,9 @@
                     $conn = null;
                 }
             }
+            // BARANGAY SECRETARY
+            // BARANGAY SECRETARY
+            // BARANGAY SECRETARY
             elseif ($position == "Barangay Secretary") {
                 $sql=$conn->prepare("SELECT Position FROM employee WHERE Position=?");
                 $sql->bind_param("s",$position);
@@ -157,6 +171,9 @@
                     $conn = null;
                 }
             }
+            // BARANGAY ASSISTANT SECRETARY
+            // BARANGAY ASSISTANT SECRETARY
+            // BARANGAY ASSISTANT SECRETARY
             elseif ($position == "Barangay Assistant Secretary") {
                 $sql=$conn->prepare("SELECT Position FROM employee WHERE Position=?");
                 $sql->bind_param("s",$position);
@@ -188,6 +205,9 @@
                     $conn = null;
                 }
             }
+            // BARANGAY TREASURER
+            // BARANGAY TREASURER
+            // BARANGAY TREASURER
             elseif ($position == "Barangay Treasurer") {
                 $sql=$conn->prepare("SELECT Position FROM employee WHERE Position=?");
                 $sql->bind_param("s",$position);
@@ -219,6 +239,9 @@
                     $conn = null;
                 }
             }
+            // SK CHAIRMAN
+            // SK CHAIRMAN
+            // SK CHAIRMAN
             elseif ($position == "SK Chairman") {
                 $sql=$conn->prepare("SELECT Position FROM employee WHERE Position=?");
                 $sql->bind_param("s",$position);
@@ -250,6 +273,9 @@
                     $conn = null;
                 }
             }
+            // SK COUNCILOR 
+            // SK COUNCILOR 
+            // SK COUNCILOR
             elseif ($position == "SK Councilor") {
                 $sql=$conn->prepare("SELECT Position FROM employee WHERE Position=?");
                 $sql->bind_param("s",$position);
@@ -281,6 +307,9 @@
                     $conn = null;
                 }
             }
+            // SK SECRETARY
+            // SK SECRETARY
+            // SK SECRETARY
             elseif ($position == "SK Secretary") {
                 $sql=$conn->prepare("SELECT Position FROM employee WHERE Position=?");
                 $sql->bind_param("s",$position);
@@ -312,6 +341,9 @@
                     $conn = null;
                 }
             }
+            // SK TREASURER
+            // SK TREASURER
+            // SK TREASURER
             elseif ($position == "SK Treasurer") {
                 $sql=$conn->prepare("SELECT Position FROM employee WHERE Position=?");
                 $sql->bind_param("s",$position);
@@ -343,6 +375,9 @@
                     $conn = null;
                 }
             }
+            // BARANGAY TANOD
+            // BARANGAY TANOD
+            // BARANGAY TANOD
             elseif ($position == "Barangay Tanod") {
                 $sql=$conn->prepare("SELECT Position FROM employee WHERE Position=?");
                 $sql->bind_param("s",$position);
@@ -376,15 +411,11 @@
             }
         }
     }
-
-
-
     // LOGIN
     // LOGIN
     // LOGIN
     // LOGIN
     // LOGIN
-
     if(isset($_POST['admin-login'])){
         $Username = checkInput($_POST['admin-username']);
         $Password = checkInput($_POST['admin-password']);

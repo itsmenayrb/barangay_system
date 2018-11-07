@@ -1,3 +1,6 @@
+<!-- this page is for login only --
+-- after the user logged in --
+-- he/she will be redirect to dashboard page -->
 <?php include 'header.php'; ?>
     <?php if(!isset($_SESSION['Username'])) : ?>
         <div class="container-fluid" id="login-container">

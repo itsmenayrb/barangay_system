@@ -1,3 +1,7 @@
+<!-- MAIN PAGE FOR ADMIN --
+-- This page should include list of employees, as much --
+-- as possible may picture nila, mission and vision --
+-- and kaya pa lagyan ng chart is mas okay -->
 <?php include 'header.php'; ?>
 <?php if(!isset($_SESSION['Position'])) :?>
     <?php header("Location: index.php"); ?>
@@ -9,7 +13,7 @@
 
     if ($resultsCheck > 0) : ?>
         <?php if ($row = mysqli_fetch_assoc($results)) : ?>
-            <?php if (isset($_SESSION['Position']) == 'Barangay Captain') { ?>
+            <?php if (isset($_SESSION['Position']) == 'Barangay Captain') { ?> <!--NAVIGATION -->
                 <span class="fas fa-bars fa-3x float-left" style="margin-top: 15px; margin-left: 15px;" onclick="openNav()"></span>
                 <div id="mySidenav" class="sidenav">
                     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
@@ -21,7 +25,7 @@
                     <div class="dropdown-divider" style="width: 80%; margin: 0 auto;"></div>
                     <a href="signout.php">Sign Out</a>
                 </div>
-
+                <!-- content -->
                 <div id="main">
                     <div class="container">
                         <nav class="navbar navbar-expand-smd navbar-dark bg-dark">
@@ -33,7 +37,7 @@
                         <div class="container" style="margin-top: 20px;">
                             <div class="card">
                                 <div class="card-header">
-                                    <p class="h4 lead text-center">EMPLOYEES</p>
+                                    <p class="h4 lead text-center">Barangay Officials</p>
                                 </div>
                                 <div class="card-body">
                                     <div class='container'>
@@ -50,6 +54,7 @@
                                                     </tr>
                                                 </thead>
                                                 <tr>
+                                                <!-- QUERY FOR DISPLAYING OF ALL OF EMPLOYEES -->
                                                     <?php
                                                         $sql = "SELECT * FROM employee";
                                                         $results = mysqli_query($conn, $sql);

@@ -1,3 +1,5 @@
+<!-- this page is of course is for 
+javascripts or functions for admin -->
 <script type="text/javascript">
     $(function() {
       $('#attendanceSelector').change(function(){

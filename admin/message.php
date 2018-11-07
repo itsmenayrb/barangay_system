@@ -1,3 +1,6 @@
+<!-- TODO: MESSAGE AND NOTIFICATIONS --
+-- this is page will display all the inquiries or messages --> 
+
 <?php include 'header.php'; ?>
 <?php if(!isset($_SESSION['Position'])) :?>
     <?php header("Location: index.php"); ?>

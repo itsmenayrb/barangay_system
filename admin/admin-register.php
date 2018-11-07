@@ -1,3 +1,4 @@
+<!-- this page is for admin registration -->
 <?php include 'server.php'; ?>
 <!DOCTYPE html>
 <html>
