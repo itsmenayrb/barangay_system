@@ -1,23 +1,20 @@
 <?php
-    include 'dbh.inc.php';
+    include 'includes\dbh.inc.php';
     function generateNewString($len = 10){
         $token = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
         $token = str_shuffle($token);
         $token = substr($token, 0, $len);
-
         return $token;
     }
-
     function redirectToLoginPage(){
         header("Location: login.php");
         exit();
     }
-
     /**
      * Check if a string is a valid date(time)
      *
      * DateTime::createFromFormat requires PHP >= 5.3
-     * 
+     *
      * Source: https://www.pontikis.net/tip/?id=21
      *
      * @param string $str_dt
@@ -34,5 +31,13 @@
         $data = stripslashes($data);
         $data = htmlspecialchars($data);
         return $data;
+    }
+    /**
+     * Check if the $_SERVER['REQUEST_METHOD'] is set to the given string
+     * @param string $str_httpMethod The string that needs to be checked
+     * @return bool
+     */
+    function serverRequestCheck($str_httpMethod) {
+        return $_SERVER['REQUEST_METHOD'] === $str_httpMethod;
     }
 ?>

@@ -1,3 +1,9 @@
+/**
+ * Style for the minimum height of the <body> tag
+ * @author Renz
+ */
+body { min-height: 100vh; }
+
 /*
     NAVIGATION CSS!!!
     NAVIGATION CSS!!!

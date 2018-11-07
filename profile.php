@@ -36,7 +36,14 @@
 					echo "<tr><td>Home Address: </td>";
 					echo "<td>" . $row['Homeaddress'] . "</td></tr>";
 					echo "<tr><td>Contact Number: </td>";
-					echo "<td>" . $row['TelephoneNumber'] . " / " . $row['CellphoneNumber'] . "</td></tr></table>";
+					echo "<td>" . $row['TelephoneNumber'];
+
+					// Print the slash if both the Telephone and cellphone numbers have a value or not an empty string
+					if(strlen($row['TelephoneNumber']) > 0 && strlen($row['CellphoneNumber']) > 0) {
+						echo " / " ;
+					}
+
+					echo $row['CellphoneNumber'] . "</td></tr></table>";
 					echo "</div></div>";
 					echo "<div class='col-md-5'>";
 					echo "<div class='card' style='max-width: 100%;margin-bottom: 5px;'>";
@@ -52,7 +59,10 @@
 					$results = mysqli_query($conn,$sql);
 					$resultsCheck = mysqli_num_rows($results);
 
-					if($resultsCheck > 0){
+					if($resultsCheck < 0){
+						echo "<p class='h4 lead'>Nothing to display.</p>";
+					}
+					else{
 						while($row = $results->fetch_assoc()){
 							echo "<td><a target='_blank' href='subaccount.profile.php?id={$row['id']}'" . ">" . $row['fname'] . ' ' . $row['mname'] . ' ' . $row['lname'] . ' ' . $row['suffix'] . '</a></td>';
 							echo '<td>' . $row['relationship'] . '</td>';

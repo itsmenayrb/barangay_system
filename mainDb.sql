@@ -25,140 +25,55 @@ CREATE TABLE `attendance` (
   `time_in` time DEFAULT NULL,
   `time_out` time DEFAULT NULL,
   `absent` varchar(255) DEFAULT NULL,
-  `activity` varchar(255) NOT NULL,
-  `comments` varchar(255) NOT NULL,
+  `on_leave` varchar(255) DEFAULT NULL,
+  `activity` varchar(255) DEFAULT NULL,
+  `comments` varchar(255) DEFAULT NULL,
   `status` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`id`,`employee_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 /*Data for the table `attendance` */
 
-/*Table structure for table `barangayassistantsecretary` */
-
-DROP TABLE IF EXISTS `barangayassistantsecretary`;
-
-CREATE TABLE `barangayassistantsecretary` (
-  `Username` varchar(255) NOT NULL,
-  `Prefix` varchar(255) NOT NULL,
-  `FirstName` varchar(255) NOT NULL,
-  `MiddleName` varchar(255) NOT NULL,
-  `LastName` varchar(255) NOT NULL,
-  `Suffix` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 MAX_ROWS=1;
-
-/*Data for the table `barangayassistantsecretary` */
-
-/*Table structure for table `barangaychairman` */
-
-DROP TABLE IF EXISTS `barangaychairman`;
-
-CREATE TABLE `barangaychairman` (
-  `employee_id` int(255) NOT NULL,
-  `Username` varchar(255) NOT NULL,
-  `Prefix` varchar(255) NOT NULL,
-  `FirstName` varchar(255) NOT NULL,
-  `MiddleName` varchar(255) NOT NULL,
-  `LastName` varchar(255) NOT NULL,
-  `Suffix` varchar(255) DEFAULT NULL,
-  `homeaddress` varchar(255) DEFAULT NULL,
-  `contactnumber` bigint(11) DEFAULT NULL,
-  PRIMARY KEY (`employee_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 MAX_ROWS=1;
-
-/*Data for the table `barangaychairman` */
-
-insert  into `barangaychairman`(`employee_id`,`Username`,`Prefix`,`FirstName`,`MiddleName`,`LastName`,`Suffix`,`homeaddress`,`contactnumber`) values 
-(2018001,'bryan','Mr','Bryan','Villanueva','Balaga','',NULL,NULL);
-
-/*Table structure for table `barangaycouncilor` */
-
-DROP TABLE IF EXISTS `barangaycouncilor`;
-
-CREATE TABLE `barangaycouncilor` (
-  `Username` varchar(255) NOT NULL,
-  `Prefix` varchar(255) NOT NULL,
-  `FirstName` varchar(255) NOT NULL,
-  `MiddleName` varchar(255) NOT NULL,
-  `LastName` varchar(255) NOT NULL,
-  `Suffix` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 MAX_ROWS=7;
-
-/*Data for the table `barangaycouncilor` */
-
-/*Table structure for table `barangaysecretary` */
-
-DROP TABLE IF EXISTS `barangaysecretary`;
-
-CREATE TABLE `barangaysecretary` (
-  `Username` varchar(255) NOT NULL,
-  `Prefix` varchar(255) NOT NULL,
-  `FirstName` varchar(255) NOT NULL,
-  `MiddleName` varchar(255) NOT NULL,
-  `LastName` varchar(255) NOT NULL,
-  `Suffix` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 MAX_ROWS=1;
-
-/*Data for the table `barangaysecretary` */
-
-/*Table structure for table `barangaytanod` */
-
-DROP TABLE IF EXISTS `barangaytanod`;
-
-CREATE TABLE `barangaytanod` (
-  `Username` varchar(255) NOT NULL,
-  `Prefix` varchar(255) NOT NULL,
-  `FirstName` varchar(255) NOT NULL,
-  `MiddleName` varchar(255) NOT NULL,
-  `LastName` varchar(255) NOT NULL,
-  `Suffix` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-/*Data for the table `barangaytanod` */
-
-insert  into `barangaytanod`(`Username`,`Prefix`,`FirstName`,`MiddleName`,`LastName`,`Suffix`) values 
-('itsmenayrb','Mr','Juan','Dela','Cruz','');
-
-/*Table structure for table `barangaytreasurer` */
-
-DROP TABLE IF EXISTS `barangaytreasurer`;
-
-CREATE TABLE `barangaytreasurer` (
-  `Username` varchar(255) NOT NULL,
-  `Prefix` varchar(255) NOT NULL,
-  `FirstName` varchar(255) NOT NULL,
-  `MiddleName` varchar(255) NOT NULL,
-  `LastName` varchar(255) NOT NULL,
-  `Suffix` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 MAX_ROWS=1;
-
-/*Data for the table `barangaytreasurer` */
-
-insert  into `barangaytreasurer`(`Username`,`Prefix`,`FirstName`,`MiddleName`,`LastName`,`Suffix`) values 
-('bryan1','Mr','Bryan','Villanueva','Balaga','');
+insert  into `attendance`(`id`,`employee_id`,`fullname`,`position`,`dateofyear`,`time_in`,`time_out`,`absent`,`on_leave`,`activity`,`comments`,`status`) values 
+(1,201901,'Bryan Villanueva Balaga','Barangay Chairman','2018-11-06','06:50:04','06:53:42',NULL,NULL,NULL,NULL,'active'),
+(2,201903,'Victor  Magtanggol','Barangay Councilor','2018-11-06',NULL,NULL,'Absent',NULL,NULL,NULL,'active'),
+(3,201903,'Victor  Magtanggol','Barangay Councilor','2018-11-06',NULL,NULL,'Absent',NULL,NULL,NULL,'active'),
+(4,201902,'Apple Rose Catalino Gabales','Barangay Secretary','2018-11-06',NULL,NULL,NULL,'On Leave','Sick Leave',NULL,'active'),
+(5,201901,'Bryan Villanueva Balaga','Barangay Chairman','2018-11-07','08:55:58','11:49:15',NULL,NULL,NULL,NULL,'active'),
+(6,201902,'Apple Rose Catalino Gabales','Barangay Secretary','2018-11-07','08:57:01',NULL,NULL,NULL,NULL,NULL,'active'),
+(7,201904,'Mia  Khalifa','Barangay Assistant Secretary','2018-11-07',NULL,NULL,'Absent',NULL,NULL,NULL,'active');
 
 /*Table structure for table `employee` */
 
 DROP TABLE IF EXISTS `employee`;
 
 CREATE TABLE `employee` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `employee_id` int(11) NOT NULL,
+  `employee_id` int(11) NOT NULL AUTO_INCREMENT,
+  `Prefix` varchar(255) NOT NULL,
+  `FirstName` varchar(255) NOT NULL,
+  `MiddleName` varchar(255) NOT NULL,
+  `LastName` varchar(255) NOT NULL,
+  `Suffix` varchar(255) DEFAULT NULL,
+  `Position` varchar(255) NOT NULL,
+  `homeaddress` varchar(255) DEFAULT NULL,
+  `contactnumber` varchar(255) DEFAULT NULL,
   `Username` varchar(255) NOT NULL,
   `Email` varchar(255) NOT NULL,
   `Password` varchar(255) NOT NULL,
-  `Position` varchar(255) NOT NULL,
-  `Token` varchar(255) DEFAULT NULL,
-  `TokenSum` varchar(255) DEFAULT NULL,
-  `AdminLevel` int(11) DEFAULT NULL,
   `Status` varchar(255) DEFAULT NULL,
   `ReasonForDeactivation` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`,`employee_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  `Token` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`employee_id`),
+  KEY `employee_id` (`employee_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=201905 DEFAULT CHARSET=latin1;
 
 /*Data for the table `employee` */
 
-insert  into `employee`(`id`,`employee_id`,`Username`,`Email`,`Password`,`Position`,`Token`,`TokenSum`,`AdminLevel`,`Status`,`ReasonForDeactivation`) values 
-(1,2018001,'bryan','bryan@gmail.com','$2y$10$/Uw4ns/Xf5PaCla68JjANe.knlj9tdAGMPHcFPtg8ZtPI6y0/1B4m','Barangay Chairman',NULL,NULL,1,NULL,NULL);
+insert  into `employee`(`employee_id`,`Prefix`,`FirstName`,`MiddleName`,`LastName`,`Suffix`,`Position`,`homeaddress`,`contactnumber`,`Username`,`Email`,`Password`,`Status`,`ReasonForDeactivation`,`Token`) values 
+(201901,'Mr','Bryan','Villanueva','Balaga','','Barangay Chairman',NULL,NULL,'bryan','bryan@gmail.com','$2y$10$yCbom5bkGlE6t59L16l2huz6Adz4xfP5V0fz8Io./0dlUDZrB6h5e','active',NULL,NULL),
+(201902,'Ms','Apple Rose','Catalino','Gabales','','Barangay Secretary',NULL,NULL,'apple','apple@gmail.com','$2y$10$qmaYWR6ZTMsmPpdzmBNcMORVaLFy58K/DCsgO6c/MavMFibEZg1he','active',NULL,NULL),
+(201903,'Mr','Victor','','Magtanggol','','Barangay Councilor',NULL,NULL,'victor','victor@gmail.com','$2y$10$FH18Oi3y6IRa04MNbeBI7e9.OpRlWuj8uRTP4.8ZOujgQ2drcWkE.','active',NULL,NULL),
+(201904,'Dr','Mia','','Khalifa','','Barangay Assistant Secretary',NULL,NULL,'test1','test@gmail.com','$2y$10$DMuZK5HzY5AwaF6ufTPYvu6EreWc65CWcnv0.F89ZZSmkHZj6ZkzW','active',NULL,NULL);
 
 /*Table structure for table `filecomplaint` */
 
@@ -231,66 +146,6 @@ insert  into `residents`(`user_ID`,`Prefix`,`FirstName`,`MiddleName`,`LastName`,
 (2,'Dr','Apple','Rose','Balaga','',NULL,'2006-10-01',12,NULL,'asdlkj asldkj asldkj Barangay Salitran II, DasmariÃ±as City, Cavite, Philippines, 4114. ',1231231231,12312312312),
 (3,'Dr','doctor','doctoran','tantan','',NULL,'2006-10-04',12,NULL,'123jh12312321313 12313 123123 Barangay Salitran II, DasmariÃ±as City, Cavite, Philippines, 4114. ',1231232131,0);
 
-/*Table structure for table `skchairman` */
-
-DROP TABLE IF EXISTS `skchairman`;
-
-CREATE TABLE `skchairman` (
-  `Username` varchar(255) NOT NULL,
-  `Prefix` varchar(255) NOT NULL,
-  `FirstName` varchar(255) NOT NULL,
-  `MiddleName` varchar(255) NOT NULL,
-  `LastName` varchar(255) NOT NULL,
-  `Suffix` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 MAX_ROWS=1;
-
-/*Data for the table `skchairman` */
-
-/*Table structure for table `skcouncilor` */
-
-DROP TABLE IF EXISTS `skcouncilor`;
-
-CREATE TABLE `skcouncilor` (
-  `Username` varchar(255) NOT NULL,
-  `Prefix` varchar(255) NOT NULL,
-  `FirstName` varchar(255) NOT NULL,
-  `MiddleName` varchar(255) NOT NULL,
-  `LastName` varchar(255) NOT NULL,
-  `Suffix` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 MAX_ROWS=7;
-
-/*Data for the table `skcouncilor` */
-
-/*Table structure for table `sksecretary` */
-
-DROP TABLE IF EXISTS `sksecretary`;
-
-CREATE TABLE `sksecretary` (
-  `Username` varchar(255) NOT NULL,
-  `Prefix` varchar(255) NOT NULL,
-  `FirstName` varchar(255) NOT NULL,
-  `MiddleName` varchar(255) NOT NULL,
-  `LastName` varchar(255) NOT NULL,
-  `Suffix` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-/*Data for the table `sksecretary` */
-
-/*Table structure for table `sktreasurer` */
-
-DROP TABLE IF EXISTS `sktreasurer`;
-
-CREATE TABLE `sktreasurer` (
-  `Username` varchar(255) NOT NULL,
-  `Prefix` varchar(255) NOT NULL,
-  `FirstName` varchar(255) NOT NULL,
-  `MiddleName` varchar(255) NOT NULL,
-  `LastName` varchar(255) NOT NULL,
-  `Suffix` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 MAX_ROWS=1;
-
-/*Data for the table `sktreasurer` */
-
 /*Table structure for table `subusers` */
 
 DROP TABLE IF EXISTS `subusers`;
@@ -315,13 +170,15 @@ CREATE TABLE `subusers` (
   `dateDeleted` date DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `id` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 /*Data for the table `subusers` */
 
 insert  into `subusers`(`id`,`username`,`relationship`,`prefix`,`fname`,`mname`,`lname`,`suffix`,`gender`,`birthday`,`age`,`birthplace`,`homeaddress`,`telephonenumber`,`cellphonenumber`,`dateAdded`,`dateDeleted`) values 
 (1,'bryan123','Mother  ','Mr','Eddie','G','Madrona','',NULL,'2006-11-05','12',NULL,'123lkj 12l3kj 12l3kj Barangay Salitran II, DasmariÃ±as City, Cavite, Philippines, 4114. ',1231312313,0,'2018-11-05',NULL),
-(2,'bryan123','Daughter  ','Dr','Eddoy','Gardo','Madrona','Sr',NULL,'2006-11-05','12',NULL,'dfdg sdfsdf 12l3kj34s Barangay Salitran II, DasmariÃ±as City, Cavite, Philippines, 4114. ',0,12312312311,'2018-11-05',NULL);
+(2,'bryan123','Daughter  ','Dr','Eddoy','Gardo','Madrona','Sr',NULL,'2006-11-05','12',NULL,'dfdg sdfsdf 12l3kj34s Barangay Salitran II, DasmariÃ±as City, Cavite, Philippines, 4114. ',0,12312312311,'2018-11-05',NULL),
+(3,'bryan','Brother  ','Dr','Elesita','Precorpio','Ala Eh','III',NULL,'2006-11-06','12',NULL,'Taga Jan Lang Barangay Salitran II, DasmariÃ±as City, Cavite, Philippines, 4114. ',2312312332,0,'2018-11-06',NULL),
+(4,'bryan','Mother  ','Mr','Victor','','Magtanggol','Jr',NULL,'2006-11-01','12',NULL,'cvsu cvsu cvsu Barangay Salitran II, DasmariÃ±as City, Cavite, Philippines, 4114. ',0,9123456789,'2018-11-07',NULL);
 
 /*Table structure for table `users` */
 

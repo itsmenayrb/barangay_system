@@ -12,11 +12,14 @@
     $username = "";
     $email = "";
     $password = "";
-    $adminlevel = "";
+
     $fullname = "";
     $position = "";
     $status = "";
-    $employeeID = "";
+    $timeIN = "";
+    $timeOut = "";
+    $absent = "";
+    $employeeNumber = "";
     $activity = "";
     $comments = "";
     $errors = array();
@@ -59,413 +62,322 @@
         if (!preg_match("/^[a-zA-Z ]*$/" , $fname) ||!preg_match("/^[a-zA-Z ]*$/" , $mname) || !preg_match("/^[a-zA-Z ]*$/" , $lname)) {
             array_push($errors, "Your name must not contain numbers or special characters.");
         }
-        //Check for barangay chairman
 
-        if($position == "Barangay Chairman"){
-            $sql=$conn->prepare("SELECT * FROM barangaychairman");
-            $sql->execute();
-            $result=$sql->get_result();
-            $row=$result->fetch_array(MYSQLI_ASSOC);
+        if(count($errors) == 0){
+            if($position == "Barangay Chairman"){
+                $sql=$conn->prepare("SELECT Position FROM employee WHERE Position=?");
+                $sql->bind_param("s",$position);
+                $sql->execute();
+                $result=$sql->get_result();
+                $row=$result->fetch_array(MYSQLI_ASSOC);
 
-            if($row > 0){
-                array_push($errors,"You cannot select the position of Barangay Chairman anymore as we already have a data on it.
-                Please choose a proper selection. Thank you.");
+                if($row['Position'] == $position){
+                    array_push($errors,"Failed. Please select proper selection on position");
+                }
+                else{
+                    try{
+                        $status = "active";
+                        $hashedPassword = password_hash($password,PASSWORD_DEFAULT);
+                        $conn = new PDO("mysql:host=$dbServername;dbname=$dbName", $dbUsername, $dbPassword);
+                        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+                        $conn->beginTransaction();
+                        $conn->exec("INSERT INTO employee (Prefix, FirstName, MiddleName, LastName, Suffix, Position, Username, Email, Password, Status) VALUES
+                        ('$prefix','$fname','$mname','$lname','$suffix','$position','$username','$email','$hashedPassword','$status')");
+
+                        $conn->commit();
+                        array_push($success,"Registered Successfully!");
+                    }
+                    catch(PDOException $e){
+                        $conn->rollback();
+                        echo "Error: ".$e->getMessage();
+                    }
+                    $conn = null;
+                }
             }
+            elseif ($position == "Barangay Councilor") {
+                $sql=$conn->prepare("SELECT Position FROM employee WHERE Position=?");
+                $sql->bind_param("s",$position);
+                $sql->execute();
+                $result=$sql->get_result();
+                $row=$result->fetch_array(MYSQLI_ASSOC);
 
-            if(count($errors) == 0){
-                try{
-                    $employeeNumber = '2018001';
-                    $fullname = $fname . " " . $mname . " " . $lname;
-                    $status = "active";
-                    $adminlevel = 1;
-                    $hashedPassword = password_hash($password,PASSWORD_DEFAULT);
-                    $conn = new PDO("mysql:host=$dbServername;dbname=$dbName", $dbUsername, $dbPassword);
-                    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-                    $conn->beginTransaction();
-                    $conn->exec("INSERT INTO employee (employee_id, Username, Email, Password, Position, AdminLevel, Status) VALUES
-                    ('$employeeNumber', '$username','$email','$hashedPassword','$position','$adminlevel','$status')");
-                    $conn->exec("INSERT INTO barangaychairman (employee_id, Username, Prefix, FirstName, MiddleName, LastName, Suffix) VALUES
-                    ('$employeeNumber', '$username','$prefix','$fname','$mname','$lname','$suffix')");
-
-                    $conn->commit();
-                    array_push($success,"Registered Successfully!");
+                if(count($row['Position']) > 7){
+                    array_push($errors,"Failed. Please select proper selection on position");
                 }
-                catch(PDOException $e){
-                    $conn->rollback();
-                    echo "Error: ".$e->getMessage();
+                else{
+                    try{
+                        $status = "active";
+                        $hashedPassword = password_hash($password,PASSWORD_DEFAULT);
+                        $conn = new PDO("mysql:host=$dbServername;dbname=$dbName", $dbUsername, $dbPassword);
+                        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+                        $conn->beginTransaction();
+                        $conn->exec("INSERT INTO employee (Prefix, FirstName, MiddleName, LastName, Suffix, Position, Username, Email, Password, Status) VALUES
+                        ('$prefix','$fname','$mname','$lname','$suffix','$position','$username','$email','$hashedPassword','$status')");
+
+                        $conn->commit();
+                        array_push($success,"Registered Successfully!");
+                    }
+                    catch(PDOException $e){
+                        $conn->rollback();
+                        echo "Error: ".$e->getMessage();
+                    }
+                    $conn = null;
                 }
-                $conn = null;
             }
-        }
+            elseif ($position == "Barangay Secretary") {
+                $sql=$conn->prepare("SELECT Position FROM employee WHERE Position=?");
+                $sql->bind_param("s",$position);
+                $sql->execute();
+                $result=$sql->get_result();
+                $row=$result->fetch_array(MYSQLI_ASSOC);
 
-        // Check for barangay secretary
+                if($row['Position'] == $position){
+                    array_push($errors,"Failed. Please select proper selection on position");
+                }
+                else{
+                    try{
+                        $status = "active";
+                        $hashedPassword = password_hash($password,PASSWORD_DEFAULT);
+                        $conn = new PDO("mysql:host=$dbServername;dbname=$dbName", $dbUsername, $dbPassword);
+                        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        if($position == "Barangay Secretary"){
-            $sql=$conn->prepare("SELECT * FROM barangaysecretary");
-            $sql->execute();
-            $result=$sql->get_result();
-            $row=$result->fetch_array(MYSQLI_ASSOC);
+                        $conn->beginTransaction();
+                        $conn->exec("INSERT INTO employee (Prefix, FirstName, MiddleName, LastName, Suffix, Position, Username, Email, Password, Status) VALUES
+                        ('$prefix','$fname','$mname','$lname','$suffix','$position','$username','$email','$hashedPassword','$status')");
 
-            if($row > 0){
-                array_push($errors,"You cannot select the position of Barangay Secretary anymore as we already have a data on it.
-                Please choose a proper selection. Thank you.");
+                        $conn->commit();
+                        array_push($success,"Registered Successfully!");
+                    }
+                    catch(PDOException $e){
+                        $conn->rollback();
+                        echo "Error: ".$e->getMessage();
+                    }
+                    $conn = null;
+                }
             }
+            elseif ($position == "Barangay Assistant Secretary") {
+                $sql=$conn->prepare("SELECT Position FROM employee WHERE Position=?");
+                $sql->bind_param("s",$position);
+                $sql->execute();
+                $result=$sql->get_result();
+                $row=$result->fetch_array(MYSQLI_ASSOC);
 
-            if(count($errors) == 0){
-                try{
-                    $fullname = $fname . " " . $mname . " " . $lname;
-                    $status = "active";
-                    $adminlevel = 2;
-                    $hashedPassword = password_hash($password,PASSWORD_DEFAULT);
-                    $conn = new PDO("mysql:host=$dbServername;dbname=$dbName", $dbUsername, $dbPassword);
-                    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-                    $conn->beginTransaction();
-                    $conn->exec("INSERT INTO employee (Username, Email, Password, Position, AdminLevel) VALUES
-                    ('$username','$email','$hashedPassword','$position','$adminlevel')");
-                    $conn->exec("INSERT INTO barangaysecretary (Username, Prefix, FirstName, MiddleName, LastName, Suffix) VALUES
-                    ('$username','$prefix','$fname','$mname','$lname','$suffix')");
-                    $conn->exec("INSERT INTO attendance (fullname, position, status) VALUES
-                    ('$fullname', '$position', '$status')");
-
-                    $conn->commit();
-                    array_push($success,"Registered Successfully!");
+                if($row['Position'] == $position){
+                    array_push($errors,"Failed. Please select proper selection on position");
                 }
-                catch(PDOException $e){
-                    $conn->rollback();
-                    echo "Error: ".$e->getMessage();
+                else{
+                    try{
+                        $status = "active";
+                        $hashedPassword = password_hash($password,PASSWORD_DEFAULT);
+                        $conn = new PDO("mysql:host=$dbServername;dbname=$dbName", $dbUsername, $dbPassword);
+                        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+                        $conn->beginTransaction();
+                        $conn->exec("INSERT INTO employee (Prefix, FirstName, MiddleName, LastName, Suffix, Position, Username, Email, Password, Status) VALUES
+                        ('$prefix','$fname','$mname','$lname','$suffix','$position','$username','$email','$hashedPassword','$status')");
+
+                        $conn->commit();
+                        array_push($success,"Registered Successfully!");
+                    }
+                    catch(PDOException $e){
+                        $conn->rollback();
+                        echo "Error: ".$e->getMessage();
+                    }
+                    $conn = null;
                 }
-                $conn = null;
             }
-        }
+            elseif ($position == "Barangay Treasurer") {
+                $sql=$conn->prepare("SELECT Position FROM employee WHERE Position=?");
+                $sql->bind_param("s",$position);
+                $sql->execute();
+                $result=$sql->get_result();
+                $row=$result->fetch_array(MYSQLI_ASSOC);
 
-        // Check for barangay treasurer
+                if($row['Position'] == $position){
+                    array_push($errors,"Failed. Please select proper selection on position");
+                }
+                else{
+                    try{
+                        $status = "active";
+                        $hashedPassword = password_hash($password,PASSWORD_DEFAULT);
+                        $conn = new PDO("mysql:host=$dbServername;dbname=$dbName", $dbUsername, $dbPassword);
+                        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        if($position == "Barangay Treasurer"){
-            $sql=$conn->prepare("SELECT * FROM barangaytreasurer");
-            $sql->execute();
-            $result=$sql->get_result();
-            $row=$result->fetch_array(MYSQLI_ASSOC);
+                        $conn->beginTransaction();
+                        $conn->exec("INSERT INTO employee (Prefix, FirstName, MiddleName, LastName, Suffix, Position, Username, Email, Password, Status) VALUES
+                        ('$prefix','$fname','$mname','$lname','$suffix','$position','$username','$email','$hashedPassword','$status')");
 
-            if($row > 0){
-                array_push($errors,"You cannot select the position of Barangay Treasurer anymore as we already have a data on it.
-                Please choose a proper selection. Thank you.");
+                        $conn->commit();
+                        array_push($success,"Registered Successfully!");
+                    }
+                    catch(PDOException $e){
+                        $conn->rollback();
+                        echo "Error: ".$e->getMessage();
+                    }
+                    $conn = null;
+                }
             }
+            elseif ($position == "SK Chairman") {
+                $sql=$conn->prepare("SELECT Position FROM employee WHERE Position=?");
+                $sql->bind_param("s",$position);
+                $sql->execute();
+                $result=$sql->get_result();
+                $row=$result->fetch_array(MYSQLI_ASSOC);
 
-            if(count($errors) == 0){
-                try{
-                    $fullname = $fname . " " . $mname . " " . $lname;
-                    $status = "active";
-                    $adminlevel = 3;
-                    $hashedPassword = password_hash($password,PASSWORD_DEFAULT);
-                    $conn = new PDO("mysql:host=$dbServername;dbname=$dbName", $dbUsername, $dbPassword);
-                    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-                    $conn->beginTransaction();
-                    $conn->exec("INSERT INTO employee (Username, Email, Password, Position, AdminLevel) VALUES
-                    ('$username','$email','$hashedPassword','$position','$adminlevel')");
-                    $conn->exec("INSERT INTO barangaytreasurer (Username, Prefix, FirstName, MiddleName, LastName, Suffix) VALUES
-                    ('$username','$prefix','$fname','$mname','$lname','$suffix')");
-                    $conn->exec("INSERT INTO attendance (fullname, position, status) VALUES
-                    ('$fullname', '$position', '$status')");
-
-                    $conn->commit();
-                    array_push($success,"Registered Successfully!");
+                if($row['Position'] == $position){
+                    array_push($errors,"Failed. Please select proper selection on position");
                 }
-                catch(PDOException $e){
-                    $conn->rollback();
-                    echo "Error: ".$e->getMessage();
+                else{
+                    try{
+                        $status = "active";
+                        $hashedPassword = password_hash($password,PASSWORD_DEFAULT);
+                        $conn = new PDO("mysql:host=$dbServername;dbname=$dbName", $dbUsername, $dbPassword);
+                        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+                        $conn->beginTransaction();
+                        $conn->exec("INSERT INTO employee (Prefix, FirstName, MiddleName, LastName, Suffix, Position, Username, Email, Password, Status) VALUES
+                        ('$prefix','$fname','$mname','$lname','$suffix','$position','$username','$email','$hashedPassword','$status')");
+
+                        $conn->commit();
+                        array_push($success,"Registered Successfully!");
+                    }
+                    catch(PDOException $e){
+                        $conn->rollback();
+                        echo "Error: ".$e->getMessage();
+                    }
+                    $conn = null;
                 }
-                $conn = null;
             }
-        }
+            elseif ($position == "SK Councilor") {
+                $sql=$conn->prepare("SELECT Position FROM employee WHERE Position=?");
+                $sql->bind_param("s",$position);
+                $sql->execute();
+                $result=$sql->get_result();
+                $row=$result->fetch_array(MYSQLI_ASSOC);
 
-        // Check for barangay assistant secretary
+                if(count($row['Position']) > 7){
+                    array_push($errors,"Failed. Please select proper selection on position");
+                }
+                else{
+                    try{
+                        $status = "active";
+                        $hashedPassword = password_hash($password,PASSWORD_DEFAULT);
+                        $conn = new PDO("mysql:host=$dbServername;dbname=$dbName", $dbUsername, $dbPassword);
+                        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        if($position == "Barangay Assistant Secretary"){
-            $sql=$conn->prepare("SELECT * FROM barangayassistantsecretary");
-            $sql->execute();
-            $result=$sql->get_result();
-            $row=$result->fetch_array(MYSQLI_ASSOC);
+                        $conn->beginTransaction();
+                        $conn->exec("INSERT INTO employee (Prefix, FirstName, MiddleName, LastName, Suffix, Position, Username, Email, Password, Status) VALUES
+                        ('$prefix','$fname','$mname','$lname','$suffix','$position','$username','$email','$hashedPassword','$status')");
 
-            if($row > 0){
-                array_push($errors,"You cannot select the position of Barangay Assistant Secretary anymore as we already have a data on it.
-                Please choose a proper selection. Thank you.");
+                        $conn->commit();
+                        array_push($success,"Registered Successfully!");
+                    }
+                    catch(PDOException $e){
+                        $conn->rollback();
+                        echo "Error: ".$e->getMessage();
+                    }
+                    $conn = null;
+                }
             }
+            elseif ($position == "SK Secretary") {
+                $sql=$conn->prepare("SELECT Position FROM employee WHERE Position=?");
+                $sql->bind_param("s",$position);
+                $sql->execute();
+                $result=$sql->get_result();
+                $row=$result->fetch_array(MYSQLI_ASSOC);
 
-            if(count($errors) == 0){
-                try{
-                    $fullname = $fname . " " . $mname . " " . $lname;
-                    $status = "active";
-                    $adminlevel = 4;
-                    $hashedPassword = password_hash($password,PASSWORD_DEFAULT);
-                    $conn = new PDO("mysql:host=$dbServername;dbname=$dbName", $dbUsername, $dbPassword);
-                    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-                    $conn->beginTransaction();
-                    $conn->exec("INSERT INTO employee (Username, Email, Password, Position, AdminLevel) VALUES
-                    ('$username','$email','$hashedPassword','$position','$adminlevel')");
-                    $conn->exec("INSERT INTO barangayassistantsecretary (Username, Prefix, FirstName, MiddleName, LastName, Suffix) VALUES ('$username','$prefix','$fname','$mname','$lname','$suffix')");
-                    $conn->exec("INSERT INTO attendance (fullname, position, status) VALUES
-                    ('$fullname', '$position', '$status')");
-
-                    $conn->commit();
-                    array_push($success,"Registered Successfully!");
+                if($row['Position'] == $position){
+                    array_push($errors,"Failed. Please select proper selection on position");
                 }
-                catch(PDOException $e){
-                    $conn->rollback();
-                    echo "Error: ".$e->getMessage();
+                else{
+                    try{
+                        $status = "active";
+                        $hashedPassword = password_hash($password,PASSWORD_DEFAULT);
+                        $conn = new PDO("mysql:host=$dbServername;dbname=$dbName", $dbUsername, $dbPassword);
+                        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+                        $conn->beginTransaction();
+                        $conn->exec("INSERT INTO employee (Prefix, FirstName, MiddleName, LastName, Suffix, Position, Username, Email, Password, Status) VALUES
+                        ('$prefix','$fname','$mname','$lname','$suffix','$position','$username','$email','$hashedPassword','$status')");
+
+                        $conn->commit();
+                        array_push($success,"Registered Successfully!");
+                    }
+                    catch(PDOException $e){
+                        $conn->rollback();
+                        echo "Error: ".$e->getMessage();
+                    }
+                    $conn = null;
                 }
-                $conn = null;
             }
-        }
+            elseif ($position == "SK Treasurer") {
+                $sql=$conn->prepare("SELECT Position FROM employee WHERE Position=?");
+                $sql->bind_param("s",$position);
+                $sql->execute();
+                $result=$sql->get_result();
+                $row=$result->fetch_array(MYSQLI_ASSOC);
 
-        // Check for barangay councilors
+                if($row['Position'] == $position){
+                    array_push($errors,"Failed. Please select proper selection on position");
+                }
+                else{
+                    try{
+                        $status = "active";
+                        $hashedPassword = password_hash($password,PASSWORD_DEFAULT);
+                        $conn = new PDO("mysql:host=$dbServername;dbname=$dbName", $dbUsername, $dbPassword);
+                        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        if($position == "Barangay Councilor"){
-            $sql=$conn->prepare("SELECT * FROM barangaycouncilor");
-            $sql->execute();
-            $result=$sql->get_result();
-            $row=$result->fetch_array(MYSQLI_ASSOC);
+                        $conn->beginTransaction();
+                        $conn->exec("INSERT INTO employee (Prefix, FirstName, MiddleName, LastName, Suffix, Position, Username, Email, Password, Status) VALUES
+                        ('$prefix','$fname','$mname','$lname','$suffix','$position','$username','$email','$hashedPassword','$status')");
 
-            if($row > 7){
-                array_push($errors,"You cannot select the position of Barangay Councilor anymore as we already have a data on it.
-                Please choose a proper selection. Thank you.");
+                        $conn->commit();
+                        array_push($success,"Registered Successfully!");
+                    }
+                    catch(PDOException $e){
+                        $conn->rollback();
+                        echo "Error: ".$e->getMessage();
+                    }
+                    $conn = null;
+                }
             }
+            elseif ($position == "Barangay Tanod") {
+                $sql=$conn->prepare("SELECT Position FROM employee WHERE Position=?");
+                $sql->bind_param("s",$position);
+                $sql->execute();
+                $result=$sql->get_result();
+                $row=$result->fetch_array(MYSQLI_ASSOC);
 
-            if(count($errors) == 0){
-                try{
-                    $fullname = $fname . " " . $mname . " " . $lname;
-                    $status = "active";
-                    $adminlevel = 5;
-                    $hashedPassword = password_hash($password,PASSWORD_DEFAULT);
-                    $conn = new PDO("mysql:host=$dbServername;dbname=$dbName", $dbUsername, $dbPassword);
-                    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-                    $conn->beginTransaction();
-                    $conn->exec("INSERT INTO employee (Username, Email, Password, Position, AdminLevel) VALUES
-                    ('$username','$email','$hashedPassword','$position','$adminlevel')");
-                    $conn->exec("INSERT INTO barangaycouncilor (Username, Prefix, FirstName, MiddleName, LastName, Suffix) VALUES
-                    ('$username','$prefix','$fname','$mname','$lname','$suffix')");
-                    $conn->exec("INSERT INTO attendance (fullname, position, status) VALUES
-                    ('$fullname', '$position', '$status')");
-
-                    $conn->commit();
-                    array_push($success,"Registered Successfully!");
+                if(count($row['Position']) > 15){
+                    array_push($errors,"Failed. Please select proper selection on position");
                 }
-                catch(PDOException $e){
-                    $conn->rollback();
-                    echo "Error: ".$e->getMessage();
+                else{
+                    try{
+                        $status = "active";
+                        $hashedPassword = password_hash($password,PASSWORD_DEFAULT);
+                        $conn = new PDO("mysql:host=$dbServername;dbname=$dbName", $dbUsername, $dbPassword);
+                        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+                        $conn->beginTransaction();
+                        $conn->exec("INSERT INTO employee (Prefix, FirstName, MiddleName, LastName, Suffix, Position, Username, Email, Password, Status) VALUES
+                        ('$prefix','$fname','$mname','$lname','$suffix','$position','$username','$email','$hashedPassword','$status')");
+
+                        $conn->commit();
+                        array_push($success,"Registered Successfully!");
+                    }
+                    catch(PDOException $e){
+                        $conn->rollback();
+                        echo "Error: ".$e->getMessage();
+                    }
+                    $conn = null;
                 }
-                $conn = null;
-            }
-        }
-
-        // Check for sk chairman
-
-        if($position == "SK Chairman"){
-            $sql=$conn->prepare("SELECT * FROM skchairman");
-            $sql->execute();
-            $result=$sql->get_result();
-            $row=$result->fetch_array(MYSQLI_ASSOC);
-
-            if($row > 0){
-                array_push($errors,"You cannot select the position of SK Chairman anymore as we already have a data on it.
-                Please choose a proper selection. Thank you.");
-            }
-
-            if(count($errors) == 0){
-                try{
-                    $fullname = $fname . " " . $mname . " " . $lname;
-                    $status = "active";
-                    $adminlevel = 6;
-                    $hashedPassword = password_hash($password,PASSWORD_DEFAULT);
-                    $conn = new PDO("mysql:host=$dbServername;dbname=$dbName", $dbUsername, $dbPassword);
-                    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-                    $conn->beginTransaction();
-                    $conn->exec("INSERT INTO employee (Username, Email, Password, Position, AdminLevel) VALUES
-                    ('$username','$email','$hashedPassword','$position','$adminlevel')");
-                    $conn->exec("INSERT INTO skchairman (Username, Prefix, FirstName, MiddleName, LastName, Suffix) VALUES
-                    ('$username','$prefix','$fname','$mname','$lname','$suffix')");
-                    $conn->exec("INSERT INTO attendance (fullname, position, status) VALUES
-                    ('$fullname', '$position', '$status')");
-
-                    $conn->commit();
-                    array_push($success,"Registered Successfully!");
-                }
-                catch(PDOException $e){
-                    $conn->rollback();
-                    echo "Error: ".$e->getMessage();
-                }
-                $conn = null;
-            }
-        }
-
-        // Check for sk councilor
-
-        if($position == "SK Councilor"){
-            $sql=$conn->prepare("SELECT * FROM skcouncilor");
-            $sql->execute();
-            $result=$sql->get_result();
-            $row=$result->fetch_array(MYSQLI_ASSOC);
-
-            if($row > 7){
-                array_push($errors,"You cannot select the position of SK Councilor anymore as we already have a data on it. 
-                Please choose a proper selection. Thank you.");
-            }
-
-            if(count($errors) == 0){
-                try{
-                    $fullname = $fname . " " . $mname . " " . $lname;
-                    $status = "active";
-                    $adminlevel = 7;
-                    $hashedPassword = password_hash($password,PASSWORD_DEFAULT);
-                    $conn = new PDO("mysql:host=$dbServername;dbname=$dbName", $dbUsername, $dbPassword);
-                    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-                    $conn->beginTransaction();
-                    $conn->exec("INSERT INTO employee (Username, Email, Password, Position, AdminLevel) VALUES
-                    ('$username','$email','$hashedPassword','$position','$adminlevel')");
-                    $conn->exec("INSERT INTO skcouncilor (Username, Prefix, FirstName, MiddleName, LastName, Suffix) VALUES
-                    ('$username','$prefix','$fname','$mname','$lname','$suffix')");
-                    $conn->exec("INSERT INTO attendance (fullname, position, status) VALUES
-                    ('$fullname', '$position', '$status')");
-
-                    $conn->commit();
-                    array_push($success,"Registered Successfully!");
-                }
-                catch(PDOException $e){
-                    $conn->rollback();
-                    echo "Error: ".$e->getMessage();
-                }
-                $conn = null;
-            }
-        }
-
-        // Check for sk treasurer
-
-        if($position == "SK Treasurer"){
-            $sql=$conn->prepare("SELECT * FROM sktreasurer");
-            $sql->execute();
-            $result=$sql->get_result();
-            $row=$result->fetch_array(MYSQLI_ASSOC);
-
-            if($row > 0){
-                array_push($errors,"You cannot select the position of SK Treasurer anymore as we already have a data on it.
-                Please choose a proper selection. Thank you.");
-            }
-
-            if(count($errors) == 0){
-                try{
-                    $fullname = $fname . " " . $mname . " " . $lname;
-                    $status = "active";
-                    $adminlevel = 8;
-                    $hashedPassword = password_hash($password,PASSWORD_DEFAULT);
-                    $conn = new PDO("mysql:host=$dbServername;dbname=$dbName", $dbUsername, $dbPassword);
-                    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-                    $conn->beginTransaction();
-                    $conn->exec("INSERT INTO employee (Username, Email, Password, Position, AdminLevel) VALUES
-                    ('$username','$email','$hashedPassword','$position','$adminlevel')");
-                    $conn->exec("INSERT INTO sktreasurer (Username, Prefix, FirstName, MiddleName, LastName, Suffix) VALUES
-                    ('$username','$prefix','$fname','$mname','$lname','$suffix')");
-                    $conn->exec("INSERT INTO attendance (fullname, position, status) VALUES
-                    ('$fullname', '$position', '$status')");
-
-                    $conn->commit();
-                    array_push($success,"Registered Successfully!");
-                }
-                catch(PDOException $e){
-                    $conn->rollback();
-                    echo "Error: ".$e->getMessage();
-                }
-                $conn = null;
-            }
-        }
-
-        // Check for SK Secretary
-
-        if($position == "SK Secretary"){
-            $sql=$conn->prepare("SELECT * FROM sksecretary");
-            $sql->execute();
-            $result=$sql->get_result();
-            $row=$result->fetch_array(MYSQLI_ASSOC);
-
-            if($row > 0){
-                array_push($errors,"You cannot select the position of SK Secretary anymore as we already have a data on it
-                Please choose a proper selection. Thank you.");
-            }
-
-            if(count($errors) == 0){
-                try{
-                    $fullname = $fname . " " . $mname . " " . $lname;
-                    $status = "active";
-                    $adminlevel = 9;
-                    $hashedPassword = password_hash($password,PASSWORD_DEFAULT);
-                    $conn = new PDO("mysql:host=$dbServername;dbname=$dbName", $dbUsername, $dbPassword);
-                    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-                    $conn->beginTransaction();
-                    $conn->exec("INSERT INTO employee (Username, Email, Password, Position, AdminLevel) VALUES
-                    ('$username','$email','$hashedPassword','$position','$adminlevel')");
-                    $conn->exec("INSERT INTO sksecretary (Username, Prefix, FirstName, MiddleName, LastName, Suffix) VALUES
-                    ('$username','$prefix','$fname','$mname','$lname','$suffix')");
-                    $conn->exec("INSERT INTO attendance (fullname, position, status) VALUES
-                    ('$fullname', '$position', '$status')");
-
-                    $conn->commit();
-                    array_push($success,"Registered Successfully!");
-                }
-                catch(PDOException $e){
-                    $conn->rollback();
-                    echo "Error: ".$e->getMessage();
-                }
-                $conn = null;
-            }
-        }
-
-        // Check for barangay tanod
-
-        if($position == "Barangay Tanod"){
-            $sql=$conn->prepare("SELECT * FROM barangaytanod");
-            $sql->execute();
-            $result=$sql->get_result();
-            $row=$result->fetch_array(MYSQLI_ASSOC);
-
-            if($row > 0){
-                array_push($errors,"You cannot select the position of Barangay Tanod anymore as we already have a data on it. 
-                Please choose a proper selection. Thank you.");
-            }
-
-            if(count($errors) == 0){
-                try{
-                    $fullname = $fname . " " . $mname . " " . $lname;
-                    $status = "active";
-                    $hashedPassword = password_hash($password,PASSWORD_DEFAULT);
-                    $conn = new PDO("mysql:host=$dbServername;dbname=$dbName", $dbUsername, $dbPassword);
-                    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-                    $conn->beginTransaction();
-                    $conn->exec("INSERT INTO employee (Username, Email, Password, Position) VALUES
-                    ('$username','$email','$hashedPassword','$position')");
-                    $conn->exec("INSERT INTO barangaytanod (Username, Prefix, FirstName, MiddleName, LastName, Suffix) VALUES
-                    ('$username','$prefix','$fname','$mname','$lname','$suffix')");
-                    $conn->exec("INSERT INTO attendance (fullname, position, status) VALUES
-                    ('$fullname', '$position', '$status')");
-
-                    $conn->commit();
-                    array_push($success,"Registered Successfully!");
-                }
-                catch(PDOException $e){
-                    $conn->rollback();
-                    echo "Error: ".$e->getMessage();
-                }
-                $conn = null;
             }
         }
     }
+
+
 
     // LOGIN
     // LOGIN
@@ -497,7 +409,7 @@
                     $_SESSION['id'] = $row['id'];
                     $_SESSION['Email'] = $row['Email'];
                     $_SESSION['Position'] = $row['Position'];
-                    header("Location: index.php");
+                    header("Location: dashboard.php");
                     exit();
                 }
             }
@@ -510,11 +422,12 @@
     * ATTENDANCE
     * ATTENDANCE
     */
+    //Time IN//
     if(isset($_POST['btnTimeIn'])){
         $date = date('Y-m-d');
         $employeeNumber = checkInput($_POST['employeeNumber']);
 
-        $sql=$conn->prepare("SELECT employee.employee_id, employee.Position, employee.Status, barangaychairman.FirstName, barangaychairman.MiddleName, barangaychairman.LastName FROM employee INNER JOIN barangaychairman ON employee.employee_id = barangaychairman.employee_id WHERE employee.employee_id=?");
+        $sql=$conn->prepare("SELECT employee_id FROM employee WHERE employee_id=?");
         $sql->bind_param("s",$employeeNumber);
         $sql->execute();
         $result=$sql->get_result();
@@ -530,18 +443,24 @@
         }
 
         if(count($errors) == 0){
-            $sql=$conn->prepare("SELECT time_in FROM attendance WHERE employee_id=?");
+            $sql=$conn->prepare("SELECT time_in, absent, on_leave FROM attendance WHERE employee_id=? AND dateofyear = '$date'");
             $sql->bind_param("s",$employeeNumber);
             $sql->execute();
             $result=$sql->get_result();
             $row=$result->fetch_array(MYSQLI_ASSOC);
 
-            if($row['time_in'] > 0){
+            if($row['time_in'] <> NULL || $row['absent'] <> NULL || $row['on_leave'] <> NULL){
                 if($date == $date){
                     array_push($errors, "You don't have the privelege to update your time-in. Please contact your administrator.");
                 }
             }
             else {
+                $sql=$conn->prepare("SELECT * FROM employee WHERE employee_id=?");
+                $sql->bind_param("s",$employeeNumber);
+                $sql->execute();
+                $result=$sql->get_result();
+                $row=$result->fetch_array(MYSQLI_ASSOC);
+
                 $fullname = $row['FirstName'] . " " . $row['MiddleName'] . " " . $row['LastName'];
                 $position = $row['Position'];
                 $status = $row['Status'];
@@ -555,6 +474,178 @@
                 }
                 else{
                   mysqli_stmt_bind_param($stmt, "ssssss", $employeeNumber, $fullname, $position, $date, $timeIN, $status);
+                  mysqli_stmt_execute($stmt);
+                }
+                mysqli_stmt_close($stmt);
+                mysqli_close($conn);
+                echo "<script type='text/javascript'>window.location='attendance.php';</script>";
+            }
+        }
+    }
+
+    // TIMEOUT //
+    if(isset($_POST['btnTimeOut'])){
+        $date = date('Y-m-d');
+        $employeeNumber = checkInput($_POST['employeeNumber']);
+
+        $sql=$conn->prepare("SELECT employee_id FROM employee WHERE employee_id=?");
+        $sql->bind_param("s",$employeeNumber);
+        $sql->execute();
+        $result=$sql->get_result();
+        $row=$result->fetch_array(MYSQLI_ASSOC);
+
+        if(!preg_match("/^[0-9]*$/",$employeeNumber)){
+            array_push($errors, "You have entered invalid employee number. Please check your inputs!");
+        }
+
+        if($row['employee_id'] != $employeeNumber){
+            array_push($errors, "Employee Number does not exist.");
+            $employeeNumber = "";
+        }
+
+        if(count($errors) == 0){
+            $sql=$conn->prepare("SELECT time_in, time_out, absent, on_leave FROM attendance WHERE employee_id=? AND dateofyear = '$date'");
+            $sql->bind_param("s",$employeeNumber);
+            $sql->execute();
+            $result=$sql->get_result();
+            $row=$result->fetch_array(MYSQLI_ASSOC);
+
+            if($row['time_in'] == NULL || $row['time_out'] <> NULL || $row['absent'] <> NULL || $row['on_leave'] <> NULL){
+                if($date == $date){
+                    array_push($errors, "You don't have the privelege to update your time-out. Please contact your administrator.");
+                }
+            }
+            else {
+                $timeOut = date('h:i:sa');
+
+                $sql = "UPDATE attendance SET time_out=? WHERE employee_id = '$employeeNumber' AND dateofyear = '$date'";
+                $stmt = mysqli_stmt_init($conn);
+                if(!mysqli_stmt_prepare($stmt, $sql)){
+                  array_push($errors, "Something went wrong. Please try again later.");
+                }
+                else{
+                  mysqli_stmt_bind_param($stmt, "s", $timeOut);
+                  mysqli_stmt_execute($stmt);
+                }
+                mysqli_stmt_close($stmt);
+                mysqli_close($conn);
+                echo "<script type='text/javascript'>window.location='attendance.php';</script>";
+            }
+        }
+    }
+    //Absent//
+    if(isset($_POST['btnAbsent'])){
+        $date = date('Y-m-d');
+        $employeeNumber = checkInput($_POST['employeeNumber']);
+
+        $sql=$conn->prepare("SELECT employee_id FROM employee WHERE employee_id=?");
+        $sql->bind_param("s",$employeeNumber);
+        $sql->execute();
+        $result=$sql->get_result();
+        $row=$result->fetch_array(MYSQLI_ASSOC);
+
+        if(!preg_match("/^[0-9]*$/",$employeeNumber)){
+            array_push($errors, "You have entered invalid employee number. Please check your inputs!");
+        }
+
+        if($row['employee_id'] != $employeeNumber){
+            array_push($errors, "Employee Number does not exist.");
+            $employeeNumber = "";
+        }
+
+        if(count($errors) == 0){
+            $sql=$conn->prepare("SELECT time_in, time_out, on_leave, absent FROM attendance WHERE employee_id=? AND dateofyear = '$date'");
+            $sql->bind_param("s",$employeeNumber);
+            $sql->execute();
+            $result=$sql->get_result();
+            $row=$result->fetch_array(MYSQLI_ASSOC);
+
+            if($row['time_in'] <> NULL || $row['time_out'] <> NULL || $row['on_leave'] <> NULL || $row['absent'] <> NULL){
+                if($date == $date){
+                    array_push($errors, "Cannot tagged as absent.");
+                }
+            }
+            else {
+                $sql=$conn->prepare("SELECT * FROM employee WHERE employee_id=?");
+                $sql->bind_param("s",$employeeNumber);
+                $sql->execute();
+                $result=$sql->get_result();
+                $row=$result->fetch_array(MYSQLI_ASSOC);
+
+                $fullname = $row['FirstName'] . " " . $row['MiddleName'] . " " . $row['LastName'];
+                $position = $row['Position'];
+                $status = $row['Status'];
+                $absent = "Absent";
+
+                $sql = "INSERT INTO attendance (employee_id, fullname, position, dateofyear, absent, status) VALUES (?,?,?,?,?,?)";
+                $stmt = mysqli_stmt_init($conn);
+
+                if(!mysqli_stmt_prepare($stmt, $sql)){
+                  array_push($errors, "Something went wrong. Please try again later.");
+                }
+                else{
+                  mysqli_stmt_bind_param($stmt, "ssssss", $employeeNumber, $fullname, $position, $date, $absent, $status);
+                  mysqli_stmt_execute($stmt);
+                }
+                mysqli_stmt_close($stmt);
+                mysqli_close($conn);
+                echo "<script type='text/javascript'>window.location='attendance.php';</script>";
+            }
+        }
+    }
+    //On-Leave//
+    if(isset($_POST['btnLeave'])){
+        $date = date('Y-m-d');
+        $employeeNumber = checkInput($_POST['employeeNumber']);
+        $reasonOfLeave = checkInput($_POST['textLeaveReason']);
+
+        $sql=$conn->prepare("SELECT employee_id FROM employee WHERE employee_id=?");
+        $sql->bind_param("s",$employeeNumber);
+        $sql->execute();
+        $result=$sql->get_result();
+        $row=$result->fetch_array(MYSQLI_ASSOC);
+
+        if(!preg_match("/^[0-9]*$/",$employeeNumber)){
+            array_push($errors, "You have entered invalid employee number. Please check your inputs!");
+        }
+
+        if($row['employee_id'] != $employeeNumber){
+            array_push($errors, "Employee Number does not exist.");
+            $employeeNumber = "";
+        }
+
+        if(count($errors) == 0){
+            $sql=$conn->prepare("SELECT time_in, time_out, on_leave, absent FROM attendance WHERE employee_id=? AND dateofyear = '$date'");
+            $sql->bind_param("s",$employeeNumber);
+            $sql->execute();
+            $result=$sql->get_result();
+            $row=$result->fetch_array(MYSQLI_ASSOC);
+
+            if($row['time_in'] <> NULL || $row['time_out'] <> NULL || $row['on_leave'] <> NULL || $row['absent'] <> NULL){
+                if($date == $date){
+                    array_push($errors, "Cannot tagged as on leave.");
+                }
+            }
+            else {
+                $sql=$conn->prepare("SELECT * FROM employee WHERE employee_id=?");
+                $sql->bind_param("s",$employeeNumber);
+                $sql->execute();
+                $result=$sql->get_result();
+                $row=$result->fetch_array(MYSQLI_ASSOC);
+
+                $fullname = $row['FirstName'] . " " . $row['MiddleName'] . " " . $row['LastName'];
+                $position = $row['Position'];
+                $status = $row['Status'];
+                $onLeave = "On Leave";
+
+                $sql = "INSERT INTO attendance (employee_id, fullname, position, dateofyear, on_leave, activity, status) VALUES (?,?,?,?,?,?,?)";
+                $stmt = mysqli_stmt_init($conn);
+
+                if(!mysqli_stmt_prepare($stmt, $sql)){
+                  array_push($errors, "Something went wrong. Please try again later.");
+                }
+                else{
+                  mysqli_stmt_bind_param($stmt, "sssssss", $employeeNumber, $fullname, $position, $date, $onLeave, $reasonOfLeave, $status);
                   mysqli_stmt_execute($stmt);
                 }
                 mysqli_stmt_close($stmt);
