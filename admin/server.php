@@ -30,7 +30,8 @@ in admin site -->
     $errors = array();
     $success = array();
 
-    $employeeNumber = "";
+    $officialOut = '17:00:00';
+    $date = date('Y-m-d');
 
     // REGISTRATION
     // REGISTRATION
@@ -515,6 +516,8 @@ in admin site -->
     }
 
     // TIMEOUT //
+    //TODO: Officials will prompt if they attempt to time out
+    // before the official time-out.
     if(isset($_POST['btnTimeOut'])){
         $date = date('Y-m-d');
         $employeeNumber = checkInput($_POST['employeeNumber']);
@@ -549,18 +552,23 @@ in admin site -->
             else {
                 $timeOut = date('h:i:sa');
 
-                $sql = "UPDATE attendance SET time_out=? WHERE employee_id = '$employeeNumber' AND dateofyear = '$date'";
-                $stmt = mysqli_stmt_init($conn);
-                if(!mysqli_stmt_prepare($stmt, $sql)){
-                  array_push($errors, "Something went wrong. Please try again later.");
+                if(str_replace(':','',$officialOut) > $timeOut){
+                    echo "orayt";
                 }
                 else{
-                  mysqli_stmt_bind_param($stmt, "s", $timeOut);
-                  mysqli_stmt_execute($stmt);
+                    $sql = "UPDATE attendance SET time_out=? WHERE employee_id = '$employeeNumber' AND dateofyear = '$date'";
+                    $stmt = mysqli_stmt_init($conn);
+                    if(!mysqli_stmt_prepare($stmt, $sql)){
+                        array_push($errors, "Something went wrong. Please try again later.");
+                    }
+                    else{
+                        mysqli_stmt_bind_param($stmt, "s", $timeOut);
+                        mysqli_stmt_execute($stmt);
+                    }
+                    mysqli_stmt_close($stmt);
+                    mysqli_close($conn);
+                    echo "<script type='text/javascript'>window.location='attendance.php';</script>";
                 }
-                mysqli_stmt_close($stmt);
-                mysqli_close($conn);
-                echo "<script type='text/javascript'>window.location='attendance.php';</script>";
             }
         }
     }

@@ -20,7 +20,7 @@ javascripts or functions for admin -->
     $('#login-form').validate();
     $('#timesheetTable').DataTable({
         "scrollX" : true,
-        "order": [[ 3, "desc" ]],
+        "order": [[ 3, "desc" ],[ 6, "desc"]],
         "pagingType": "full_numbers",
         dom: 'Bfrtip',
         buttons: [
@@ -30,4 +30,10 @@ javascripts or functions for admin -->
             { extend: 'print', className: 'form-control btn btn-info' }
         ]
     });
+    function validate(form){
+        var officialOut = "<?php $officialOut; ?>";
+        var timeOut = "<?php $date; ?>";
+
+
+    }
 </script>

@@ -3,6 +3,9 @@
 -- he/she will be redirect to dashboard page -->
 <?php include 'header.php'; ?>
     <?php if(!isset($_SESSION['Username'])) : ?>
+        <nav class="navbar navbar-expand-md navbar-light bg-info">
+            <a class="navbar-brand" href='index.php'><img src="../img/logo.circle.brand.png"/>Barangay Salitran II</a>
+        </nav>
         <div class="container-fluid" id="login-container">
             <div class="card text-center border-primary">
                 <div class="card-header">

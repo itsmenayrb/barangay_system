@@ -1,5 +1,5 @@
 <?php
-    include 'includes\dbh.inc.php';
+    include 'dbh.inc.php';
     function generateNewString($len = 10){
         $token = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
         $token = str_shuffle($token);

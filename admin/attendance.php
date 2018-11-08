@@ -57,7 +57,7 @@
 										 ?>
 				                    </select>
 								</div>
-								<div class="form-group btn">
+								<div class="form-group">
 									<input type="submit" class="form-control btn btn-secondary" Value="Check" name="btnCheckTimeSheet"/>
 								</div>
 							</div>
@@ -74,7 +74,7 @@
 						<div class="container">
 							<?php include 'errors.php'; ?>
 							<?php include 'success.php'; ?>
-							<form action="attendance.php" method="post" id="timeInForm">
+							<form action="attendance.php" method="post" id="timeInForm" onsubmit="return validate(this);">
 								<div class="form-group">
 									<small class="form-text text-muted">Employee Number</small>
 									<input type="text" class="form-control" name="employeeNumber"/>
