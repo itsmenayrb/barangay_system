@@ -118,11 +118,6 @@ EOD;
 $pdf->writeHTMLCell(0,0,71,212,$html,0,1,0,true,'',true);
 
 $html = <<<EOD
-<p><b>Issued at:_____________________</b></p>
-EOD;
-$pdf->writeHTMLCell(0,0,71,218,$html,0,1,0,true,'',true);
-
-$html = <<<EOD
 <p><b>On:__________________________</b></p>
 EOD;
 $pdf->writeHTMLCell(0,0,71,224,$html,0,1,0,true,'',true);
@@ -152,7 +147,7 @@ $pdf->writeHTMLCell(0,0,75,263,$html,0,1,0,true,'',true);
 
 
 $pdf->Line(71,194,120,194);
-$pdf->SetLineWidth(3);
+$pdf->SetLineWidth(2);
 $pdf->Line(5,65,200,65);
 $pdf->Line(65,65,65,275);
 
