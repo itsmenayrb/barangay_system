@@ -1,3 +1,10 @@
+/* MAIN STYLE FOR ADMIN
+*/
+/**
+ * Style for the minimum height of the <body> tag
+ * @author Renz
+ */
+body { min-height: 100vh; }
 /* FORM VALIDATION STYLE */
 .form-error {
     width: 92%;

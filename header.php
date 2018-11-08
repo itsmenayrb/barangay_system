@@ -11,7 +11,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Barangay Salitran II</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+    <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico"/>
+
     <!-- BOOTSTRAP, js AND CSS SCRIPT -->
     <script type="text/javascript" src="assets/js/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="assets/js/jquery.validate.min.js"></script>
@@ -45,7 +46,7 @@
     <!-- START OF NAVIGATION -->
     <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
         <div class="container" style="padding-left: 70px; padding-right: 70px; margin: 0; max-width: 100%;">
-            <a class="navbar-brand" href="index.php">Barangay Salitran II</a>
+            <a class="navbar-brand" href="index.php"><img src="img/logo.circle.brand.png" alt="Home"/>Barangay Salitran II</a>
             <!-- Brand and toggle get grouped for better mobile display -->
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#mainNavigation" aria-expanded="false"
             aria-controls="mainNavigation" aria-label="Toggle Navigation">
@@ -84,7 +85,7 @@
                     <button class="btn btn-outline-info btn-sm mr-sm-5" type="submit"><span class="fas fa-search"></span> Search</button>
                     <?php if(isset($_SESSION['Username'])){ ?>
                         <li class="navbar-nav dropdown"> 
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" 
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white;"><span class="fas fa-user-alt"></span> <?php echo $_SESSION['Username'];?></a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a href="profile.php" class="dropdown-item">Profile</a>
@@ -261,11 +262,11 @@
                 </div>
                 <div class="modal-body">
                     <div class="container">
-                        <p class="text-justify">Please ensure that your contact information is full and correct as all reports 
-                            and complaints needs a deep investigation and verification. Rest Assured that your 
+                        <p class="text-justify">Please ensure that your contact information is full and correct as all reports
+                            and complaints needs a deep investigation and verification. Rest Assured that your
                             credentials will be kept confidential. Thank you.
                         </p>
-                        <input type="button" class="btn btn-default float-right" data-dismiss="modal" 
+                        <input type="button" class="btn btn-default float-right" data-dismiss="modal"
                         data-toggle="modal" data-target="#complaintModal" value="OK"/>
                     </div>
                 </div>

@@ -1,12 +1,19 @@
+<!-- MAIN PAGE FOR ADMIN --
+-- This page should include list of employees, as much --
+-- as possible may picture nila, mission and vision --
+-- and kaya pa lagyan ng chart is mas okay -->
 <?php include 'header.php'; ?>
+<?php if(!isset($_SESSION['Position'])) :?>
+    <?php header("Location: index.php"); ?>
+<?php endif ?>
 <?php
-    $sql = "SELECT id FROM employee";
+    $sql = "SELECT employee_id FROM employee";
     $results = mysqli_query($conn, $sql);
     $resultsCheck = mysqli_num_rows($results);
 
     if ($resultsCheck > 0) : ?>
         <?php if ($row = mysqli_fetch_assoc($results)) : ?>
-            <?php if (isset($_SESSION['Position']) == 'Barangay Captain') { ?>
+            <?php if (isset($_SESSION['Position']) == 'Barangay Captain') { ?> <!--NAVIGATION -->
                 <span class="fas fa-bars fa-3x float-left" style="margin-top: 15px; margin-left: 15px;" onclick="openNav()"></span>
                 <div id="mySidenav" class="sidenav">
                     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
@@ -18,7 +25,7 @@
                     <div class="dropdown-divider" style="width: 80%; margin: 0 auto;"></div>
                     <a href="signout.php">Sign Out</a>
                 </div>
-
+                <!-- content -->
                 <div id="main">
                     <div class="container">
                         <nav class="navbar navbar-expand-smd navbar-dark bg-dark">
@@ -27,42 +34,50 @@
                                 <h5 class="lead text-light">You are signed-in as <a href="#"><?php echo $_SESSION['Username']; ?></a> | <a href="signout.php" class="text-light"><i class="btn btn-outline-light fas fa-sign-out-alt" data-toggle="tooltip" data-placement="right" title="Sign Out"></i></a></h5>
                             </div>
                         </nav>
-                        <div class="container">
-                            <p class="lead text-center">EMPLOYEES</p>
-                            <div class='container'>
-                                <div class='table-responsive'>
-                                    <table class='table table-hover table-bordered' id="employeeTable">
-                                        <thead class='thead-light'>
-                                            <tr>
-                                                <th>Employee ID</th>
-                                                <th>Full Name</th>
-                                                <th>Position</th>
-                                                <th>Address</th>
-                                                <th>Contact Number</th>
-                                            </tr>
-                                        </thead>
-                                        <tr>
-                                            <?php
-                                                $sql = "SELECT * FROM employee INNER JOIN barangaychairman ON employee.employee_id = barangaychairman.employee_id";
-                                                $results = mysqli_query($conn, $sql);
-                                                $resultsCheck = mysqli_num_rows($results);
+                        <div class="container" style="margin-top: 20px;">
+                            <div class="card">
+                                <div class="card-header">
+                                    <p class="h4 lead text-center">Barangay Officials</p>
+                                </div>
+                                <div class="card-body">
+                                    <div class='container'>
+                                        <div class='table-responsive'>
+                                            <table class='table table-hover table-bordered' id="employeeTable">
+                                                <thead class='thead-light'>
+                                                    <tr>
+                                                        <th>Employee ID</th>
+                                                        <th>Full Name</th>
+                                                        <th>Position</th>
+                                                        <th>Address</th>
+                                                        <th>Contact Number</th>
+                                                        <th><i class="fa fa-cogs"></i></th>
+                                                    </tr>
+                                                </thead>
+                                                <tr>
+                                                <!-- QUERY FOR DISPLAYING OF ALL OF EMPLOYEES -->
+                                                    <?php
+                                                        $sql = "SELECT * FROM employee";
+                                                        $results = mysqli_query($conn, $sql);
+                                                        $resultsCheck = mysqli_num_rows($results);
 
-                                                if($resultsCheck > 0){
-                                                    while($row = $results->fetch_assoc()){
-                                                        echo "<td>" . $row['employee_id'] . "</td>";
-                                                        echo "<td>" . $row['FirstName'] . " " . $row['MiddleName'] . " " . $row['LastName'] . " " . $row['Suffix'] . "</td>";
-                                                        echo "<td>" . $row['Position'] . "</td>";
-                                                        echo "<td>" . $row['homeaddress'] . "</td>";
-                                                        echo "<td>" . $row['contactnumber'] . "</td>";
-                                                        echo "</tr>";
-                                                    }
-                                                    echo "</table>";
-                                                }
-                                            ?>
+                                                        if($resultsCheck > 0){
+                                                            while($row = $results->fetch_assoc()){
+                                                                echo "<td>" . $row['employee_id'] . "</td>";
+                                                                echo "<td>" . $row['FirstName'] . " " . $row['MiddleName'] . " " . $row['LastName'] . " " . $row['Suffix'] . "</td>";
+                                                                echo "<td>" . $row['Position'] . "</td>";
+                                                                echo "<td>" . $row['homeaddress'] . "</td>";
+                                                                echo "<td>" . $row['contactnumber'] . "</td>";
+                                                                echo "<td><i class='fa fa-user-edit text-info'></i> <i class='fa fa-trash-alt text-danger'></i></td>";
+                                                                echo "</tr>";
+                                                            }
+                                                            echo "</table>";
+                                                        }
+                                                    ?>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <?php include 'message.php'; ?>
                     </div>
                 </div>
             <?php } elseif (isset($_SESSION['Position']) == 'Barangay Tanod') { ?>
