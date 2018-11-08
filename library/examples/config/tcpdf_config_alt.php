@@ -63,7 +63,7 @@ define ('K_TCPDF_EXTERNAL_CONFIG', true);
  * Default images directory.
  * By default it is automatically set but you can also set it as a fixed string to improve performances.
  */
-define ('K_PATH_IMAGES', dirname(__FILE__).'/../../../');
+define ('K_PATH_IMAGES', dirname(__FILE__).'../images');
 
 /**
  * Deafult image logo used be the default Header() method.
@@ -71,7 +71,6 @@ define ('K_PATH_IMAGES', dirname(__FILE__).'/../../../');
  */
 define ('PDF_HEADER_LOGO', 'logo.circle.png');
 
-define ('PDF_HEADER_LOGOv2', 'logo1.png');
 /**
  * Header logo image width in user units.
  */

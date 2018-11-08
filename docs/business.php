@@ -27,7 +27,7 @@ class MYPDF extends TCPDF
 }
 
 $pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
-$pdf->SetTitle('Barangay Clearance');
+$pdf->SetTitle('Business Clearance');
 //$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE, PDF_HEADER_STRING);
 $pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
 $pdf->SetMargins(PDF_MARGIN_LEFT,PDF_MARGIN_TOP,PDF_MARGIN_RIGHT);
@@ -49,7 +49,7 @@ $pdf->AddPage();
 $pdf->SetFont('Times','B',12);
 $html = <<<EOD
 <h1>OFFICE OF THE SANGGUNIANG BARANGAY&nbsp;</h1>
-<h1>BARANGAY CLEARANCE</h1>
+<h1>BUSINESS CLEARANCE</h1>
 EOD;
 $pdf->writeHTMLCell(0,0,25,55,$html,0,1,0,true,'C',true);
 
@@ -75,52 +75,36 @@ $pdf->writeHTMLCell(0,0,5,170,'Sangguniang Barangay Member',0,1,0,true,'L',true)
 $pdf->writeHTMLCell(0,0,5,185,'Barangay Treasurer',0,1,0,true,'L',true);
 $pdf->writeHTMLCell(0,0,5,205,'Barangay Secretary',0,1,0,true,'L',true);
 
-$pdf->SetFont('Times','',12);
+$pdf->SetFont('Times','',13);
 $html = <<<EOD
-<p><b>Date:</b></p>
 <p>Control No. : </p>
 EOD;
 $pdf->writeHTMLCell(0,0,150,75,$html,0,1,0,true,'C',true);
 
 $html = <<<EOD
 <p><b>To whom it may concern:</b></p>
-<p align="Left">This is to certify that ___________________________(name),________(age)</p>
-<p>years of age,Filipino citizen and whose specimen signature appears below, is a resident of __________________________________(address).&nbsp;</p>
+<p align="Left">This is to certify that the Business or Trade described below :&nbsp;</p>
+<p></p>
+<p align="center"><i>&nbsp;Business Name/Trade</i>&nbsp;</p>
+<p></p>
+<p align="center"><i>&nbsp;Location</i>&nbsp;</p>
+<p></p>
+<p align="center"><i>&nbsp;Operator</i>&nbsp;</p>
 EOD;
 $pdf->writeHTMLCell(0,0,70,90,$html,0,1,0,true,'',true);
 
 $html = <<<EOD
-<br>
-<p>That he/she had no derogatory records on file with this Barangay.</p>
-<p>That he/she is know to the community to be of good moral character, peaceful and law-abiding citizen.</p>
+Proposed to be established in the Barangay and is being applied for
+RENEWAL/NEW Business Permit has been APPROVED and interposes
+no objection for the issuance of MAYOR'S PERMIT being applied for :
 EOD;
-$pdf->writeHTMLCell(0,0,70,125,$html,0,1,0,true,'J',true);
+$pdf->writeHTMLCell(0,0,70,165,$html,0,1,0,true,'J',true);
 
 $html = <<<EOD
-<p>This <b>CERTIFICATION</b> is issued upon the request of the above named for the purpose stated below.</p>
-<p>For ___________(purpose)<b> Purpose</b> only</p>
+Issued this day of , at Barangay Hall Salitran II, City of
+Dasmariñas, Cavite.
 EOD;
-$pdf->writeHTMLCell(0,0,70,160,$html,0,1,0,true,'J',true);
-
-$html = <<<EOD
-<p>Specimen Signature</p>
-EOD;
-$pdf->writeHTMLCell(0,0,78,195,$html,0,1,0,true,'',true);
-$pdf->SetFont('','',11);
-$pdf->writeHTMLCell(25,20,130,194,'Left Thumb mark',1,1,0,true,'C',true);
-$pdf->writeHTMLCell(25,20,160,194,'Right Thumb mark',1,1,0,true,'C',true);
-
-
-$pdf->SetFont('','',12);
-$html = <<<EOD
-<p><b>Res.Cert.No.:_________________</b></p>
-EOD;
-$pdf->writeHTMLCell(0,0,71,212,$html,0,1,0,true,'',true);
-
-$html = <<<EOD
-<p><b>On:__________________________</b></p>
-EOD;
-$pdf->writeHTMLCell(0,0,71,224,$html,0,1,0,true,'',true);
+$pdf->writeHTMLCell(0,0,70,195,$html,0,1,0,true,'J',true);
 
 $pdf->writeHTMLCell(0,0,71,233,'Certified true and correct:',0,1,0,true,'',true);
 
@@ -134,23 +118,10 @@ $pdf->writeHTMLCell(0,0,140,243,'HON. MARVIN T. ALINDOG',0,1,0,true,'',true);
 $pdf->SetFont('','',12);
 $pdf->writeHTMLCell(0,0,153,248,'Punong Barangay',0,1,0,true,'',true);
 
-$pdf->SetFont('','B',10);
-$html = <<<EOD
-<p>Note: This CERTIFICATE is valid for ninety(90) days only after the date issuance.</p>
-EOD;
-$pdf->writeHTMLCell(0,0,71,260,$html,0,1,0,true,'',true);
-
-$html = <<<EOD
-<p>This CERTIFICATE is NOT VALID without the DRY SEAL of the Barangay.</p>
-EOD;
-$pdf->writeHTMLCell(0,0,75,263,$html,0,1,0,true,'',true);
-
-
-$pdf->Line(71,194,120,194);
 $pdf->SetLineWidth(2);
 $pdf->Line(5,65,200,65);
 $pdf->Line(65,65,65,275);
 
 
-$pdf->Output('barangay clearance.pdf','I');
+$pdf->Output('barangay business.pdf','I');
 ?>
