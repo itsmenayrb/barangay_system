@@ -29,7 +29,7 @@ class MYPDF extends TCPDF
 
 
 $pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
-$pdf->SetTitle('Barangay Certification');
+$pdf->SetTitle('Barangay Endorsement');
 $pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE, PDF_HEADER_STRING);
 $pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
 $pdf->SetMargins(PDF_MARGIN_LEFT,PDF_MARGIN_TOP,PDF_MARGIN_RIGHT);
@@ -58,44 +58,48 @@ $pdf->writeHTMLCell(0,0,15,55,$html,0,1,0,true,'C',true);
 
 $pdf->SetFont('Times','B',16);
 $html = <<<EOD
-<h1><u>CERTIFICATION</u></h1>
+<h1><u>CERTIFICATE OF ENDORSEMENT</u></h1>
 EOD;
 $pdf->writeHTMLCell(0,0,25,75,$html,0,1,0,true,'C',true);
 
 $pdf->SetFont('','',16);
-$pdf->writeHTMLCell(0,0,30,90,'To whom it may concern:',0,1,0,true,'L',true);
-$pdf->writeHTMLCell(0,0,40,110,'This is to certify that',0,1,0,true,'',true);
+$pdf->writeHTMLCell(0,0,20,90,'',0,1,0,true,'L',true);
+$pdf->writeHTMLCell(0,0,20,105,'CITY OF MAYOR',0,1,0,true,'L',true);
+$pdf->writeHTMLCell(0,0,20,110,'DASMARIÑAS CITY',0,1,0,true,'L',true);
 //$pdf->writeHTMLCell(0,0,45,110,(name),0,1,0,true,'',true); //<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 
 $html = <<<EOD
-(name) is a resident of barangay Salitran II with known address at
+This is to endorse a resident of
+Barangay Salitran II with known address at 
 EOD;
-$pdf->writeHTMLCell(0,0,30,120,$html,0,1,0,true,'',true);
+$pdf->writeHTMLCell(0,0,30,130,$html,0,1,0,true,'',true);
 
 $html = <<<EOD
 Subject is known to be of good moral character and law-abiding citizen.
 EOD;
-$pdf->writeHTMLCell(0,0,30,140,$html,0,1,0,true,'',true);
+$pdf->writeHTMLCell(0,0,30,155,$html,0,1,0,true,'',true);
 
 $html = <<<EOD
-This <b>CERTIFICATION</b> is being issued upon the request of (name) for (purpose) purposes only.
-EOD;
-$pdf->writeHTMLCell(0,0,30,150,$html,0,1,0,true,'',true);
-
-$html = <<<EOD
-Issued this (date) at Barangay Salitran II, Dasmariñas City, Cavite.
+This <b>ENDORSEMENT</b> is being issued upon the request of
+for
+Purpose.
 EOD;
 $pdf->writeHTMLCell(0,0,30,170,$html,0,1,0,true,'',true);
 
-$pdf->writeHTMLCell(0,0,120,200,'Certified by:',0,1,0,true,'C',true);
+$html = <<<EOD
+Issued this     of          
+EOD;
+$pdf->writeHTMLCell(0,0,30,190,$html,0,1,0,true,'',true);
+
+$pdf->writeHTMLCell(0,0,120,220,'Certified by:',0,1,0,true,'C',true);
 
 $html = <<<EOD
 <b><u>HON. MARVIN T. ALINDOG</u></b>
 EOD;
-$pdf->writeHTMLCell(0,0,120,210,$html,0,1,0,true,'',true);
-$pdf->writeHTMLCell(0,0,120,215,'Punong Barangay',0,1,0,true,'',true);
+$pdf->writeHTMLCell(0,0,120,230,$html,0,1,0,true,'',true);
+$pdf->writeHTMLCell(0,0,120,235,'Punong Barangay',0,1,0,true,'',true);
 
 
-$pdf->Output('barangay certification.pdf','I');
+$pdf->Output('barangay endorsement.pdf','I');
 ?>
