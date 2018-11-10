@@ -94,6 +94,7 @@ DROP TABLE IF EXISTS `homeaddress`;
 
 CREATE TABLE `homeaddress` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `used_id` int(11) NOT NULL, /* Foreign Key to Users Table */
   `lot` varchar(255) NOT NULL,
   `street` varchar(255) NOT NULL,
   `subdivision` varchar(255) NOT NULL,
@@ -112,7 +113,8 @@ CREATE TABLE `homeaddress` (
 DROP TABLE IF EXISTS `residents`;
 
 CREATE TABLE `residents` (
-  `user_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_ID` int(11) NOT NULL, /* Foreign Key to Users table */
   `Prefix` varchar(255) NOT NULL,
   `FirstName` varchar(256) NOT NULL,
   `MiddleName` varchar(256) NOT NULL,
