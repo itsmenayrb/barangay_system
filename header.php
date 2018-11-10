@@ -3,7 +3,7 @@
     include "includes/functions.inc.php";
     include 'includes/action.inc.php';
     include 'includes/communication.action.inc.php';
-    include 'includes/appointment.request.handler.php';
+    //include 'includes/appointment.request.handler.php';
 ?>
 <!DOCTYPE html>
 <html>
