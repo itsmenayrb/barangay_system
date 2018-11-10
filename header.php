@@ -3,6 +3,7 @@
     include "includes/functions.inc.php";
     include 'includes/action.inc.php';
     include 'includes/communication.action.inc.php';
+    include 'includes/appointment.request.handler.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -11,14 +12,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Barangay Salitran II</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico"/>
+    <link rel="shortcut icon" type="image/x-icon" href="./img/favicon.ico"/>
 
     <!-- BOOTSTRAP, js AND CSS SCRIPT -->
     <script type="text/javascript" src="assets/js/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="assets/js/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="assets/js/jquery.timepicker.min.js"></script>
     <link rel="stylesheet" type="text/css" href="assets/bootstrap/css/bootstrap.min.css">
     <script type="text/javascript" src="assets/js/jquery-ui.js"></script>
     <script type="text/javascript" src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="assets/css/jquery.timepicker.min.css">
     <link rel="stylesheet" type="text/css" href="assets/css/jquery-ui.css">
     <link rel="stylesheet" type="text/css" href="assets/font-awesome/webfonts/all.min.css"/>
     <link rel="stylesheet" type="text/css" href="style.css">
@@ -45,8 +48,8 @@
 
     <!-- START OF NAVIGATION -->
     <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
-        <div class="container" style="padding-left: 70px; padding-right: 70px; margin: 0; max-width: 100%;">
-            <a class="navbar-brand" href="index.php"><img src="img/logo.circle.brand.png" alt="Home"/>Barangay Salitran II</a>
+        <div class="container" style="padding-left: 50px; padding-right: 50px; margin: 0; max-width: 100%;">
+            <a class="navbar-brand" href="index.php">Barangay Salitran II</a>
             <!-- Brand and toggle get grouped for better mobile display -->
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#mainNavigation" aria-expanded="false"
             aria-controls="mainNavigation" aria-label="Toggle Navigation">

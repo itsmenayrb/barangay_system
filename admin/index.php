@@ -4,27 +4,28 @@
 <?php include 'header.php'; ?>
     <?php if(!isset($_SESSION['Username'])) : ?>
         <nav class="navbar navbar-expand-md navbar-light bg-info">
-            <a class="navbar-brand" href='index.php'><img src="../img/logo.circle.brand.png"/>Barangay Salitran II</a>
+            <a class="navbar-brand text-light lead mx-auto" href='index.php'>&nbsp;Barangay Salitran II</a>
         </nav>
         <div class="container-fluid" id="login-container">
-            <div class="card text-center border-primary">
-                <div class="card-header">
-                    <p class="form-text h3">Administrator Login</p>
+            <div class="card rounded-0">
+                <div class="card-header alert-success">
+                    <p class="form-text h6 lead float-left">Administrator Login</p>
+                    <img src="../img/logo.circle.png" width="40" height="40" class="float-right"/>
                 </div>
-                <div class="card-body">
+                <div class="card-body text-center">
                     <?php include 'errors.php';?>
                     <form action="index.php" method="post" id="login-form">
                         <label for="username" class="form-text">Username or Email</label>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
-                                <span class="input-group-text fas fa-user"></span>
+                                <span class="input-group-text fas fa-user text-primary"></span>
                             </div>
                             <input type="text" class="form-control" name="admin-username" id="username" required/>
                         </div>
                         <label for="password" class="form-text">Password</label>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
-                                <span class="input-group-text fas fa-lock"></span>
+                                <span class="input-group-text fas fa-lock text-primary"></span>
                             </div>
                             <input type="password" class="form-control" name="admin-password" id="password" required/>
                         </div><div class="form-group">
@@ -40,11 +41,10 @@
                         </div>
                     </form>
                 </div>
-                <div class="card-footer">
-                    &nbsp
-                </div>
+                <div class="card-footer alert-success"></div>
             </div>
         </div>
+        <?php include 'footer.php'; ?>
     <?php endif ?>
     <?php if (isset($_SESSION['Position'])) : ?>
         <script type="text/javascript">window.location='dashboard.php';</script>

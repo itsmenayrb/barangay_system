@@ -1,7 +1,7 @@
 
-        <section style="background: #f6f6f6;padding: 20px;">
+        <section style="background: #f6f6f6;padding: 20px; margin-top: 20px;">
             <div class="container">
-		        <div class="row">
+                <div class="row">
                     <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 text-center">
                         <h5 class="small" style="font-family: 'Baskerville Old Face';"><strong>About Salitran II</strong></h5>
                         <p class="text-justify" style="color: #666;font-family: 'Baskerville Old Face';font-size: small;">This place is known for the name "Salitran" even during the Spanish period.
@@ -39,7 +39,7 @@
                             <strong>E-mail: </strong>yourhelpdesk@salitrandos.x10host.com</p>
                     </div>
                 </div>
-	        </div>
+            </div>
         </section>
         <footer style="background-color: rgba(34, 34, 34, 0.65);padding: 100px;">
             <div class="row text-center">

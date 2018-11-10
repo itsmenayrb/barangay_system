@@ -1,14 +1,12 @@
 <?php include 'header.php'; ?>
-
-<div class="container main-section">
-
-	<?php if(isset($_SESSION['Username'])) { ?>
-		<div class="float-right" style="margin-top: 10px;">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-              <li class="breadcrumb-item active">Profile</li>
-            </ol>
-        </div>
+<?php if(isset($_SESSION['Username'])) { ?>
+<div class="container">
+	<div style="margin-top: 10px;">
+    	<ol class="breadcrumb">
+      		<li class="breadcrumb-item"><a href="index.php">Home</a></li>
+      		<li class="breadcrumb-item active">Profile</li>
+    	</ol>
+	</div>
 	<legend class="form-text" style="color:black; font-size:2.5vw;text-transform: capitalize;">
 		<?php
 			$current = $_SESSION['Username'];
@@ -19,23 +17,23 @@
 			if($resultsCheck > 0){
 				while($row = $results->fetch_assoc()){
 					echo $row['FirstName'] . ' ' . $row['MiddleName'] . ' ' . $row['LastName'] . ' ' . $row['Suffix'] . '' . '</legend>';
-					echo "<div class='container' style='margin-top: 50px;'><div class='row'><div class='col-md-7'>";
+					echo "<div class='container' style='margin-top: 20px;'><div class='row'><div class='col-md-5'>";
 					echo "<div class='table-responsive' style='width: 900px;margin: 0 auto;max-width:100%;'>";
-					echo "<table class='table table-hover table-bordered'><tr><td>Gender: </td>";
+					echo "<table class='table table-hover table-bordered'><tr><td class='alert-success'>Gender: </td>";
 					echo "<td>" . $row['Sex'] . "</td></tr>";
-					echo "<tr><td>Birthday: </td>";
+					echo "<tr><td class='alert-success'>Birthday: </td>";
 
 					$date = $row['Bday'];
 					$testDate = new DateTime($date);
 
 					echo "<td>" . $testDate->format('F-d-Y') . "</td></tr>";
-					echo "<tr><td>Age: </td>";
+					echo "<tr><td class='alert-success'>Age: </td>";
 					echo "<td>" . $row['Age'] . "</td></tr>";
-					echo "<tr><td>Birth Place: </td>";
+					echo "<tr><td class='alert-success'>Birth Place: </td>";
 					echo "<td>" . $row['Bplace'] . "</td></tr>";
-					echo "<tr><td>Home Address: </td>";
+					echo "<tr><td class='alert-success'>Home Address: </td>";
 					echo "<td>" . $row['Homeaddress'] . "</td></tr>";
-					echo "<tr><td>Contact Number: </td>";
+					echo "<tr><td class='alert-success'>Contact Number: </td>";
 					echo "<td>" . $row['TelephoneNumber'];
 
 					// Print the slash if both the Telephone and cellphone numbers have a value or not an empty string
@@ -45,13 +43,45 @@
 
 					echo $row['CellphoneNumber'] . "</td></tr></table>";
 					echo "</div></div>";
-					echo "<div class='col-md-5'>";
-					echo "<div class='card' style='max-width: 100%;margin-bottom: 5px;'>";
+					echo "<div class='col-md-7'>";
+					echo "<div class='card rounded-0' style='max-width: 100%;margin-bottom: 5px;'>";
+					echo "<div class='card-header alert-success'>";
+					echo "<a href='appointment.request.php' target='_blank' role='button' class='btn btn-outline-info'> Request Appointment</a><i class='fas fa-info-circle fa-2x float-right text-info'></i>";
+					echo "</div>";
 					echo "<div class='card-body'>";
-					echo "<a href='appointment.request.php' role='button' class='btn btn-outline-success'><i class='fas fa-info-circle'></i> Request Appointment</a>";
+					echo "<table class='table table-hover table-bordered'>";
+					echo "<thead class='thead-light'>";
+					echo "<tr>";
+					echo "<th> Appointment </th>";
+					echo "<th> Date </th>";
+					echo "<th> Time </th>";
+					echo "<th> Status </th>";
+					echo "<th> Date Requested </th>";
+					echo "</tr>";
+					echo "</thead>";
+					echo "<tr>";
+
+					$sql = "SELECT * FROM appointment WHERE username = '$current'";
+					$results = mysqli_query($conn,$sql);
+					$resultsCheck = mysqli_num_rows($results);
+
+					if($resultsCheck < 0){
+						echo "<p class='h4 lead'>Nothing to display.</p>";
+					}
+					else{
+						while($row = $results->fetch_assoc()){
+							echo "<td>" . $row['purpose'] . "</td>";
+							echo "<td>" . $row['appointment_date'] . "</td>";
+							echo "<td>" . $row['appointment_time'] . "</td>";
+							echo "<td>" . $row['status'] . "</td>";
+							echo "<td>" . $row['date_requested'] . "</td>";
+							echo "</tr>";
+						}
+						echo "</table>";
+					}
 					echo "</div></div>";
-					echo "<div class='card border-info' style='max-width: 100%;'>
-							<div class='card-header'><a href='subaccount.php?addmember=true'>Add a sub-account<span class='fas fa-user-plus float-right text-info fa-2x'></span></a></div>
+					echo "<div class='card rounded-0' style='max-width: 100%;'>
+							<div class='card-header alert-success'><a href='subaccount.php?addmember=true' class='btn btn-outline-info' role='button' target='_blank'>Add a sub-account</a><span class='fas fa-user-plus float-right text-info fa-2x'></span></div>
 							<div class='card-body text-secondary'>";
 					echo "<table class='table table-hover table-bordered'><thead class='thead-light'><tr><th>Name</th><th>Relationship</th></tr></thead><tr>";
 
@@ -102,3 +132,4 @@
       	</div>
 	<?php } ?>
 </div>
+<?php include 'footer.php'; ?>
