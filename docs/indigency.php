@@ -69,7 +69,7 @@ $pdf->writeHTMLCell(0,0,40,110,'This is to certify that',0,1,0,true,'',true);
 
 
 $html = <<<EOD
-(name) is a resident of barangay Salitran II with known address at
+_______________________________is a resident of barangay Salitran II with known address at _________________________________.
 EOD;
 $pdf->writeHTMLCell(0,0,30,120,$html,0,1,0,true,'',true);
 
@@ -84,22 +84,22 @@ EOD;
 $pdf->writeHTMLCell(0,0,30,150,$html,0,1,0,true,'',true);
 
 $html = <<<EOD
-This <b>CERTIFICATION</b> is being issued upon the request of (name) for (purpose) purposes only.
+This <b>CERTIFICATION</b> is being issued upon the request of _______________________________ for _______________________ purposes only.
 EOD;
 $pdf->writeHTMLCell(0,0,30,160,$html,0,1,0,true,'',true);
 
 $html = <<<EOD
-Issued this     of
+Issued on : __________________
 EOD;
-$pdf->writeHTMLCell(0,0,30,180,$html,0,1,0,true,'',true);
+$pdf->writeHTMLCell(0,0,30,185,$html,0,1,0,true,'',true);
 
 $pdf->writeHTMLCell(0,0,120,200,'Certified by:',0,1,0,true,'C',true);
 
 $html = <<<EOD
-<b><u>HON. MARVIN T. ALINDOG</u></b>
+<b>HON. MARVIN T. ALINDOG</b>
 EOD;
 $pdf->writeHTMLCell(0,0,120,210,$html,0,1,0,true,'',true);
-$pdf->writeHTMLCell(0,0,120,215,'Punong Barangay',0,1,0,true,'',true);
+$pdf->writeHTMLCell(0,0,120,215,'Punong Barangay',0,1,0,true,'C',true);
 
 
 $pdf->Output('barangay indigency.pdf','I');

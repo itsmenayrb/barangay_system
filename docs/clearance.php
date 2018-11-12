@@ -118,9 +118,9 @@ EOD;
 $pdf->writeHTMLCell(0,0,71,212,$html,0,1,0,true,'',true);
 
 $html = <<<EOD
-<p><b>On:__________________________</b></p>
+<p><b>On:________________________</b></p>
 EOD;
-$pdf->writeHTMLCell(0,0,71,224,$html,0,1,0,true,'',true);
+$pdf->writeHTMLCell(0,0,71,220,$html,0,1,0,true,'',true);
 
 $pdf->writeHTMLCell(0,0,71,233,'Certified true and correct:',0,1,0,true,'',true);
 
