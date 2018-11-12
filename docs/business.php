@@ -65,15 +65,15 @@ $pdf->writeHTMLCell(0,0,5,180,'Hon. Jefferson Borela',0,1,0,true,'L',true);
 $pdf->writeHTMLCell(0,0,5,200,'Mr. Benito Sayoto',0,1,0,true,'L',true);
 
 $pdf->SetFont('Times','I',12);
-$pdf->writeHTMLCell(0,0,5,80,'Punong Barangay',0,1,0,true,'L',true);
-$pdf->writeHTMLCell(0,0,5,95,'Sangguniang Barangay Member',0,1,0,true,'L',true);
-$pdf->writeHTMLCell(0,0,5,110,'Sangguniang Barangay Member',0,1,0,true,'L',true);
-$pdf->writeHTMLCell(0,0,5,125,'Sangguniang Barangay Member',0,1,0,true,'L',true);
-$pdf->writeHTMLCell(0,0,5,140,'Sangguniang Barangay Member',0,1,0,true,'L',true);
-$pdf->writeHTMLCell(0,0,5,155,'Sangguniang Barangay Member',0,1,0,true,'L',true);
-$pdf->writeHTMLCell(0,0,5,170,'Sangguniang Barangay Member',0,1,0,true,'L',true);
-$pdf->writeHTMLCell(0,0,5,185,'Barangay Treasurer',0,1,0,true,'L',true);
-$pdf->writeHTMLCell(0,0,5,205,'Barangay Secretary',0,1,0,true,'L',true);
+$pdf->writeHTMLCell(0,0,7,80,'Punong Barangay',0,1,0,true,'L',true);
+$pdf->writeHTMLCell(0,0,7,95,'Sangguniang Barangay Member',0,1,0,true,'L',true);
+$pdf->writeHTMLCell(0,0,7,110,'Sangguniang Barangay Member',0,1,0,true,'L',true);
+$pdf->writeHTMLCell(0,0,7,125,'Sangguniang Barangay Member',0,1,0,true,'L',true);
+$pdf->writeHTMLCell(0,0,7,140,'Sangguniang Barangay Member',0,1,0,true,'L',true);
+$pdf->writeHTMLCell(0,0,7,155,'Sangguniang Barangay Member',0,1,0,true,'L',true);
+$pdf->writeHTMLCell(0,0,7,170,'Sangguniang Barangay Member',0,1,0,true,'L',true);
+$pdf->writeHTMLCell(0,0,7,185,'Barangay Treasurer',0,1,0,true,'L',true);
+$pdf->writeHTMLCell(0,0,7,205,'Barangay Secretary',0,1,0,true,'L',true);
 
 $pdf->SetFont('Times','',13);
 $html = <<<EOD
@@ -101,7 +101,7 @@ EOD;
 $pdf->writeHTMLCell(0,0,70,165,$html,0,1,0,true,'J',true);
 
 $html = <<<EOD
-Issued this day of , at Barangay Hall Salitran II, City of
+Issued this ____ day of ___________, at Barangay Hall Salitran II, City of
 Dasmariñas, Cavite.
 EOD;
 $pdf->writeHTMLCell(0,0,70,195,$html,0,1,0,true,'J',true);

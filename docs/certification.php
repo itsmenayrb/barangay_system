@@ -84,17 +84,18 @@ EOD;
 $pdf->writeHTMLCell(0,0,30,150,$html,0,1,0,true,'',true);
 
 $html = <<<EOD
-Issued this (date) at Barangay Salitran II, Dasmariñas City, Cavite.
+Issued this ___________________ at Barangay Salitran II, Dasmariñas City, Cavite.
 EOD;
 $pdf->writeHTMLCell(0,0,30,170,$html,0,1,0,true,'',true);
 
 $pdf->writeHTMLCell(0,0,120,200,'Certified by:',0,1,0,true,'C',true);
 
+$pdf->SetFont('','',14);
 $html = <<<EOD
-<b><u>HON. MARVIN T. ALINDOG</u></b>
+<b>HON. MARVIN T. ALINDOG</b>
 EOD;
-$pdf->writeHTMLCell(0,0,120,210,$html,0,1,0,true,'',true);
-$pdf->writeHTMLCell(0,0,120,215,'Punong Barangay',0,1,0,true,'',true);
+$pdf->writeHTMLCell(0,0,120,210,$html,0,1,0,true,'C',true);
+$pdf->writeHTMLCell(0,0,120,215,'Punong Barangay',0,1,0,true,'C',true);
 
 
 $pdf->Output('barangay certification.pdf','I');

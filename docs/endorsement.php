@@ -64,8 +64,9 @@ $pdf->writeHTMLCell(0,0,25,75,$html,0,1,0,true,'C',true);
 
 $pdf->SetFont('','',16);
 $pdf->writeHTMLCell(0,0,20,90,'',0,1,0,true,'L',true);
-$pdf->writeHTMLCell(0,0,20,105,'CITY OF MAYOR',0,1,0,true,'L',true);
-$pdf->writeHTMLCell(0,0,20,110,'DASMARIÑAS CITY',0,1,0,true,'L',true);
+$pdf->writeHTMLCell(0,0,20,105,'ELPIDIO F. BARZAGA',0,1,0,true,'L',true);
+$pdf->writeHTMLCell(0,0,20,110,'CITY OF MAYOR',0,1,0,true,'L',true);
+$pdf->writeHTMLCell(0,0,20,115,'DASMARIÑAS CITY',0,1,0,true,'L',true);
 //$pdf->writeHTMLCell(0,0,45,110,(name),0,1,0,true,'',true); //<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 
@@ -88,17 +89,17 @@ EOD;
 $pdf->writeHTMLCell(0,0,30,170,$html,0,1,0,true,'',true);
 
 $html = <<<EOD
-Issued this     of          
+Issued this _______ of ______________         
 EOD;
 $pdf->writeHTMLCell(0,0,30,190,$html,0,1,0,true,'',true);
 
 $pdf->writeHTMLCell(0,0,120,220,'Certified by:',0,1,0,true,'C',true);
-
+$pdf->SetFont('','',14);
 $html = <<<EOD
-<b><u>HON. MARVIN T. ALINDOG</u></b>
+<b>HON. MARVIN T. ALINDOG</b>
 EOD;
-$pdf->writeHTMLCell(0,0,120,230,$html,0,1,0,true,'',true);
-$pdf->writeHTMLCell(0,0,120,235,'Punong Barangay',0,1,0,true,'',true);
+$pdf->writeHTMLCell(0,0,120,235,$html,0,1,0,true,'C',true);
+$pdf->writeHTMLCell(0,0,120,240,'Punong Barangay',0,1,0,true,'C',true);
 
 
 $pdf->Output('barangay endorsement.pdf','I');
