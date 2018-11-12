@@ -113,8 +113,8 @@ CREATE TABLE `homeaddress` (
 DROP TABLE IF EXISTS `residents`;
 
 CREATE TABLE `residents` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_ID` int(11) NOT NULL, /* Foreign Key to Users table */
+  `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL, /* Foreign Key to Users table */
   `Prefix` varchar(255) NOT NULL,
   `FirstName` varchar(256) NOT NULL,
   `MiddleName` varchar(256) NOT NULL,
