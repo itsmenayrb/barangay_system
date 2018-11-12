@@ -65,10 +65,13 @@
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false"><span class="fas fa-download"></span> Downloads</a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#"><span class="fas fa-id-card"></span> Barangay ID</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#"><span class="fas fa-file"></span> Barangay Clearance</a>
-                            <a class="dropdown-item" href="#"><span class="fas fa-file"></span> Cedula</a>
+                            <a class="dropdown-item" href="docs/barangay clearance.pdf"><span class="fas fa-file"></span> Barangay Clearance</a>
+                            <a class="dropdown-item" href="docs/barangay certification.pdf"><span class="fas fa-file"></span> Barangay Certification</a>
+                            <a class="dropdown-item" href="docs/barangay endorsement.pdf"><span class="fas fa-file"></span> Barangay Endorsement</a>
+                            <a class="dropdown-item" href="docs/barangay business.pdf"><span class="fas fa-file"></span> Business Clearance </a>
+                            <a class="dropdown-item" href="docs/barangay indigency.pdf"><span class="fas fa-file"></span> Indigency Certification</a>
+                            <!--pre wala daw barangay id at cedula sa salitran so palitan ko nalang ng mga forms nila lima kasi yon -->
+                            <!-- <div class="dropdown-divider"></div> --> 
                         </div>
                     </li>
                     <li class="nav-item dropdown">

@@ -1,6 +1,20 @@
 <?php
 require_once('../library/examples/tcpdf_include.php');
 require_once('../library/tcpdf.php');
+
+require_once('../fpdf17/fpdf.php');
+
+//db connection
+$con = mysqli_connect('localhost','root','');
+mysqli_select_db($con,'barangaysalitranii');
+
+//get invoices data
+$query = mysqli_query($con,"select * from residents
+	inner join homeaddress using(user_ID)
+	where
+	user_ID = '".$_GET['user_ID']."'");
+$invoice = mysqli_fetch_array($query);
+
 class MYPDF extends TCPDF
 {
     public function Header()
@@ -65,8 +79,7 @@ $pdf->writeHTMLCell(0,0,25,75,$html,0,1,0,true,'C',true);
 $pdf->SetFont('','',16);
 $pdf->writeHTMLCell(0,0,30,90,'To whom it may concern:',0,1,0,true,'L',true);
 $pdf->writeHTMLCell(0,0,40,110,'This is to certify that',0,1,0,true,'',true);
-//$pdf->writeHTMLCell(0,0,45,110,(name),0,1,0,true,'',true); //<<<<<<<<<<<<<<<<<<<<<<<<<<<
-
+$pdf->Cell(0,10,$invoice['FirstName'],1,0);
 
 $html = <<<EOD
 _______________________________is a resident of barangay Salitran II with known address at _________________________________.
