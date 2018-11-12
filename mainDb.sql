@@ -12,6 +12,30 @@ MySQL - 10.1.35-MariaDB : Database - barangaysalitranii
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+/*Table structure for table `appointment` */
+
+DROP TABLE IF EXISTS `appointment`;
+
+CREATE TABLE `appointment` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(255) NOT NULL,
+  `fullname` varchar(255) NOT NULL,
+  `contactnumber` varchar(255) NOT NULL,
+  `appointment_date` date NOT NULL,
+  `appointment_time` time NOT NULL,
+  `purpose` varchar(255) NOT NULL,
+  `date_requested` date NOT NULL,
+  `decision` varchar(255) DEFAULT NULL,
+  `status` varchar(255) NOT NULL,
+  `date_accomplished` date DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+/*Data for the table `appointment` */
+
+insert  into `appointment`(`id`,`username`,`fullname`,`contactnumber`,`appointment_date`,`appointment_time`,`purpose`,`date_requested`,`decision`,`status`,`date_accomplished`) values 
+(1,'bryan','Bryan Balaga','12312312321','2018-11-17','09:00:00','Mabangis','2018-11-09',NULL,'Pending',NULL);
+
 /*Table structure for table `attendance` */
 
 DROP TABLE IF EXISTS `attendance`;
@@ -30,7 +54,7 @@ CREATE TABLE `attendance` (
   `comments` varchar(255) DEFAULT NULL,
   `status` varchar(255) NOT NULL,
   PRIMARY KEY (`id`,`employee_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 /*Data for the table `attendance` */
 
@@ -41,7 +65,9 @@ insert  into `attendance`(`id`,`employee_id`,`fullname`,`position`,`dateofyear`,
 (4,201902,'Apple Rose Catalino Gabales','Barangay Secretary','2018-11-06',NULL,NULL,NULL,'On Leave','Sick Leave',NULL,'active'),
 (5,201901,'Bryan Villanueva Balaga','Barangay Chairman','2018-11-07','08:55:58','11:49:15',NULL,NULL,NULL,NULL,'active'),
 (6,201902,'Apple Rose Catalino Gabales','Barangay Secretary','2018-11-07','08:57:01',NULL,NULL,NULL,NULL,NULL,'active'),
-(7,201904,'Mia  Khalifa','Barangay Assistant Secretary','2018-11-07',NULL,NULL,'Absent',NULL,NULL,NULL,'active');
+(7,201904,'Mia  Khalifa','Barangay Assistant Secretary','2018-11-07',NULL,NULL,'Absent',NULL,NULL,NULL,'active'),
+(8,201901,'Bryan Villanueva Balaga','Barangay Chairman','2018-11-08','05:59:06','05:59:20',NULL,NULL,NULL,NULL,'active'),
+(9,201902,'Apple Rose Catalino Gabales','Barangay Secretary','2018-11-08','06:02:23',NULL,NULL,NULL,NULL,NULL,'active');
 
 /*Table structure for table `employee` */
 

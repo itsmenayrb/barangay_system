@@ -30,10 +30,4 @@ javascripts or functions for admin -->
             { extend: 'print', className: 'form-control btn btn-info' }
         ]
     });
-    function validate(form){
-        var officialOut = "<?php $officialOut; ?>";
-        var timeOut = "<?php $date; ?>";
-
-
-    }
 </script>
