@@ -1,6 +1,17 @@
 <?php
 require_once('../library/examples/tcpdf_include.php');
 require_once('../library/tcpdf.php');
+require_once('../fpdf17/fpdf.php');
+
+$conn = mysqli_connect('localhost','root','');
+mysqli_select_db($conn,'barangaysalitranii');
+
+$sql = mysqli_query($conn,"SELECT * FROM residents INNER JOIN homeaddress
+ON residents.user_ID = homeaddress.id
+WHERE residents.user_ID = residents.user_ID");
+
+$invoice = mysqli_fetch_array($sql);
+
 class MYPDF extends TCPDF
 {
     public function Header()

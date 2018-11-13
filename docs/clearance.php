@@ -1,6 +1,17 @@
 <?php
 require_once('../library/examples/tcpdf_include.php');
 require_once('../library/tcpdf.php');
+require_once('../fpdf17/fpdf.php');
+
+$conn = mysqli_connect('localhost','root','');
+mysqli_select_db($conn,'barangaysalitranii');
+//get db data
+$sql = mysqli_query($conn,"SELECT * FROM residents INNER JOIN homeaddress
+ON residents.user_ID = homeaddress.id
+WHERE residents.user_ID = residents.user_ID");
+
+$invoice = mysqli_fetch_array($sql);
+
 class MYPDF extends TCPDF
 {
     public function Header()
@@ -87,8 +98,14 @@ $html = <<<EOD
 <p align="Left">This is to certify that ___________________________(name),________(age)</p>
 <p>years of age,Filipino citizen and whose specimen signature appears below, is a resident of __________________________________(address).&nbsp;</p>
 EOD;
+$pdf->Cell(0,10,'',0,1);//dummycell
+$pdf->Cell(40,10,'',0,0);
+$pdf->Cell(75,13,'    '.$invoice['Prefix'].' '.$invoice['FirstName'].' '.$invoice['MiddleName'].' '.$invoice['LastName'].' '.$invoice['Suffix'],0,0,'');
+$pdf->Cell(20,13,$invoice['Age'],0,1,'C');
+$pdf->Cell(0,5,'',0,1);//dummycell
+$pdf->Cell(72,10,'',0,0);//dummycell
+$pdf->Cell(72,10,$invoice['Homeaddress'],0,1);
 $pdf->writeHTMLCell(0,0,70,90,$html,0,1,0,true,'',true);
-
 $html = <<<EOD
 <br>
 <p>That he/she had no derogatory records on file with this Barangay.</p>

@@ -1,6 +1,17 @@
 <?php
 require_once('../library/examples/tcpdf_include.php');
 require_once('../library/tcpdf.php');
+require_once('../fpdf17/fpdf.php');
+
+$conn = mysqli_connect('localhost','root','');
+mysqli_select_db($conn,'barangaysalitranii');
+//get db data
+$sql = mysqli_query($conn,"SELECT * FROM residents INNER JOIN homeaddress
+ON residents.user_ID = homeaddress.id
+WHERE residents.user_ID = residents.user_ID");
+
+$invoice = mysqli_fetch_array($sql);
+
 class MYPDF extends TCPDF
 {
     public function Header()
@@ -64,10 +75,14 @@ $pdf->writeHTMLCell(0,0,25,75,$html,0,1,0,true,'C',true);
 
 $pdf->SetFont('','',16);
 $pdf->writeHTMLCell(0,0,30,90,'To whom it may concern:',0,1,0,true,'L',true);
+$pdf->Cell(0,10,'',0,1);//dummycell
+$pdf->Cell(65,10,'',0,0);//dummycell
+$pdf->Cell(80,13,' '.$invoice['Prefix'].' '.$invoice['FirstName'].' '.$invoice['MiddleName'].' '.$invoice['LastName'].' '.$invoice['Suffix'],0,0,'');
 $pdf->writeHTMLCell(0,0,40,110,'This is to certify that',0,1,0,true,'',true);
-//$pdf->writeHTMLCell(0,0,45,110,(name),0,1,0,true,'',true); //<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 
+$pdf->Cell(0,10,'',0,1);//dummycell
+$pdf->Cell(0,10,$invoice['Homeaddress'],0,1);//dummycell
 $html = <<<EOD
 (name) is a resident of barangay Salitran II with known address at
 EOD;
