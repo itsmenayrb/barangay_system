@@ -28,6 +28,7 @@
     <script type="text/javascript" src="../assets/datatables/pdfmake.min.js"></script>
     <script type="text/javascript" src="../assets/datatables/jszip.min.js"></script>
     <script type="text/javascript" src="../assets/datatables/buttons.html5.min.js"></script>
+    <script type="text/javascript" src="../assets/js/range_dates.js"></script>
     <link rel="stylesheet" type="text/css" href="../assets/css/jquery-ui.css">
     <link rel="stylesheet" href="../assets/font-awesome/webfonts/all.min.css">
     <link rel="stylesheet" type="text/css" href="style.css">
