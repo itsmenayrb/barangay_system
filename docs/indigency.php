@@ -2,17 +2,25 @@
 require_once('../library/examples/tcpdf_include.php');
 require_once('../library/tcpdf.php');
 require_once('../fpdf17/fpdf.php');
+<<<<<<< HEAD
 session_start();
 
 isset($_SESSION['Username']);
 $id = $_SESSION['Username'];
+=======
+
+>>>>>>> f6fe6b89dba5de76000e3b1a01037f7f64eeb6db
 //db connection
 $conn = mysqli_connect('localhost','root','');
 mysqli_select_db($conn,'barangaysalitranii');
 //get db data
 $sql = mysqli_query($conn,"SELECT * FROM residents INNER JOIN homeaddress
 ON residents.user_ID = homeaddress.id
+<<<<<<< HEAD
 WHERE residents.user_ID = '".$id."'");
+=======
+WHERE residents.user_ID = residents.user_ID");
+>>>>>>> f6fe6b89dba5de76000e3b1a01037f7f64eeb6db
 
 $invoice = mysqli_fetch_array($sql);
 

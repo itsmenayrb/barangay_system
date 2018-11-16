@@ -165,6 +165,7 @@
       	</div>
 	<?php } ?>
 </div>
+<<<<<<< HEAD
 <?php include 'footer.php'; ?>
 <script type="text/javascript">
 	function myFunctionAppointment(f){
@@ -191,3 +192,30 @@
 	$('#subaccountProfileTable').DataTable();
 </script>
 
+=======
+
+<!--bopols -->
+<?php
+//db connection
+$conn = mysqli_connect('localhost','root','');
+mysqli_select_db($conn,'barangaysalitranii');
+?>
+<html>
+	<body>
+		select invoice:
+		<form method='get' action='docs/indigency.php'>
+		<select>
+		<option value="Indigency Certificate" href="docs/indency.php">Indigency Certificate</option>
+		<option value="Barangay Clearance" href="docs/clearance.php">Barangay Clearance</option>
+		<option value="Barangay Certificate" href="docs/certification.php">Barangay Certificate</option>
+		<option value="Barangay Endorsement" href="docs/endorsement.php">Barangay Endorsement</option>
+		<option value="Business Clearance" href="docs/business.php">Business Clearance</option>
+		</select>
+		<input type='submit' value='Generate'>
+		</form>
+	</body>
+</html>
+<!--end bopols -->
+
+<?php include 'footer.php'; ?>
+>>>>>>> f6fe6b89dba5de76000e3b1a01037f7f64eeb6db

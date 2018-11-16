@@ -1,6 +1,17 @@
 <?php
 require_once('../library/examples/tcpdf_include.php');
 require_once('../library/tcpdf.php');
+require_once('../fpdf17/fpdf.php');
+
+$conn = mysqli_connect('localhost','root','');
+mysqli_select_db($conn,'barangaysalitranii');
+$sql = mysqli_query($conn,"SELECT * FROM residents INNER JOIN homeaddress
+ON residents.user_ID = homeaddress.id
+WHERE residents.user_ID = residents.user_ID");
+
+$invoice = mysqli_fetch_array($sql);
+
+
 class MYPDF extends TCPDF
 {
     public function Header()
@@ -69,12 +80,27 @@ $pdf->writeHTMLCell(0,0,20,110,'CITY OF MAYOR',0,1,0,true,'L',true);
 $pdf->writeHTMLCell(0,0,20,115,'DASMARIÑAS CITY',0,1,0,true,'L',true);
 //$pdf->writeHTMLCell(0,0,45,110,(name),0,1,0,true,'',true); //<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-
+$pdf->Cell(0,4,'',0,1);//dummycell
+$pdf->Cell(52,4,'',0,0);//dummycell
+$pdf->Cell(70,10,$invoice['Prefix'].' '.$invoice['FirstName'].' '.$invoice['MiddleName'].' '.$invoice['LastName'].' '.$invoice['Suffix'],0,0,'');
+$pdf->SetFont('','',18);
 $html = <<<EOD
-This is to endorse a resident of
-Barangay Salitran II with known address at 
+This is to endorse
 EOD;
 $pdf->writeHTMLCell(0,0,30,130,$html,0,1,0,true,'',true);
+
+$pdf->Cell(0,15,$invoice['Homeaddress'],0,1,'J');//dummycell
+$pdf->Cell(0,1,'',0,1);//dummycell
+
+$html = <<<EOD
+a resident of
+EOD;
+$pdf->writeHTMLCell(0,0,150,130,$html,0,1,0,true,'J',true);
+
+$html = <<<EOD
+Barangay Salitran II with known address at 
+EOD;
+$pdf->writeHTMLCell(0,0,30,135,$html,0,1,0,true,'J',true);
 
 $html = <<<EOD
 Subject is known to be of good moral character and law-abiding citizen.

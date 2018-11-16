@@ -71,10 +71,13 @@
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false"><span class="fas fa-download"></span> Downloads</a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#"><span class="fas fa-id-card"></span> Barangay ID</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#"><span class="fas fa-file"></span> Barangay Clearance</a>
-                            <a class="dropdown-item" href="#"><span class="fas fa-file"></span> Cedula</a>
+                            <a class="dropdown-item" href="docs/barangay clearance.pdf"><span class="fas fa-file"></span> Barangay Clearance</a>
+                            <a class="dropdown-item" href="docs/barangay certification.pdf"><span class="fas fa-file"></span> Barangay Certificate</a>
+                            <a class="dropdown-item" href="docs/barangay endorsement.pdf"><span class="fas fa-file"></span> Barangay Endorsement</a>
+                            <a class="dropdown-item" href="docs/barangay business.pdf"><span class="fas fa-file"></span> Business Clearance </a>
+                            <a class="dropdown-item" href="docs/barangay indigency.pdf"><span class="fas fa-file"></span> Indigency Certificate</a>
+                            <!--pre wala daw barangay id at cedula sa salitran-->
+                            <!-- <div class="dropdown-divider"></div> --> 
                         </div>
                     </li>
                     <li class="nav-item dropdown">
@@ -124,7 +127,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="container">
-                        <form method="post" action="" id="commendationForm">
+                        <form method="post" action="./includes/communication.action.inc.php" id="commendationForm">
                             <div class="row">
                                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                                     <div class="form-group">
@@ -174,7 +177,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="container">
-                        <form method="post" action="" id="suggestForm">
+                        <form method="post" action="./includes/communication.action.inc.php" id="suggestForm">
                             <div class="row">
                                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                                     <div class="form-group">
@@ -220,7 +223,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="container">
-                        <form method="post" action="" id="inquireForm">
+                        <form method="post" action="./communication.action.inc.php" id="inquireForm">
                             <div class="row">
                                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                                     <div class="form-group">
