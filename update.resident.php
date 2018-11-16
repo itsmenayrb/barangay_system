@@ -16,8 +16,7 @@
     echo "<h1>An error occurred during the processing of your request, please try again.</h1>";
     exit();
   }
-
-  $userAddressQuery = $conn -> query("SELECT * FROM address WHERE id = $userId");
+  
   $row = $userDetailsQuery -> fetch_assoc();
   $addressRow = $userAddressQuery -> fetch_assoc();
 ?>
