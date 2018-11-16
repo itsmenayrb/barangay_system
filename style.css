@@ -4,6 +4,7 @@
  */
 body { min-height: 100vh; }
 
+a { text-decoration: none; }
 /*
     NAVIGATION CSS!!!
     NAVIGATION CSS!!!
@@ -194,6 +195,81 @@ PROFILE CSS!! */
     text-transform: capitalize;
 }
 
+/* APPOINTMENT */
+#appointmentBtnEdit{
+    background-color: white;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+#appointmentBtnEdit i{
+    transition: transform .01s;
+}
+
+#appointmentBtnEdit i:hover{
+    transform: scale(1.5);
+}
+
+#appointmentBtnDel{
+    background-color: white;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+#appointmentBtnDel i{
+    transition: transform .01s;
+}
+
+#appointmentBtnDel i:hover{
+    transform: scale(1.5);
+}
+
+#relationshipBtnEdit{
+    background-color: white;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+#relationshipBtnEdit i{
+    transition: transform .01s;
+}
+
+#relationshipBtnEdit i:hover{
+    transform: scale(1.5);
+}
+
+#relationshipBtnDel{
+    background-color: white;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+#relationshipBtnDel i{
+    transition: transform .01s;
+}
+
+#relationshipBtnDel i:hover{
+    transform: scale(1.5);
+}
+
+#relationshipBtnSetPrimary{
+    background-color: white;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+#relationshipBtnSetPrimary i{
+    transition: transform .01s;
+}
+
+#relationshipBtnSetPrimary i:hover{
+    transform: scale(1.5);
+}
 /* REGISTRATION */
 
 .progressbarBackground{
@@ -323,7 +399,7 @@ PROFILE CSS!! */
 }
 
 #progressbar li:first-child:after {
-    content: none; 
+    content: none;
 }
 
 #progressbar li.active:before,  #progressbar li.active:after{
@@ -360,3 +436,4 @@ footer{
     max-height: calc(100vh - 200px);
     overflow-y: auto;
 }
+

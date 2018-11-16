@@ -53,9 +53,6 @@
                     <img src="img/logo.png" style="opacity: 0.05;" class="img-fluid" width="270px" height="270px">
                 </div>
             </div>
-            <div class="row text-center clearfix">
-                <h5 style="font-family: 'Baskerville Old Face';">All rights reserved. 2018</h5>
-            </div>
         </footer>
     </body>
 </html>

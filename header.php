@@ -3,7 +3,7 @@
     include "includes/functions.inc.php";
     include 'includes/action.inc.php';
     include 'includes/communication.action.inc.php';
-    //include 'includes/appointment.request.handler.php';
+    include 'includes/appointment.request.handler.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -25,6 +25,12 @@
     <link rel="stylesheet" type="text/css" href="assets/css/jquery-ui.css">
     <link rel="stylesheet" type="text/css" href="assets/font-awesome/webfonts/all.min.css"/>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <!-- DATATABLES -->
+    <link rel="stylesheet" type="text/css" href="./assets/datatables/datatables.min.css">
+    <script type="text/javascript" src="./assets/datatables/datatables.min.js"></script>
+    <script type="text/javascript" src="./assets/datatables/buttons.print.min.js"></script>
+    <script type="text/javascript" src="./assets/datatables/pdfmake.min.js"></script>
+    <script type="text/javascript" src="./assets/datatables/jszip.min.js"></script>
     <!-- END OF BOOSTRAP AND CSS SCRIPT -->
 
     <div class="jumbotron jumbotron-fluid"> <!-- JUMBOTRON -->
@@ -48,7 +54,7 @@
 
     <!-- START OF NAVIGATION -->
     <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
-        <div class="container" style="padding-left: 50px; padding-right: 50px; margin: 0; max-width: 100%;">
+        <div class="container" style="padding-left: 70px; padding-right: 70px; margin: 0; max-width: 100%;">
             <a class="navbar-brand" href="index.php">Barangay Salitran II</a>
             <!-- Brand and toggle get grouped for better mobile display -->
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#mainNavigation" aria-expanded="false"
@@ -87,7 +93,7 @@
                     <input class="form-control mr-sm-2 form-control-sm" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-info btn-sm mr-sm-5" type="submit"><span class="fas fa-search"></span> Search</button>
                     <?php if(isset($_SESSION['Username'])){ ?>
-                        <li class="navbar-nav dropdown"> 
+                        <li class="navbar-nav dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white;"><span class="fas fa-user-alt"></span> <?php echo $_SESSION['Username'];?></a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
