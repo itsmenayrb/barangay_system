@@ -121,7 +121,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="container">
-                        <form method="post" action="" id="commendationForm">
+                        <form method="post" action="./includes/communication.action.inc.php" id="commendationForm">
                             <div class="row">
                                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                                     <div class="form-group">
@@ -171,7 +171,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="container">
-                        <form method="post" action="" id="suggestForm">
+                        <form method="post" action="./includes/communication.action.inc.php" id="suggestForm">
                             <div class="row">
                                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                                     <div class="form-group">
@@ -217,7 +217,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="container">
-                        <form method="post" action="" id="inquireForm">
+                        <form method="post" action="./communication.action.inc.php" id="inquireForm">
                             <div class="row">
                                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                                     <div class="form-group">

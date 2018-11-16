@@ -233,6 +233,44 @@ insert  into `users`(`id`,`Username`,`Pwd`,`Email`,`SecurityQuestion1`,`AnswerOn
 (2,'bryan1','$2y$10$fARhOnuiHmlCULKwhwT59OKEf7g3hZglh7SlwDJBy5EUWC7ckIu/e','bryan1@gmail.com','What is the name of your first pet?','$2y$10$.eLPyNy3Cs2rFjsUBAlDSuYLeiHWtKrIJ6hRFtqcO2g0eyms7xtMK','Who is your favorite singer?','$2y$10$Hl26TGSdn9n1oXZ2stMTYO05krqU.sz4QsDnIb/YKq9RIfp4Egvoi',NULL,'2018-10-30',NULL,NULL),
 (3,'bryan123','$2y$10$3YN8ikMPmJumfwdvLoNNxeXLmuQorAhAIxU9iYz0BolS/LG9UDqzW','bryan123@gmail.com','What is the name of your first pet?','$2y$10$hYVmt/mZ/Pn0G4y2cG3N1OjLYnLCNesrHFXiD728pz2GwmWz/QwR.','Who is your favorite singer?','$2y$10$vrCMAUTTFzFzxisyL2AzJ.n.REE5eSNkdsjiDkYv4woAv27zv8/32',NULL,'2018-10-31',NULL,NULL);
 
+DROP TABLE IF EXISTS `commendations`;
+
+CREATE TABLE `commendations` (
+  `id` INTEGER PRIMARY KEY AUTO_INCREMENT,
+  `firstname` VARCHAR(255),
+  `lastname` VARCHAR(255),
+  `email` VARCHAR(255),
+  `employee` VARCHAR(255),
+  `subject` VARCHAR(255),
+  `commendationMessage` VARCHAR(255)
+);
+
+DROP TABLE IF EXISTS `suggestions`;
+
+CREATE TABLE `recommendations`(
+  `id` INTEGER PRIMARY KEY AUTO_INCREMENT,
+  `firstname` VARCHAR(255),
+  `lastname` VARCHAR(255),
+  `email` VARCHAR(255),
+  `subject` VARCHAR(255),
+  `recommendation` VARCHAR(255)
+);
+
+DROP TABLE IF EXISTS `inquiries`;
+
+CREATE TABLE `inquiries` (
+  `id` INTEGER PRIMARY KEY AUTO_INCREMENT,
+  `firstname` VARCHAR(255),
+  `lastname` VARCHAR(255),
+  `contactnumber` VARCHAR(255),
+  `email` VARCHAR(255),
+  `subject` VARCHAR(255),
+  `inquiry` VARCHAR(255)
+);
+
+DROP TABLE IF EXISTS `complaints`;
+
+
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
