@@ -2,15 +2,22 @@
 require_once('../library/examples/tcpdf_include.php');
 require_once('../library/tcpdf.php');
 require_once('../fpdf17/fpdf.php');
+require_once('../includes/action.inc.php');
 
-$conn = mysqli_connect('localhost','root','');
-mysqli_select_db($conn,'barangaysalitranii');
-//get db data
+session_start();
+
+include '../includes/dbh.inc.php';
+
+isset($_SESSION['id']);
+$id= $_SESSION['id'];
+
 $sql = mysqli_query($conn,"SELECT * FROM residents INNER JOIN homeaddress
 ON residents.user_ID = homeaddress.id
-WHERE residents.user_ID = residents.user_ID");
+WHERE residents.user_ID = '".$id."'");
 
 $invoice = mysqli_fetch_array($sql);
+
+$tDate = date("F j, Y");
 
 class MYPDF extends TCPDF
 {
@@ -78,13 +85,13 @@ $pdf->writeHTMLCell(0,0,30,90,'To whom it may concern:',0,1,0,true,'L',true);
 $pdf->Cell(0,10,'',0,1);//dummycell
 $pdf->Cell(65,10,'',0,0);//dummycell
 $pdf->Cell(80,13,' '.$invoice['Prefix'].' '.$invoice['FirstName'].' '.$invoice['MiddleName'].' '.$invoice['LastName'].' '.$invoice['Suffix'],0,0,'');
-$pdf->writeHTMLCell(0,0,40,110,'This is to certify that',0,1,0,true,'',true);
+$pdf->writeHTMLCell(0,0,40,110,'This is to certify that _______________________',0,1,0,true,'',true);
 
 
 $pdf->Cell(0,10,'',0,1);//dummycell
 $pdf->Cell(0,10,$invoice['Homeaddress'],0,1);//dummycell
 $html = <<<EOD
-(name) is a resident of barangay Salitran II with known address at
+is a resident of barangay Salitran II with known address at __________________________________________________
 EOD;
 $pdf->writeHTMLCell(0,0,30,120,$html,0,1,0,true,'',true);
 
@@ -94,9 +101,19 @@ EOD;
 $pdf->writeHTMLCell(0,0,30,140,$html,0,1,0,true,'',true);
 
 $html = <<<EOD
-This <b>CERTIFICATION</b> is being issued upon the request of (name) for (purpose) purposes only.
+This <b>CERTIFICATION</b> is being issued upon the request of
 EOD;
 $pdf->writeHTMLCell(0,0,30,150,$html,0,1,0,true,'',true);
+
+$pdf->Cell(90,10,$invoice['Prefix'].' '.$invoice['FirstName'].' '.$invoice['MiddleName'].' '.$invoice['LastName'].' '.$invoice['Suffix'],0,0);//dummycell
+
+$html = <<<EOD
+__________________________for __________________ purposes only.
+EOD;
+$pdf->writeHTMLCell(0,0,30,160,$html,0,1,0,true,'',true);
+
+$pdf->Cell(32,2,'',0,0);//dummycell
+$pdf->Cell(50,14,$tDate,0,0);//dummycell
 
 $html = <<<EOD
 Issued this ___________________ at Barangay Salitran II, Dasmariñas City, Cavite.

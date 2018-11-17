@@ -165,7 +165,6 @@
       	</div>
 	<?php } ?>
 </div>
-<<<<<<< HEAD
 <?php include 'footer.php'; ?>
 <script type="text/javascript">
 	function myFunctionAppointment(f){
@@ -192,30 +191,24 @@
 	$('#subaccountProfileTable').DataTable();
 </script>
 
-=======
 
-<!--bopols -->
+<!--start bopols -->
 <?php
 //db connection
-$conn = mysqli_connect('localhost','root','');
-mysqli_select_db($conn,'barangaysalitranii');
+include 'includes/dbh.inc.php';
 ?>
-<html>
-	<body>
-		select invoice:
-		<form method='get' action='docs/indigency.php'>
-		<select>
-		<option value="Indigency Certificate" href="docs/indency.php">Indigency Certificate</option>
-		<option value="Barangay Clearance" href="docs/clearance.php">Barangay Clearance</option>
-		<option value="Barangay Certificate" href="docs/certification.php">Barangay Certificate</option>
-		<option value="Barangay Endorsement" href="docs/endorsement.php">Barangay Endorsement</option>
-		<option value="Business Clearance" href="docs/business.php">Business Clearance</option>
+		<div class="container">
+		Request Forms : 
+		<form method='post' action="preview.php" name="form" id="form">
+		<select name="forms">
+		<option disabled selected>FORMS</option>
+		<option value="indigency">Indigency Certificate</option>
+		<option value="clearance">Barangay Clearance</option>
+		<option value="endorsement">Barangay Endorsement</option>
+		<option value="certification">Barangay Certificate</option>
+		<option value="business">Business Clearance</option>
 		</select>
-		<input type='submit' value='Generate'>
+		<input type="submit" name="request" value="Preview">
 		</form>
-	</body>
-</html>
+	</div>
 <!--end bopols -->
-
-<?php include 'footer.php'; ?>
->>>>>>> f6fe6b89dba5de76000e3b1a01037f7f64eeb6db
