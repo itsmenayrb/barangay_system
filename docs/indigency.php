@@ -12,9 +12,6 @@ isset($_SESSION['id']);
 $id= $_SESSION['id'];
 $tDate = date("F j, Y");
 
-//db connection
-$conn = mysqli_connect('localhost','root','');
-mysqli_select_db($conn,'barangaysalitranii');
 //get db data
 $sql = mysqli_query($conn,"SELECT * FROM residents INNER JOIN homeaddress
 ON residents.user_ID = homeaddress.id
