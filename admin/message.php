@@ -67,7 +67,7 @@
 				                  <a href="#" class="nav-link">
 				                    <i class="fas fa-trash-alt"></i> Trash
 				                  </a>
-				                </li
+				                </li>
 							</ul>
 						</div>
 					</div>
