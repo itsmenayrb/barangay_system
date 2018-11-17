@@ -245,7 +245,7 @@ CREATE TABLE `commendations` (
   `commendationMessage` VARCHAR(255)
 );
 
-DROP TABLE IF EXISTS `suggestions`;
+DROP TABLE IF EXISTS `recommendations`;
 
 CREATE TABLE `recommendations`(
   `id` INTEGER PRIMARY KEY AUTO_INCREMENT,
