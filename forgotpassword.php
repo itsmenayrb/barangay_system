@@ -1,6 +1,6 @@
 <?php
 include 'header.php';
-?>    
+?>
 <div class="container" id="fpContainer"> <!-- START OF CONTAINER CLASS -->
     <div class="row">
         <?php include 'includes/errors.inc.php'; ?>

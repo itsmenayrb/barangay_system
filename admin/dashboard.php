@@ -7,7 +7,7 @@
     <?php header("Location: index.php"); ?>
 <?php endif ?>
 <?php
-    $sql = "SELECT employee_id FROM employee";
+    $sql = "SELECT Position FROM employee";
     $results = mysqli_query($conn, $sql);
     $resultsCheck = mysqli_num_rows($results);
 
@@ -18,9 +18,9 @@
                 <div id="mySidenav" class="sidenav alert-success">
                     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
                     <a href="dashboard.php">Home</a>
-                    <a href="#">Reports</a>
+                    <a href="appointments.php">Appointments</a>
                     <a href="message.php">Messages</a>
-                    <a href="#">Members</a>
+                    <a href="members.php">Members</a>
                     <a href="attendance.php">Attendance</a>
                     <div class="dropdown-divider" style="width: 80%; margin: 0 auto;"></div>
                     <a href="signout.php">Sign Out</a>

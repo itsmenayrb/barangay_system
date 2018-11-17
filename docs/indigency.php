@@ -12,6 +12,10 @@ isset($_SESSION['id']);
 $id= $_SESSION['id'];
 $tDate = date("F j, Y");
 
+//db connection
+$conn = mysqli_connect('localhost','root','');
+mysqli_select_db($conn,'barangaysalitranii');
+//get db data
 $sql = mysqli_query($conn,"SELECT * FROM residents INNER JOIN homeaddress
 ON residents.user_ID = homeaddress.id
 WHERE residents.user_ID = '".$id."'");
@@ -33,12 +37,12 @@ class MYPDF extends TCPDF
         $this->SetFont('Times','B',12,'');
 
         $this->Cell(0, 10, '', 0, 1, 'C', 0, '', 0, false, 'M', 'M');//dummy cell
-		$this->Cell(0, 10, 'Republic of the Philippines', 0, 1, 'C', 0, '', 0, false, 'M', 'M');
-		$this->Cell(0, 10, 'Province of Cavite', 0, 1, 'C', 0, '', 0, false, 'M', 'M');
-		$this->Cell(0, 25, 'City of Dasmariñas', 0, 1, 'C', 0, '', 0, false, 'M', 'M');
-		$this->Cell(0, 10, 'BARANGAY SALITRAN II', 0, 1, 'C', 0, '', 0, false, 'M', 'M');
-		$this->Cell(0, 7, 'Tel.No.(046)540-5804', 0, 1, 'C', 0, '', 0, false, 'M', 'M');
-		
+        $this->Cell(0, 10, 'Republic of the Philippines', 0, 1, 'C', 0, '', 0, false, 'M', 'M');
+        $this->Cell(0, 10, 'Province of Cavite', 0, 1, 'C', 0, '', 0, false, 'M', 'M');
+        $this->Cell(0, 25, 'City of Dasmariñas', 0, 1, 'C', 0, '', 0, false, 'M', 'M');
+        $this->Cell(0, 10, 'BARANGAY SALITRAN II', 0, 1, 'C', 0, '', 0, false, 'M', 'M');
+        $this->Cell(0, 7, 'Tel.No.(046)540-5804', 0, 1, 'C', 0, '', 0, false, 'M', 'M');
+        
     }//end of header()
 
 

@@ -25,6 +25,7 @@
   $displaySecOne = "";
   $displaySecTwo = "";
   $verified = false;
+  $status = "";
 
   $errors = array();
   $success = array();
@@ -33,7 +34,9 @@
   use PHPMailer\PHPMailer\PHPMailer;
 
 //-----------------------------------------------------------------------------------
-//Register
+/*
+ * Register
+ */
 if (isset($_POST['submit'])) {
   $username = checkInput($_POST['username']);
   $email = checkInput($_POST['email']);
@@ -145,7 +148,9 @@ if (isset($_POST['submit'])) {
   }
 }
 //-------------------------------------------------------------------------------------------
-// login
+/*
+ * Login
+ */
 
 if(isset($_POST['login'])) {
   $Username = checkInput($_POST['username']);
@@ -182,7 +187,10 @@ if(isset($_POST['login'])) {
 }
 
 //----------------------------------------------------------------------------------------------
-//Reset Password
+/*
+ * Reset Password
+ * Via Email
+ */
 if(isset($_POST['send'])){
   $email = checkInput($_POST['email']);
 
@@ -226,7 +234,9 @@ if(isset($_POST['send'])){
 
   }
 }
-
+/*
+ * Via SecurityQuestion
+ */
 if(isset($_POST['resetPassword'])){
   $username = checkInput($_POST['username']);
   $verified = true;
@@ -283,7 +293,9 @@ if(isset($_POST['verifyUsername'])){
   }
   $conn->close();
 }
-
+/*
+ * Adding sub-user
+ */
 if(isset($_POST['add'])){
   $relationship = checkInput($_POST['relationship']);
   $otherRelationship = checkInput($_POST['otherRelationship']);
@@ -328,18 +340,18 @@ if(isset($_POST['add'])){
   }
 
   if(count($errors) == 0){
-
+    $status = "Active";
     $relationship = $relationship . "  " . $otherRelationship;
     $birthday = date('Y-m-d', strtotime($birthday));
 
-    $sql = "INSERT INTO subusers (username, relationship, prefix, fname, mname, lname, suffix, birthday , age, homeaddress, telephonenumber,cellphonenumber, dateAdded) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+    $sql = "INSERT INTO subusers (username, relationship, prefix, fname, mname, lname, suffix, birthday , age, homeaddress, telephonenumber,cellphonenumber, dateAdded, status) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
     $stmt = mysqli_stmt_init($conn);
 
     if(!mysqli_stmt_prepare($stmt, $sql)){
       array_push($errors, "Something went wrong. Please try again later.");
     }
     else{
-      mysqli_stmt_bind_param($stmt, "ssssssssisiis", $username, $relationship, $prefix, $fname, $mname, $lname, $suffix, $birthday, $age, $address, $telephonenumber, $cellphonenumber, $dateAdded);
+      mysqli_stmt_bind_param($stmt, "ssssssssisiiss", $username, $relationship, $prefix, $fname, $mname, $lname, $suffix, $birthday, $age, $address, $telephonenumber, $cellphonenumber, $dateAdded, $status);
 
       mysqli_stmt_execute($stmt);
 
@@ -348,5 +360,106 @@ if(isset($_POST['add'])){
     mysqli_stmt_close($stmt);
     mysqli_close($conn);
   }
+}
+
+/*
+ * Updating sub-user
+ */
+if(isset($_POST['updateRelationshipBtn'])){
+  $hiddenSubAccountUpdateId = checkInput($_POST['hiddenSubAccountUpdateId']);
+  if(empty($hiddenSubAccountUpdateId)){
+    array_push($errors,"No account to update. Please create a sub-account first");
+  }
+  else{
+    $current = $_SESSION['Username'];
+    $relationship = checkInput($_POST['relationship']);
+    $otherRelationship = checkInput($_POST['otherRelationship']);
+    $username = $_SESSION['Username'];
+    $prefix = checkInput($_POST['prefix']);
+    $fname = checkInput($_POST['fname']);
+    $mname = checkInput($_POST['mname']);
+    $lname = checkInput($_POST['lname']);
+    $suffix = checkInput($_POST['suffix']);
+    //$gender = checkInput($_POST['gender']);
+    $birthday = checkInput($_POST['birthday']);
+    $age = checkInput($_POST['age']);
+    //$birthplace = checkInput($_POST['birthplace']);
+    $block = checkInput($_POST['block']);
+    $street = checkInput($_POST['street']);
+    $subdivision = checkInput($_POST['subdivision']);
+    $telephonenumber = checkInput($_POST['telephonenumber']);
+    $cellphonenumber = checkInput($_POST['cellphonenumber']);
+
+    $address = $block . " " .$street . " " .$subdivision . " Barangay Salitran II, Dasmariñas City, Cavite, Philippines, 4114. ";
+
+    $dateAdded = date('Y-m-d');
+
+    if($relationship == ""){
+      array_push($errors, "You must enter choose your relationship with the person you are registering.");
+    }
+
+    if (!preg_match("/^[a-zA-Z ]*$/" , $otherRelationship)) {
+      array_push($errors, "Your relationship must not contain numbers or special characters.");
+    }
+
+    if (!preg_match("/^[a-zA-Z ]*$/" , $fname) ||!preg_match("/^[a-zA-Z ]*$/" , $mname) || !preg_match("/^[a-zA-Z ]*$/" , $lname)) {
+      array_push($errors, "Your name must not contain numbers or special characters.");
+    }
+    // Checking Contact Number
+    if(!preg_match("/^[0-9]*$/",$telephonenumber) || !preg_match("/^[0-9]*$/",$cellphonenumber)){
+      array_push($errors, "You have entered invalid contact number. Please check your inputs!");
+    }
+
+    if(empty($telephonenumber) && empty($cellphonenumber)){
+      array_push($errors, "You need to enter at least one contact number.");
+    }
+
+    if(count($errors) == 0){
+      $status = "Active";
+      $relationship = $relationship . "  " . $otherRelationship;
+      $birthday = date('Y-m-d', strtotime($birthday));
+
+      $sql = "UPDATE subusers SET relationship=?, prefix=?, fname=?, mname=?, lname=?, suffix=?, birthday=?, age=?, homeaddress=?, telephonenumber=?, cellphonenumber=?, dateAdded=?, status=? WHERE username = '$current' AND id = '$hiddenSubAccountUpdateId'";
+      $stmt = mysqli_stmt_init($conn);
+
+      if(!mysqli_stmt_prepare($stmt, $sql)){
+        array_push($errors, "Something went wrong. Please try again later.");
+      }
+      else{
+        mysqli_stmt_bind_param($stmt, "sssssssisiiss", $relationship, $prefix, $fname, $mname, $lname, $suffix, $birthday, $age, $address, $telephonenumber, $cellphonenumber, $dateAdded, $status);
+
+        mysqli_stmt_execute($stmt);
+
+        array_push($success,"Update Successfully!");
+      }
+      mysqli_stmt_close($stmt);
+      mysqli_close($conn);
+    }
+  }
+}
+
+/*
+ * Deleting sub-user
+ */
+
+if(!empty($_GET['reldel'])){
+  $current = $_SESSION['Username'];
+  $autoID = checkInput($_GET['reldel']);
+  $status = "Deleted";
+  $dateDeleted = date('Y-m-d');
+  $sql = "UPDATE subusers SET status=?, dateDeleted=? WHERE username = '$current' AND id='$autoID'";
+  $stmt = mysqli_stmt_init($conn);
+
+    if(!mysqli_stmt_prepare($stmt, $sql)){
+      array_push($errors, "Something went wrong. Please try again later.");
+    }
+    else{
+      mysqli_stmt_bind_param($stmt, "ss", $status, $dateDeleted);
+      mysqli_stmt_execute($stmt);
+    }
+    mysqli_stmt_close($stmt);
+  mysqli_close($conn);
+  header("Location: profile.php");
+  exit();
 }
 ?>

@@ -10,9 +10,9 @@
 <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <a href="dashboard.php">Home</a>
-    <a href="#">Reports</a>
+    <a href="appointments.php">Appointments</a>
     <a href="message.php">Messages</a>
-    <a href="#">Members</a>
+    <a href="members.php">Members</a>
     <a href="attendance.php">Attendance</a>
     <div class="dropdown-divider" style="width: 80%; margin: 0 auto;"></div>
     <a href="signout.php">Sign Out</a>
@@ -122,7 +122,7 @@
 					<h4 class="card-title">Time Sheet</h4>
 				</div>
 				<div class="card-body p-0">
-						<table id="timesheetTable" class="table table-hover nowrap" style="width: 100%;">
+						<table id="timesheetTable" class="table table-bordered table-hover nowrap" style="width: 100%;">
 							<thead class="thead-light">
 								<tr>
 									<th>Employee Number</th>

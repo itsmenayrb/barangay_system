@@ -13,23 +13,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/x-icon" href="../img/favicon.ico"/>
     <!-- BOOTSTRAP, js AND CSS SCRIPT -->
+    <link rel="stylesheet" type="text/css" href="../assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/jquery-ui.css">
     <script type="text/javascript" src="../assets/js/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="../assets/js/jquery.validate.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="../assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="../assets/datatables/datatables.min.css">
-    <link rel="stylesheet" type="text/css" href="../assets/datatables/scroller.bootstrap4.min.css">
-    <link rel="stylesheet" type="text/css" href="../assets/datatables/buttons.bootstrap4.min.css">
     <script type="text/javascript" src="../assets/bootstrap/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../assets/datatables/datatables.min.js"></script>
-    <script type="text/javascript" src="../assets/datatables/scroller.bootstrap4.min.js"></script>
-    <script type="text/javascript" src="../assets/datatables/buttons.bootstrap4.min.js"></script>
     <script type="text/javascript" src="../assets/js/jquery-ui.js"></script>
+    <!-- DATATABLES -->
+    <link rel="stylesheet" type="text/css" href="../assets/datatables/datatables.min.css">
+    <script type="text/javascript" src="../assets/datatables/datatables.min.js"></script>
     <script type="text/javascript" src="../assets/datatables/buttons.print.min.js"></script>
     <script type="text/javascript" src="../assets/datatables/pdfmake.min.js"></script>
     <script type="text/javascript" src="../assets/datatables/jszip.min.js"></script>
-    <script type="text/javascript" src="../assets/datatables/buttons.html5.min.js"></script>
-    <script type="text/javascript" src="../assets/js/range_dates.js"></script>
-    <link rel="stylesheet" type="text/css" href="../assets/css/jquery-ui.css">
+    <!-- FONT AWESOME -->
     <link rel="stylesheet" href="../assets/font-awesome/webfonts/all.min.css">
     <link rel="stylesheet" type="text/css" href="style.css">
     <!-- END OF BOOSTRAP AND CSS SCRIPT -->
