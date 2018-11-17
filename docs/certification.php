@@ -2,15 +2,22 @@
 require_once('../library/examples/tcpdf_include.php');
 require_once('../library/tcpdf.php');
 require_once('../fpdf17/fpdf.php');
+require_once('../includes/action.inc.php');
 
-$conn = mysqli_connect('localhost','root','');
-mysqli_select_db($conn,'barangaysalitranii');
-//get db data
+session_start();
+
+include '../includes/dbh.inc.php';
+
+isset($_SESSION['id']);
+$id= $_SESSION['id'];
+
 $sql = mysqli_query($conn,"SELECT * FROM residents INNER JOIN homeaddress
 ON residents.user_ID = homeaddress.id
-WHERE residents.user_ID = residents.user_ID");
+WHERE residents.user_ID = '".$id."'");
 
 $invoice = mysqli_fetch_array($sql);
+
+$tDate = date("F j, Y");
 
 class MYPDF extends TCPDF
 {
@@ -94,9 +101,19 @@ EOD;
 $pdf->writeHTMLCell(0,0,30,140,$html,0,1,0,true,'',true);
 
 $html = <<<EOD
-This <b>CERTIFICATION</b> is being issued upon the request of (name) for (purpose) purposes only.
+This <b>CERTIFICATION</b> is being issued upon the request of
 EOD;
 $pdf->writeHTMLCell(0,0,30,150,$html,0,1,0,true,'',true);
+
+$pdf->Cell(90,10,$invoice['Prefix'].' '.$invoice['FirstName'].' '.$invoice['MiddleName'].' '.$invoice['LastName'].' '.$invoice['Suffix'],0,0);//dummycell
+
+$html = <<<EOD
+for __________________ purposes only.
+EOD;
+$pdf->writeHTMLCell(0,0,100,160,$html,0,1,0,true,'',true);
+
+$pdf->Cell(32,2,'',0,0);//dummycell
+$pdf->Cell(50,14,$tDate,0,0);//dummycell
 
 $html = <<<EOD
 Issued this ___________________ at Barangay Salitran II, Dasmariñas City, Cavite.

@@ -2,15 +2,22 @@
 require_once('../library/examples/tcpdf_include.php');
 require_once('../library/tcpdf.php');
 require_once('../fpdf17/fpdf.php');
+require_once('../includes/action.inc.php');
 
-$conn = mysqli_connect('localhost','root','');
-mysqli_select_db($conn,'barangaysalitranii');
-//get db data
+session_start();
+
+include '../includes/dbh.inc.php';
+
+isset($_SESSION['id']);
+$id= $_SESSION['id'];
+
 $sql = mysqli_query($conn,"SELECT * FROM residents INNER JOIN homeaddress
 ON residents.user_ID = homeaddress.id
-WHERE residents.user_ID = residents.user_ID");
+WHERE residents.user_ID = '".$id."'");
 
 $invoice = mysqli_fetch_array($sql);
+
+$tDate = date("F j, Y");
 
 class MYPDF extends TCPDF
 {
@@ -57,12 +64,17 @@ $pdf->AddPage();
 //$image_file = K_PATH_IMAGES.'image.png'; 
 //$pdf->Image($image_file,15,400,190,195,'PNG','','T',false,300,'C',false,false,0,false,false,false);
 
+
+
 $pdf->SetFont('Times','B',12);
 $html = <<<EOD
 <h1>OFFICE OF THE SANGGUNIANG BARANGAY&nbsp;</h1>
 <h1>BARANGAY CLEARANCE</h1>
 EOD;
 $pdf->writeHTMLCell(0,0,25,55,$html,0,1,0,true,'C',true);
+
+$pdf->Cell(145,5,'',0,0);//dummycell
+$pdf->Cell(25,5,' '.$tDate,0,0);//dummycell
 
 $pdf->SetFont('Times','B',12);
 $pdf->writeHTMLCell(0,0,5,75,'Hon. Marvin T. Alindog',0,1,0,true,'L',true);
@@ -86,12 +98,14 @@ $pdf->writeHTMLCell(0,0,5,170,'Sangguniang Barangay Member',0,1,0,true,'L',true)
 $pdf->writeHTMLCell(0,0,5,185,'Barangay Treasurer',0,1,0,true,'L',true);
 $pdf->writeHTMLCell(0,0,5,205,'Barangay Secretary',0,1,0,true,'L',true);
 
+$pdf->Cell(0,5,'',1,0);//dummycell
+
 $pdf->SetFont('Times','',12);
 $html = <<<EOD
 <p><b>Date:</b></p>
 <p>Control No. : </p>
 EOD;
-$pdf->writeHTMLCell(0,0,150,75,$html,0,1,0,true,'C',true);
+$pdf->writeHTMLCell(0,0,135,75,$html,0,1,0,true,'C',true);
 
 $html = <<<EOD
 <p><b>To whom it may concern:</b></p>

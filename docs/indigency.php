@@ -2,14 +2,19 @@
 require_once('../library/examples/tcpdf_include.php');
 require_once('../library/tcpdf.php');
 require_once('../fpdf17/fpdf.php');
+require_once('../includes/action.inc.php');
+session_start();
 
-//db connection
-$conn = mysqli_connect('localhost','root','');
-mysqli_select_db($conn,'barangaysalitranii');
-//get db data
+include '../includes/dbh.inc.php';
+
+isset($_SESSION['id']);
+
+$id= $_SESSION['id'];
+$tDate = date("F j, Y");
+
 $sql = mysqli_query($conn,"SELECT * FROM residents INNER JOIN homeaddress
 ON residents.user_ID = homeaddress.id
-WHERE residents.user_ID = residents.user_ID");
+WHERE residents.user_ID = '".$id."'");
 
 $invoice = mysqli_fetch_array($sql);
 
@@ -98,11 +103,18 @@ That he/she also belong in INDIGENT FAMILY of this community.
 EOD;
 $pdf->writeHTMLCell(0,0,30,150,$html,0,1,0,true,'',true);
 
+$pdf->Cell(0,7,'',0,1);//dummycell
+$pdf->Cell(5,10,'',0,0);//dummycell
+$pdf->Cell(90,10,'    '.$invoice['Prefix'].' '.$invoice['FirstName'].' '.$invoice['MiddleName'].' '.$invoice['LastName'].' '.$invoice['Suffix'],0,0,'');
+$pdf->Cell(7,10,'',0,0);//dummycell
+$pdf->Cell(65,10,'',0,1);//purpose
 $html = <<<EOD
 This <b>CERTIFICATION</b> is being issued upon the request of _______________________________ for _______________________ purposes only.
 EOD;
 $pdf->writeHTMLCell(0,0,30,160,$html,0,1,0,true,'',true);
 
+$pdf->Cell(32,10,'',0,0);//dummycell
+$pdf->Cell(50,10,''.$tDate.'',0,0);//date
 $html = <<<EOD
 Issued on : __________________
 EOD;
