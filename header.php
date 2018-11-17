@@ -327,7 +327,7 @@
                             </div>
                             <div class="form-group">
                                 <small class="form-text text-muted">Attachment</small>
-                                <input type="file" name="attachment[]" id="attachment" class="form-control" multiple/>
+                                <input type="file" name="files[]" id="attachment" class="form-control" multiple/>
                             </div>
                             <div class="form-group">
                                 <input type="submit" class="form-control btn btn-primary" name="complaint" value="File"/>
