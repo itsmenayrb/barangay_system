@@ -294,7 +294,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="container">
-                        <form method="post" action="" id="complaintForm" enctype="multipart/form-data">
+                        <form method="post" action="./includes/communication.action.inc.php" id="complaintForm" enctype="multipart/form-data">
                             <div class="row">
                                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                                     <div class="form-group">
