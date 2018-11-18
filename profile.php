@@ -48,7 +48,27 @@
 					}
 
 					echo $row['CellphoneNumber'] . "</td></tr></table>";
-					echo "</div></div>";
+					echo "</div>"; // End of column
+					echo "<div class='card rounded-0'>"; // Start of card
+					echo "<div class='card-header alert-success'>"; // Start of card-header
+					echo "<p class='lead text-info'>Request Forms<i class='float-right fas fa-file-contract h2'></i></p>";
+					echo "</div>"; // end of card-header
+					echo "<div class='card-body'>"; //start of card-body
+					echo "<form method='post' action='preview.php' name='form' id='form'>
+							<select name='forms' class='form-control'>
+								<option disabled selected>FORMS</option>
+								<option value='indigency'>Indigency Certificate</option>
+								<option value='clearance'>Barangay Clearance</option>
+								<option value='endorsement'>Barangay Endorsement</option>
+								<option value='certification'>Barangay Certificate</option>
+								<option value='business'>Business Clearance</option>
+								</select>
+								<small>&nbsp;</small>
+								<input type='submit' name='request' class='form-control btn btn-sm btn-outline-info' value='Preview'>
+						  </form>";
+					echo "</div>"; // end of card-body
+					echo "</div>"; // end of card
+					echo "</div>"; // End of row
 					echo "<div class='col-md-8'>";
 					echo "<div class='card rounded-0' style='max-width: 100%;margin-bottom: 5px;'>";
 					echo "<div class='card-header alert-success'>";
@@ -100,7 +120,8 @@
 					}
 					echo "</div></div>";
 					echo "<div class='card rounded-0' style='max-width: 100%;'>
-							<div class='card-header alert-success'><a href='subaccount.php?addmember=true' class='btn btn-outline-info' role='button'>Add a sub-account</a><span class='fas fa-user-plus float-right text-info fa-2x'></span></div>
+							<div class='card-header alert-success'><a href='subaccount.php?addmember=true' class='btn btn-outline-info' role='button'>Add a sub-account</a><span class='fas fa-user-plus float-right text-info fa-2x'></span>
+							</div>
 							<div class='card-body text-secondary'>";
 					echo "<table class='table table-bordered nowrap' id='subaccountProfileTable'><thead class='thead-light'><tr><th>Name</th><th>Relationship</th><th class='text-center'><i class='fas fa-cogs'></i></th></tr></thead><tr>";
 
@@ -133,9 +154,11 @@
 						}
 						echo "</table>";
 					}
-					echo	"</div>
-						</div>";
-					echo "</div></div></div>";
+					echo "</div>"; // End of card-body
+					echo "</div>"; // End of Card
+					echo "</div>"; // End of column
+					echo "</div>"; // End of Row
+					echo "</div>"; // End of Container
 				}
 			}
 			$conn->close();
