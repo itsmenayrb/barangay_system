@@ -14,8 +14,9 @@ Defense would be approximately three weeks (Nov 26-30) from now.(Nov 7)
     - main account has an option to switch the sub-account into primary (NEW)
 3) Inquire, commend, report, suggest via sending email -- TODO
 4) Request for an official appointment -- TODO
-5) Downloadable Forms -- TODO
-6) Automatic filling up of forms if user is logged in. -- TODO
+5) Downloadable Forms -- DONE
+6) Automatic filling up of forms if user is logged in. -- DONE
+    a.)Request of forms from user to admin -- TODO
 7) The page should has essential content for government website such as
 news, activity, projects, jobs, FAQ's, Mission, Vision, Core Values and etc. -- PARTIALLY DONE -- TODO
 
