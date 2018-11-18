@@ -6,8 +6,6 @@ require_once('../includes/action.inc.php');
 
 session_start();
 
-include '../includes/dbh.inc.php';
-
 isset($_SESSION['id']);
 $id= $_SESSION['id'];
 
