@@ -5,7 +5,6 @@ require_once('../fpdf17/fpdf.php');
 require_once('../includes/action.inc.php');
 session_start();
 
-include '../includes/dbh.inc.php';
 
 isset($_SESSION['id']);
 
