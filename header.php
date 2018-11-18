@@ -294,7 +294,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="container">
-                        <form method="post" action="" id="complaintForm" enctype="multipart/form-data">
+                        <form method="post" action="./includes/communication.action.inc.php" id="complaintForm" enctype="multipart/form-data">
                             <div class="row">
                                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                                     <div class="form-group">
@@ -327,7 +327,7 @@
                             </div>
                             <div class="form-group">
                                 <small class="form-text text-muted">Attachment</small>
-                                <input type="file" name="attachment[]" id="attachment" class="form-control" multiple/>
+                                <input type="file" name="files[]" id="attachment" class="form-control" multiple/>
                             </div>
                             <div class="form-group">
                                 <input type="submit" class="form-control btn btn-primary" name="complaint" value="File"/>

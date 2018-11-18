@@ -245,7 +245,7 @@ CREATE TABLE `commendations` (
   `commendationMessage` VARCHAR(255)
 );
 
-DROP TABLE IF EXISTS `suggestions`;
+DROP TABLE IF EXISTS `recommendations`;
 
 CREATE TABLE `recommendations`(
   `id` INTEGER PRIMARY KEY AUTO_INCREMENT,
@@ -270,6 +270,26 @@ CREATE TABLE `inquiries` (
 
 DROP TABLE IF EXISTS `complaints`;
 
+CREATE TABLE `complaints` (
+  `id` INTEGER PRIMARY KEY AUTO_INCREMENT,
+  `firstname` VARCHAR(255),
+  `lastname` VARCHAR(255),
+  `contactnumber` VARCHAR(255),
+  `email` VARCHAR(255),
+  `subject` VARCHAR(255),
+  `complaint` VARCHAR(255)
+);
+
+DROP TABLE IF EXISTS `complaints_files`;
+
+CREATE TABLE `complaints_files` (
+  `id` INTEGER PRIMARY KEY AUTO_INCREMENT,
+  `filename` VARCHAR(255),
+  `original_file_name` VARCHAR(255),
+  `fileextension` VARCHAR(255),
+  `filedirectory` VARCHAR(255),
+  `complaint_id` INTEGER
+);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

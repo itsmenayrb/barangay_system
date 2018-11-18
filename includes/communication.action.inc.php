@@ -1,16 +1,60 @@
 <?php
 	include 'dbh.inc.php';
-	include_once "PHPMailer/PHPMailer.php";
 	include_once "functions.inc.php";
 
 	// Complaints Handler
 	if (isset($_POST['complaint'])) {
-		$firstname = checkInput($_POST['firstname']);
-		$lastname = checkInput($_POST['lastname']);
+		$firstName = checkInput($_POST['firstname']);
+		$lastName = checkInput($_POST['lastname']);
 		$contactnumber = checkInput($_POST['contactnumber']);
 		$email = checkInput($_POST['email']);
 		$subject = checkInput($_POST['subject']);
 		$complaintMessage = checkInput($_POST['complaintMessage']);
+
+		// Insert the message
+		$messageQuery = "INSERT INTO complaints(firstname, lastname, contactnumber, email, subject, complaint)
+		VALUES ('$firstName', '$lastName', '$contactnumber', '$email', '$subject', '$complaintMessage');";
+		$conn -> query($messageQuery);
+
+		// Get the newly created complaint (more specifically the id)
+		$getNewMessageIDQuery = "SELECT id FROM complaints WHERE subject='$subject' AND complaint='$complaintMessage';";
+		$result = $conn -> query($getNewMessageIDQuery);
+		$row = $result -> fetch_assoc();
+		$complaint_id = $row['id'];
+		
+		// Generate a new random string
+		$filename = bin2hex(openssl_random_pseudo_bytes(30));
+		
+		$error=array();
+    $extension=array("jpeg","jpg","png","gif");
+		foreach($_FILES["files"]["tmp_name"] as $key => $tmp_name) {
+
+			// Upload the images
+			$file_name=$_FILES["files"]["name"][$key];
+      $file_tmp=$_FILES["files"]["tmp_name"][$key];
+			$ext=pathinfo($file_name,PATHINFO_EXTENSION);
+			
+      if(in_array($ext,$extension))
+      {
+        move_uploaded_file($file_tmp=$_FILES["files"]["tmp_name"][$key], "../file_storage/".$filename.".".$ext);
+      }
+      else
+      {
+        array_push($error,"$file_name, ");
+			}
+			
+			// Insert the directories of the images
+			$fileReferenceQuery = "INSERT INTO complaints_files(original_file_name, filename, fileextension, filedirectory, complaint_id)
+			VALUES ('$file_name', '$filename', '$ext', '/file_storage/$filename.$ext', $complaint_id)";
+			echo $fileReferenceQuery;
+			$imageInsertRes = $conn -> query($fileReferenceQuery);
+
+			if(!$imageInsertRes) {
+				echo $conn -> error;
+			}
+		}
+		
+		return;
 	}
 	
 	// Commendation Handler
