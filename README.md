@@ -29,3 +29,4 @@ news, activity, projects, jobs, FAQ's, Mission, Vision, Core Values and etc. -- 
 4) Attendance for barangay officials -- DONE
 5) The page should has essential content for government website such as
 news, activity, projects, jobs, FAQ's, Mission, Vision, Core Values and etc. -- TODO
+6)Accept/Reject request of forms -- TODO
