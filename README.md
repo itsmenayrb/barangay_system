@@ -1,8 +1,8 @@
 # barangay_system
 Create an Information System for SAAD Subject
-Defense would be approximately three weeks (Nov 26-30) from now.(Nov 7)
+Defense would be approximately three weeks (Nov 26-30) from now.(Nov 18)
 
-# This system is most likely 70-80% done as of today(Nov 7)
+# This system is most likely 70-80% done as of today(Nov 18)
 
 # TO DO LIST:
 # For User
