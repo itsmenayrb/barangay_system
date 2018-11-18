@@ -87,7 +87,7 @@
 							echo "<td>" . $row['status'] . "</td>";
 							echo "<td>" . $row['date_requested'] . "</td>";
 							echo "<td>
-								<a href='appointment.request.php?id={$row['id']}' role='button' name='appointmentBtnEdit' target='_blank' id='appointmentBtnEdit' data-toggle='tooltip' data-placement='right' title='Edit'>
+								<a href='appointment.request.php?id={$row['id']}' role='button' name='appointmentBtnEdit' id='appointmentBtnEdit' data-toggle='tooltip' data-placement='right' title='Edit'>
 									<i class='fas fa-edit text-warning'></i>
 								</a>&nbsp;&nbsp;
 								<a href='appointment.request.php?del={$row['id']}' role='button' name='appointmentBtnDel' id='appointmentBtnDel' data-toggle='tooltip' data-placement='right' title='Delete' onClick='return myFunctionAppointment(this); return false;'>
@@ -100,7 +100,7 @@
 					}
 					echo "</div></div>";
 					echo "<div class='card rounded-0' style='max-width: 100%;'>
-							<div class='card-header alert-success'><a href='subaccount.php?addmember=true' class='btn btn-outline-info' role='button' target='_blank'>Add a sub-account</a><span class='fas fa-user-plus float-right text-info fa-2x'></span></div>
+							<div class='card-header alert-success'><a href='subaccount.php?addmember=true' class='btn btn-outline-info' role='button'>Add a sub-account</a><span class='fas fa-user-plus float-right text-info fa-2x'></span></div>
 							<div class='card-body text-secondary'>";
 					echo "<table class='table table-bordered nowrap' id='subaccountProfileTable'><thead class='thead-light'><tr><th>Name</th><th>Relationship</th><th class='text-center'><i class='fas fa-cogs'></i></th></tr></thead><tr>";
 
@@ -124,7 +124,7 @@
 								<a href='subaccount.php?reldel={$row['id']}' role='button' name='relationshipBtnDel' id='relationshipBtnDel' data-toggle='tooltip' data-placement='right' title='Delete' onClick='return myFunctionRelationship(this); return false;'>
 									<i class='fas fa-trash text-danger'></i>
 								</a>&nbsp;&nbsp;&nbsp;
-								<a href='#' role='button' name='relationshipBtnSetPrimary' id='relationshipBtnSetPrimary' data-toggle='tooltip' data-placement='right' title='Set Account as Primary'>
+								<a href='set.subaccount.as.primary.php?settingup={$row['id']}' role='button' name='relationshipBtnSetPrimary' id='relationshipBtnSetPrimary' data-toggle='tooltip' data-placement='right' title='Set Account as Primary' onClick='return myFunctionSetAsPrimary(this); return false;'>
 									<i class='fas fa-user-check text-info'></i>
 								</a>
 							</form>
@@ -169,7 +169,7 @@
 <?php include 'footer.php'; ?>
 <script type="text/javascript">
 	function myFunctionAppointment(f){
-		var r = confirm("Are you sure you want to delete this appointment? \nThis process is irreversible.");
+		var r = confirm("Are you sure you want to delete this appointment? \n\nThis process is irreversible.");
 		if(r == true){
 			f.submit();
 			return false;
@@ -178,7 +178,16 @@
 		}
 	}
 	function myFunctionRelationship(f){
-		var r = confirm("Are you sure you want to delete this sub-account? \nThis process is irreversible.");
+		var r = confirm("Are you sure you want to delete this sub-account? \n\nThis process is irreversible.");
+		if(r == true){
+			f.submit();
+			return false;
+		} else {
+			return false;
+		}
+	}
+	function myFunctionSetAsPrimary(f){
+		var r = confirm("Setting this up as primary will no longer be part of your account and accessing of information listed on this sub-account will be prohibited. \n\nDo you wish to continue?");
 		if(r == true){
 			f.submit();
 			return false;

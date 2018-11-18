@@ -349,7 +349,7 @@
         $('#reg-birthday').datepicker({
             autoSize: true,
             yearRange: "-100:",
-            maxDate: "-12Y",
+            maxDate: "0Y",
             onSelect: function(value, ui) {
                 var today = new Date();
                 age = today.getFullYear() - ui.selectedYear;

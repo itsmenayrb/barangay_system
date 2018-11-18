@@ -75,6 +75,7 @@
 		    }
 		    mysqli_stmt_close($stmt);
     		mysqli_close($conn);
+    		header("refresh:5;url=profile.php");
   		}
 	}
 
@@ -84,61 +85,63 @@
 			array_push($errors, "There is nothing to update. Please request an appointment.");
 		}
 		else {
-		$current = $_SESSION['Username'];
-		$fullname = checkInput($_POST['fullname']);
-		$email = checkInput($_POST['email']);
-		$contactnumber = checkInput($_POST['contactnumber']);
-		$appointmentDate = checkInput($_POST['appointmentDate']);
-		$appointmentTime = checkInput($_POST['appointmentTime']);
-		$purpose = checkInput($_POST['purpose']);
+			$current = $_SESSION['Username'];
+			$fullname = checkInput($_POST['fullname']);
+			$email = checkInput($_POST['email']);
+			$contactnumber = checkInput($_POST['contactnumber']);
+			$appointmentDate = checkInput($_POST['appointmentDate']);
+			$appointmentTime = checkInput($_POST['appointmentTime']);
+			$purpose = checkInput($_POST['purpose']);
 
-		$sql = "SELECT * FROM appointment WHERE username = '$username' AND id = '$hiddenGetId'";
-		$results = mysqli_query($conn, $sql);
-		$resultsCheck = mysqli_num_rows($results);
+			$sql = "SELECT * FROM appointment WHERE username = '$username' AND id = '$hiddenGetId'";
+			$results = mysqli_query($conn, $sql);
+			$resultsCheck = mysqli_num_rows($results);
 
-		if($resultsCheck < 0){
-			array_push($errors,"No records to update. Please submit your appointment");
-		}
-		else{
-			$appointmentDate = date('Y-m-d', strtotime($appointmentDate));
-  			$status = "Pending";
-  			require_once 'PHPMailer/PHPMailer.php';
-  			require_once 'PHPMailer/Exception.php';
+			if($resultsCheck < 0){
+				array_push($errors,"No records to update. Please submit your appointment");
+			}
+			else{
+				$appointmentTime = date('H:i:s', strtotime($appointmentTime));
+	  			$appointmentDate = date('Y-m-d', strtotime($appointmentDate));
+	  			$status = "Pending";
+	  			require_once 'PHPMailer/PHPMailer.php';
+	  			require_once 'PHPMailer/Exception.php';
 
-  			$mail = new PHPMailer();
-  			$mail->addAddress("yourhelpdesk@salitrandos.x10host.com");
-  			$mail->setFrom($email, "Appointment Request");
-  			$mail->Subject = "Requesting Appointment";
-	    	$mail->isHTML(true);
-	    	$mail->Body = "
-        	Hi, <br><br>
-        	I would like to rquest to update my appointment on $appointmentDate, $appointmentTime to $purpose .<br>
-			Thank you.<br>
-        	Kind Regards,<br>
-        	$fullname
-    		";
+	  			$mail = new PHPMailer();
+	  			$mail->addAddress("yourhelpdesk@salitrandos.x10host.com");
+	  			$mail->setFrom($email, "Appointment Request");
+	  			$mail->Subject = "Requesting Appointment";
+		    	$mail->isHTML(true);
+		    	$mail->Body = "
+	        	Hi, <br><br>
+	        	I would like to rquest to update my appointment on $appointmentDate, $appointmentTime to $purpose .<br>
+				Thank you.<br>
+	        	Kind Regards,<br>
+	        	$fullname
+	    		";
 
-    		if($mail->send()){
-	        	array_push($success, "Appointment Request has been sent.");
+	    		if($mail->send()){
+		        	array_push($success, "Appointment Request has been sent.");
+		    	}
+		    	else{
+		        	array_push($errors,"Message sending failed. Please try again later!");
+		    	}
+
+		    	$sql = "UPDATE appointment SET fullname=?, contactnumber=?, email=?, appointment_date=?, appointment_time=?, purpose=?, date_requested=?, status=? WHERE username = '$current' AND id = '$hiddenGetId'";
+		    	$stmt = mysqli_stmt_init($conn);
+
+			    if(!mysqli_stmt_prepare($stmt, $sql)){
+			    	array_push($errors, "Something went wrong. Please try again later.");
+			    }
+			    else{
+			    	mysqli_stmt_bind_param($stmt, "ssssssss", $fullname, $contactnumber, $email, $appointmentDate, $appointmentTime, $purpose, $dateRequested, $status);
+			    	mysqli_stmt_execute($stmt);
+			    }
+			    mysqli_stmt_close($stmt);
+	    		mysqli_close($conn);
+	    		header("refresh:5;url=profile.php");
 	    	}
-	    	else{
-	        	array_push($errors,"Message sending failed. Please try again later!");
-	    	}
-
-	    	$sql = "UPDATE appointment SET fullname=?, contactnumber=?, email=?, appointment_date=?, appointment_time=?, purpose=?, date_requested=?, status=? WHERE username = '$current' AND id = '$hiddenGetId'";
-	    	$stmt = mysqli_stmt_init($conn);
-
-		    if(!mysqli_stmt_prepare($stmt, $sql)){
-		    	array_push($errors, "Something went wrong. Please try again later.");
-		    }
-		    else{
-		    	mysqli_stmt_bind_param($stmt, "ssssssss", $fullname, $contactnumber, $email, $appointmentDate, $appointmentTime, $purpose, $dateRequested, $status);
-		    	mysqli_stmt_execute($stmt);
-		    }
-		    mysqli_stmt_close($stmt);
-    		mysqli_close($conn);
-    	}
-    }
+	    }
 	}
 
 	if(!empty($_GET['del'])){

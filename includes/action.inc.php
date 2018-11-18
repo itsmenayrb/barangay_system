@@ -359,6 +359,7 @@ if(isset($_POST['add'])){
     }
     mysqli_stmt_close($stmt);
     mysqli_close($conn);
+    header("refresh:5;url=profile.php");
   }
 }
 

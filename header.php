@@ -4,6 +4,7 @@
     include 'includes/action.inc.php';
     include 'includes/communication.action.inc.php';
     include 'includes/appointment.request.handler.php';
+    include 'includes/set.subaccount.as.primary.handler.php';
 ?>
 <!DOCTYPE html>
 <html>
