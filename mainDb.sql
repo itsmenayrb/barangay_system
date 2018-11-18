@@ -21,6 +21,7 @@ CREATE TABLE `appointment` (
   `username` varchar(255) NOT NULL,
   `fullname` varchar(255) NOT NULL,
   `contactnumber` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
   `appointment_date` date NOT NULL,
   `appointment_time` time NOT NULL,
   `purpose` varchar(255) NOT NULL,
@@ -33,8 +34,8 @@ CREATE TABLE `appointment` (
 
 /*Data for the table `appointment` */
 
-insert  into `appointment`(`id`,`username`,`fullname`,`contactnumber`,`appointment_date`,`appointment_time`,`purpose`,`date_requested`,`decision`,`status`,`date_accomplished`) values 
-(1,'bryan','Bryan Balaga','12312312321','2018-11-17','09:00:00','Mabangis','2018-11-09',NULL,'Pending',NULL);
+insert  into `appointment`(`id`,`username`,`fullname`,`contactnumber`,`email`,`appointment_date`,`appointment_time`,`purpose`,`date_requested`,`decision`,`status`,`date_accomplished`) values 
+(1,'bryan','Bryan Balaga','09878787785','asdad@gmail.com','2018-11-30','08:00:00','ole','2018-11-18',NULL,'Pending',NULL);
 
 /*Table structure for table `attendance` */
 
@@ -68,6 +69,56 @@ insert  into `attendance`(`id`,`employee_id`,`fullname`,`position`,`dateofyear`,
 (7,201904,'Mia  Khalifa','Barangay Assistant Secretary','2018-11-07',NULL,NULL,'Absent',NULL,NULL,NULL,'active'),
 (8,201901,'Bryan Villanueva Balaga','Barangay Chairman','2018-11-08','05:59:06','05:59:20',NULL,NULL,NULL,NULL,'active'),
 (9,201902,'Apple Rose Catalino Gabales','Barangay Secretary','2018-11-08','06:02:23',NULL,NULL,NULL,NULL,NULL,'active');
+
+/*Table structure for table `commendations` */
+
+DROP TABLE IF EXISTS `commendations`;
+
+CREATE TABLE `commendations` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `firstname` varchar(255) DEFAULT NULL,
+  `lastname` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `employee` varchar(255) DEFAULT NULL,
+  `subject` varchar(255) DEFAULT NULL,
+  `commendationMessage` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `commendations` */
+
+/*Table structure for table `complaints` */
+
+DROP TABLE IF EXISTS `complaints`;
+
+CREATE TABLE `complaints` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `firstname` varchar(255) DEFAULT NULL,
+  `lastname` varchar(255) DEFAULT NULL,
+  `contactnumber` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `subject` varchar(255) DEFAULT NULL,
+  `complaint` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `complaints` */
+
+/*Table structure for table `complaints_files` */
+
+DROP TABLE IF EXISTS `complaints_files`;
+
+CREATE TABLE `complaints_files` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `filename` varchar(255) DEFAULT NULL,
+  `original_file_name` varchar(255) DEFAULT NULL,
+  `fileextension` varchar(255) DEFAULT NULL,
+  `filedirectory` varchar(255) DEFAULT NULL,
+  `complaint_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `complaints_files` */
 
 /*Table structure for table `employee` */
 
@@ -133,16 +184,45 @@ CREATE TABLE `homeaddress` (
   `country` varchar(255) DEFAULT 'Philippines',
   `zipcode` int(11) DEFAULT '4114',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 /*Data for the table `homeaddress` */
 
 insert  into `homeaddress`(`id`,`lot`,`street`,`subdivision`,`barangay`,`city`,`province`,`country`,`zipcode`) values 
-(1,'alskdjasd','alskdjasd','laksjdlaksjd','Salitran II','Dasmariñas','Cavite','Philippines',4114),
-(2,'asdlakj','alskdj','asldkj','Salitran II','Dasmariñas','Cavite','Philippines',4114),
-(3,'Block 8 Lot 6','N/A','GreenSquare Villas','Salitran II','Dasmariñas','Cavite','Philippines',4114),
-(4,'asdlkj','asldkj','asldkj','Salitran II','Dasmariñas','Cavite','Philippines',4114),
-(5,'123jh12312321313','12313','123123','Salitran II','Dasmariñas','Cavite','Philippines',4114);
+(1,'Block 8','Lot 6','GreenSquare','Salitran II','Dasmariñas','Cavite','Philippines',4114);
+
+/*Table structure for table `inquiries` */
+
+DROP TABLE IF EXISTS `inquiries`;
+
+CREATE TABLE `inquiries` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `firstname` varchar(255) DEFAULT NULL,
+  `lastname` varchar(255) DEFAULT NULL,
+  `contactnumber` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `subject` varchar(255) DEFAULT NULL,
+  `inquiry` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `inquiries` */
+
+/*Table structure for table `recommendations` */
+
+DROP TABLE IF EXISTS `recommendations`;
+
+CREATE TABLE `recommendations` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `firstname` varchar(255) DEFAULT NULL,
+  `lastname` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `subject` varchar(255) DEFAULT NULL,
+  `recommendation` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `recommendations` */
 
 /*Table structure for table `residents` */
 
@@ -163,14 +243,15 @@ CREATE TABLE `residents` (
   `TelephoneNumber` bigint(11) DEFAULT NULL,
   `CellphoneNumber` bigint(11) DEFAULT NULL,
   PRIMARY KEY (`user_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 /*Data for the table `residents` */
 
 insert  into `residents`(`user_ID`,`Prefix`,`FirstName`,`MiddleName`,`LastName`,`Suffix`,`Sex`,`Bday`,`Age`,`Bplace`,`Homeaddress`,`TelephoneNumber`,`CellphoneNumber`) values 
-(1,'Mr','Bryan','Villanueva','Balaga','Jr',NULL,'2006-10-18',12,NULL,'Block 8 Lot 6 N/A GreenSquare Villas Barangay Salitran II, DasmariÃ±as City, Cavite, Philippines, 4114. ',1231232131,12312321312),
-(2,'Dr','Apple','Rose','Balaga','',NULL,'2006-10-01',12,NULL,'asdlkj asldkj asldkj Barangay Salitran II, DasmariÃ±as City, Cavite, Philippines, 4114. ',1231231231,12312312312),
-(3,'Dr','doctor','doctoran','tantan','',NULL,'2006-10-04',12,NULL,'123jh12312321313 12313 123123 Barangay Salitran II, DasmariÃ±as City, Cavite, Philippines, 4114. ',1231232131,0);
+(1,'Mr','Bryan','Villanueva','Balaga','Jr',NULL,'2006-11-01',12,NULL,'Block 8 Lot 6 GreenSquare Barangay Salitran II, DasmariÃ±as City, Cavite, Philippines, 4114. ',0,9123456789),
+(2,'Dr','Juana','Dela','Torre','',NULL,'2017-11-02',1,NULL,'Block 8 Lot 6 Greensquare Barangay Salitran II, DasmariÃ±as City, Cavite, Philippines, 4114.',0,9123456789),
+(3,'Mr','Jose','Protacio','Rizal','',NULL,'2002-11-20',16,NULL,'Taga Jan Jan Barangay Salitran II, DasmariÃ±as City, Cavite, Philippines, 4114.',461231232,0),
+(4,'Mr','James','Reid','Balaga','',NULL,'2001-11-02',17,NULL,'Butaw butaw butaw Barangay Salitran II, DasmariÃ±as City, Cavite, Philippines, 4114.',2193810298,10293810938);
 
 /*Table structure for table `subusers` */
 
@@ -193,18 +274,32 @@ CREATE TABLE `subusers` (
   `telephonenumber` bigint(11) NOT NULL,
   `cellphonenumber` bigint(20) NOT NULL,
   `dateAdded` date NOT NULL,
+  `status` varchar(255) NOT NULL,
   `dateDeleted` date DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `id` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 /*Data for the table `subusers` */
 
-insert  into `subusers`(`id`,`username`,`relationship`,`prefix`,`fname`,`mname`,`lname`,`suffix`,`gender`,`birthday`,`age`,`birthplace`,`homeaddress`,`telephonenumber`,`cellphonenumber`,`dateAdded`,`dateDeleted`) values 
-(1,'bryan123','Mother  ','Mr','Eddie','G','Madrona','',NULL,'2006-11-05','12',NULL,'123lkj 12l3kj 12l3kj Barangay Salitran II, DasmariÃ±as City, Cavite, Philippines, 4114. ',1231312313,0,'2018-11-05',NULL),
-(2,'bryan123','Daughter  ','Dr','Eddoy','Gardo','Madrona','Sr',NULL,'2006-11-05','12',NULL,'dfdg sdfsdf 12l3kj34s Barangay Salitran II, DasmariÃ±as City, Cavite, Philippines, 4114. ',0,12312312311,'2018-11-05',NULL),
-(3,'bryan','Brother  ','Dr','Elesita','Precorpio','Ala Eh','III',NULL,'2006-11-06','12',NULL,'Taga Jan Lang Barangay Salitran II, DasmariÃ±as City, Cavite, Philippines, 4114. ',2312312332,0,'2018-11-06',NULL),
-(4,'bryan','Mother  ','Mr','Victor','','Magtanggol','Jr',NULL,'2006-11-01','12',NULL,'cvsu cvsu cvsu Barangay Salitran II, DasmariÃ±as City, Cavite, Philippines, 4114. ',0,9123456789,'2018-11-07',NULL);
+insert  into `subusers`(`id`,`username`,`relationship`,`prefix`,`fname`,`mname`,`lname`,`suffix`,`gender`,`birthday`,`age`,`birthplace`,`homeaddress`,`telephonenumber`,`cellphonenumber`,`dateAdded`,`status`,`dateDeleted`) values 
+(1,'bryan','Mother  ','Dr','Juana','Dela','Torre','',NULL,'2017-11-02','1',NULL,'Block 8 Lot 6 Greensquare Barangay Salitran II, DasmariÃ±as City, Cavite, Philippines, 4114. ',0,9123456789,'2018-11-18','Primary','2018-11-18'),
+(2,'bryan','Father  ','Mr','Jose','Protacio','Rizal','',NULL,'2002-11-20','16',NULL,'Taga Jan Jan Barangay Salitran II, DasmariÃ±as City, Cavite, Philippines, 4114. ',461231232,0,'2018-11-18','Primary','2018-11-18'),
+(3,'bryan','Brother  ','Mr','James','Reid','Balaga','',NULL,'2001-11-02','17',NULL,'Butaw butaw butaw Barangay Salitran II, DasmariÃ±as City, Cavite, Philippines, 4114. ',2193810298,10293810938,'2018-11-18','Primary','2018-11-18');
+
+/*Table structure for table `user_req` */
+
+DROP TABLE IF EXISTS `user_req`;
+
+CREATE TABLE `user_req` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(255) NOT NULL,
+  `contactnumber` varchar(255) NOT NULL,
+  `purpose` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+/*Data for the table `user_req` */
 
 /*Table structure for table `users` */
 
@@ -221,89 +316,21 @@ CREATE TABLE `users` (
   `AnswerTwo` varchar(255) NOT NULL,
   `Token` varchar(255) DEFAULT NULL,
   `DateCreated` date DEFAULT NULL,
+  `Status` varchar(255) NOT NULL,
   `DateDeleted` date DEFAULT NULL,
   `DateDeceased` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 /*Data for the table `users` */
 
-insert  into `users`(`id`,`Username`,`Pwd`,`Email`,`SecurityQuestion1`,`AnswerOne`,`SecurityQuestion2`,`AnswerTwo`,`Token`,`DateCreated`,`DateDeleted`,`DateDeceased`) values 
-(1,'bryan','$2y$10$HT8tLVDlk.hLm4OzZBmOg.eST37m1/rvEkq3KHf.WOFy4kcEHjr/G','bryan@gmail.com','What is the name of your first pet?','$2y$10$.BYGRagVloKh2cliI3OwouwYYPkwOgWODHEucpR9koocnv8i/VC6S','Who is your favorite singer?','$2y$10$PhoFc4/eCLvAfrm1S/zb9eqi.PWaZaocme44nNjG9YN/7AWPvzYU.',NULL,'2018-10-30',NULL,NULL),
-(2,'bryan1','$2y$10$fARhOnuiHmlCULKwhwT59OKEf7g3hZglh7SlwDJBy5EUWC7ckIu/e','bryan1@gmail.com','What is the name of your first pet?','$2y$10$.eLPyNy3Cs2rFjsUBAlDSuYLeiHWtKrIJ6hRFtqcO2g0eyms7xtMK','Who is your favorite singer?','$2y$10$Hl26TGSdn9n1oXZ2stMTYO05krqU.sz4QsDnIb/YKq9RIfp4Egvoi',NULL,'2018-10-30',NULL,NULL),
-(3,'bryan123','$2y$10$3YN8ikMPmJumfwdvLoNNxeXLmuQorAhAIxU9iYz0BolS/LG9UDqzW','bryan123@gmail.com','What is the name of your first pet?','$2y$10$hYVmt/mZ/Pn0G4y2cG3N1OjLYnLCNesrHFXiD728pz2GwmWz/QwR.','Who is your favorite singer?','$2y$10$vrCMAUTTFzFzxisyL2AzJ.n.REE5eSNkdsjiDkYv4woAv27zv8/32',NULL,'2018-10-31',NULL,NULL);
-
-DROP TABLE IF EXISTS `commendations`;
-
-CREATE TABLE `commendations` (
-  `id` INTEGER PRIMARY KEY AUTO_INCREMENT,
-  `firstname` VARCHAR(255),
-  `lastname` VARCHAR(255),
-  `email` VARCHAR(255),
-  `employee` VARCHAR(255),
-  `subject` VARCHAR(255),
-  `commendationMessage` VARCHAR(255)
-);
-
-DROP TABLE IF EXISTS `recommendations`;
-
-CREATE TABLE `recommendations`(
-  `id` INTEGER PRIMARY KEY AUTO_INCREMENT,
-  `firstname` VARCHAR(255),
-  `lastname` VARCHAR(255),
-  `email` VARCHAR(255),
-  `subject` VARCHAR(255),
-  `recommendation` VARCHAR(255)
-);
-
-DROP TABLE IF EXISTS `inquiries`;
-
-CREATE TABLE `inquiries` (
-  `id` INTEGER PRIMARY KEY AUTO_INCREMENT,
-  `firstname` VARCHAR(255),
-  `lastname` VARCHAR(255),
-  `contactnumber` VARCHAR(255),
-  `email` VARCHAR(255),
-  `subject` VARCHAR(255),
-  `inquiry` VARCHAR(255)
-);
-
-DROP TABLE IF EXISTS `complaints`;
-
-CREATE TABLE `complaints` (
-  `id` INTEGER PRIMARY KEY AUTO_INCREMENT,
-  `firstname` VARCHAR(255),
-  `lastname` VARCHAR(255),
-  `contactnumber` VARCHAR(255),
-  `email` VARCHAR(255),
-  `subject` VARCHAR(255),
-  `complaint` VARCHAR(255)
-);
-
-DROP TABLE IF EXISTS `complaints_files`;
-
-CREATE TABLE `complaints_files` (
-  `id` INTEGER PRIMARY KEY AUTO_INCREMENT,
-  `filename` VARCHAR(255),
-  `original_file_name` VARCHAR(255),
-  `fileextension` VARCHAR(255),
-  `filedirectory` VARCHAR(255),
-  `complaint_id` INTEGER
-);
+insert  into `users`(`id`,`Username`,`Pwd`,`Email`,`SecurityQuestion1`,`AnswerOne`,`SecurityQuestion2`,`AnswerTwo`,`Token`,`DateCreated`,`Status`,`DateDeleted`,`DateDeceased`) values 
+(1,'bryan','$2y$10$v5fouJSVcWv8FhMFTV/n.uFx8bMCd/.IS1c8boiYg9Tl9KIPmOq3O','bryan@gmail.com','What is the name of your first pet?','$2y$10$fAHpE/hlHGNb.zEDAGLTtubpUkOSN7A.2s8l5Fub8D9liMWPocKeO','Who is your favorite singer?','$2y$10$oNSbcZ3GmJNQtQzEk.iEGejer6KHqbojI65GDJzavmq8mAz2eXmwC',NULL,'2018-11-18','',NULL,NULL),
+(2,'bryan1','$2y$10$fB60Bv7749ljWkDhKkLFC.v5DQa3w6WqYDbH8h1adWGwiLPdzj1qS','asdad@gmail.com','What is the name of your first pet?','$2y$10$w8a8UVXXSDJz/HdH7vgh4egd4smKzHqouTvFWuo8GZOUSJeSW3.Dy','Who is your favorite singer?','$2y$10$0mVQrKIXLtS4x75wWXFk7uFh.50BUzK0fv.JlYLPxQyN4hdz9ZaiC',NULL,'2018-11-18','Active',NULL,NULL),
+(3,'bryan2','$2y$10$jgWx.9or5lam0F2Z34Pdd.eR82c/v8wf5398tSXntxj862s92UoRq','bryan2@gmail.com','What is the name of your first pet?','$2y$10$UPJIX6JqVjOSeaiwmx9a0uiOHfBNilOHK1z/yt6lrcv5qPFn/ooFO','Who is your favorite singer?','$2y$10$W8Tq8OwE9J3ttTELh6dX6eujAAUv.5l5DMwbKVf..b3mz5i8OOpmK',NULL,'2018-11-18','Active',NULL,NULL),
+(4,'bryan123','$2y$10$k5A46Zae5sJR4q3t2rq5NOBgwEz50y3rL5tI7YsH0kEWlV6qnxG5m','bryan123@gmail.com','What is the name of your first pet?','$2y$10$FvRJAF6zeQfAyMNIuUWUWuC7BqvKeYkki7M102DOnPH8P6TANWiuq','Who is your favorite singer?','$2y$10$LDsBGtac8VufT3mtjNufleTxS87fWSeCSc4Vc2mdO1YFAZbXmey06',NULL,'2018-11-18','Active',NULL,NULL);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-/*****dedpol***/
-DROP TABLE IF EXISTS `user_req`;
-
-CREATE TABLE `user_req` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(255) NOT NULL,
-  `contactnumber` varchar(255) NOT NULL,
-  `purpose` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
-
-/*****dedpol***/
