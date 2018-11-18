@@ -295,3 +295,15 @@ CREATE TABLE `complaints_files` (
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+/*****dedpol***/
+DROP TABLE IF EXISTS `user_req`;
+
+CREATE TABLE `user_req` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(255) NOT NULL,
+  `contactnumber` varchar(255) NOT NULL,
+  `purpose` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+/*****dedpol***/

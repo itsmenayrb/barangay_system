@@ -1,4 +1,4 @@
-<!-- PAGE FOR APPOINTMENT REQUESTS -->
+<!---carbon copy of appointment.php-->
 <?php include 'header.php'; ?>
 <?php if(!isset($_SESSION['Position'])) :?>
     <?php header("Location: index.php"); ?>
@@ -23,39 +23,33 @@
                     <div class="dropdown-divider" style="width: 80%; margin: 0 auto;"></div>
                     <a href="signout.php">Sign Out</a>
                 </div>
-                <!-- content -->
                 <div id="main">
                     <div class="container">
                         <nav class="navbar navbar-expand-smd navbar-dark bg-info">
-                            <a class="navbar-brand" href="dashboard.php">Dashboard</a>
+                            <a class="navbar-brand" href="dashboard.php">Home</a>
                             <div class="float-right">
                                 <h5 class="lead text-light">You are signed-in as <a href="#" class="text-dark"><?php echo $_SESSION['Username']; ?></a> | <a href="signout.php" class="text-light"><i class="btn btn-outline-light fas fa-sign-out-alt" data-toggle="tooltip" data-placement="right" title="Sign Out"></i></a></h5>
                             </div>
                         </nav>
                         <div class="card rounded-0 my-2">
                             <div class="card-header alert-success">
-                                <p class="lead">Appointment Request</p>
+                                <p class="lead">User Request</p>
                             </div>
                             <div class="card-body">
-                                <table class="table table-hover table-bordered nowrap" id="appointmentRequestTable">
+                                <table class="table table-hover table-bordered nowrap" id="userRequestTable">
                                     <tr>
                                         <thead class="thead-light">
                                             <th><i class='fas fa-cogs'></i></th>
                                             <th>No.</th>
                                             <th>Username</th>
-                                            <th>Fullname</th>
                                             <th>Contact Number</th>
-                                            <th>Appointment Date</th>
-                                            <th>Appointment Time</th>
                                             <th>Purpose</th>
-                                            <th>Date Requested</th>
-                                            <th>Status</th>
-                                            <th>Date Accomplished</th>
+                                            <th>Action</th>
                                         </thead>
                                     </tr>
                                     <tr>
                                         <?php
-                                            $sql = "SELECT * FROM appointment";
+                                            $sql = "SELECT * FROM user_req";
                                             $results = mysqli_query($conn, $sql);
                                             $resultsCheck = mysqli_num_rows($results);
 
@@ -64,18 +58,11 @@
                                                     echo "<td>&nbsp;</td>";
                                                     echo "<td>" . $row['id'] . "</td>";
                                                     echo "<td>" . $row['username'] . "</td>";
-                                                    echo "<td>" . $row['fullname'] . "</td>";
                                                     echo "<td>" . $row['contactnumber'] . "</td>";
-                                                    $appointment_date = $row['appointment_date'];
-                                                    $appointment_date = new DateTime($appointment_date);
-                                                    echo "<td>" . $appointment_date->format('F-d-y') . "</td>";
-                                                    $appointment_time = $row['appointment_time'];
-                                                    $appointment_time = date('h:i A', strtotime($appointment_time));
-                                                    echo "<td>" . $appointment_time . "</td>";
                                                     echo "<td>" . $row['purpose'] . "</td>";
-                                                    echo "<td>" . $row['date_requested'] . "</td>";
-                                                    echo "<td>" . $row['status'] . "</td>";
-                                                    echo "<td>" . $row['date_accomplished'] . "</td>";
+                                                    echo '<td><button name="button" value="accept"class="btn btn-primary my-2">Accept</button>
+                                                    <button name="button" value="reject"class="btn btn-secondary my-2">Reject</button>
+                                                    <td>';
                                                     echo "</tr>";
                                                 }
                                                 echo "</table>";
@@ -90,4 +77,5 @@
             <?php } ?>
         <?php endif ?>
     <?php endif ?>
+
 <?php include 'scripts.php'; ?>
