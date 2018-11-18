@@ -85,13 +85,13 @@ $pdf->writeHTMLCell(0,0,30,90,'To whom it may concern:',0,1,0,true,'L',true);
 $pdf->Cell(0,10,'',0,1);//dummycell
 $pdf->Cell(65,10,'',0,0);//dummycell
 $pdf->Cell(80,13,' '.$invoice['Prefix'].' '.$invoice['FirstName'].' '.$invoice['MiddleName'].' '.$invoice['LastName'].' '.$invoice['Suffix'],0,0,'');
-$pdf->writeHTMLCell(0,0,40,110,'This is to certify that',0,1,0,true,'',true);
+$pdf->writeHTMLCell(0,0,40,110,'This is to certify that _______________________',0,1,0,true,'',true);
 
 
 $pdf->Cell(0,10,'',0,1);//dummycell
 $pdf->Cell(0,10,$invoice['Homeaddress'],0,1);//dummycell
 $html = <<<EOD
-(name) is a resident of barangay Salitran II with known address at
+is a resident of barangay Salitran II with known address at __________________________________________________
 EOD;
 $pdf->writeHTMLCell(0,0,30,120,$html,0,1,0,true,'',true);
 
@@ -108,9 +108,9 @@ $pdf->writeHTMLCell(0,0,30,150,$html,0,1,0,true,'',true);
 $pdf->Cell(90,10,$invoice['Prefix'].' '.$invoice['FirstName'].' '.$invoice['MiddleName'].' '.$invoice['LastName'].' '.$invoice['Suffix'],0,0);//dummycell
 
 $html = <<<EOD
-for __________________ purposes only.
+__________________________for __________________ purposes only.
 EOD;
-$pdf->writeHTMLCell(0,0,100,160,$html,0,1,0,true,'',true);
+$pdf->writeHTMLCell(0,0,30,160,$html,0,1,0,true,'',true);
 
 $pdf->Cell(32,2,'',0,0);//dummycell
 $pdf->Cell(50,14,$tDate,0,0);//dummycell

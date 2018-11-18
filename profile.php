@@ -197,9 +197,7 @@
 //db connection
 include 'includes/dbh.inc.php';
 ?>
-<html>
-
-	<body>
+		<div class="container">
 		Request Forms : 
 		<form method='post' action="preview.php" name="form" id="form">
 		<select name="forms">
@@ -212,10 +210,5 @@ include 'includes/dbh.inc.php';
 		</select>
 		<input type="submit" name="request" value="Preview">
 		</form>
-	</body>
-
-</html>
-
+	</div>
 <!--end bopols -->
-
-<?php include 'footer.php'; ?>
