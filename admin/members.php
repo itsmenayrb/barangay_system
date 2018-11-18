@@ -20,6 +20,7 @@
                     <a href="message.php">Messages</a>
                     <a href="members.php">Members</a>
                     <a href="attendance.php">Attendance</a>
+                    <a href="user_req.php">User Requests</a><!---dedpol--->
                     <div class="dropdown-divider" style="width: 80%; margin: 0 auto;"></div>
                     <a href="signout.php">Sign Out</a>
                 </div>
@@ -31,7 +32,7 @@
                             <div class="float-right">
                                 <h5 class="lead text-light">You are signed-in as <a href="#" class="text-dark"><?php echo $_SESSION['Username']; ?></a> | <a href="signout.php" class="text-light"><i class="btn btn-outline-light fas fa-sign-out-alt" data-toggle="tooltip" data-placement="right" title="Sign Out"></i></a></h5>
                             </div>
-                        </nav>
+                        </nav>	
                         <div class="row" style="margin-top: 10px;"> <!-- ROW FOR REGISTERED USERS -->
                         	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         		<div class="card rounded-0">

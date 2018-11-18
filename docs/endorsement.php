@@ -2,15 +2,21 @@
 require_once('../library/examples/tcpdf_include.php');
 require_once('../library/tcpdf.php');
 require_once('../fpdf17/fpdf.php');
+require_once('../includes/action.inc.php');
 
-$conn = mysqli_connect('localhost','root','');
-mysqli_select_db($conn,'barangaysalitranii');
+session_start();
+
+isset($_SESSION['id']);
+$id= $_SESSION['id'];
+
 $sql = mysqli_query($conn,"SELECT * FROM residents INNER JOIN homeaddress
 ON residents.user_ID = homeaddress.id
-WHERE residents.user_ID = residents.user_ID");
+WHERE residents.user_ID = '".$id."'");
 
 $invoice = mysqli_fetch_array($sql);
 
+$tDate = date("F, Y");
+$dDate=date("j");
 
 class MYPDF extends TCPDF
 {
@@ -89,7 +95,7 @@ This is to endorse
 EOD;
 $pdf->writeHTMLCell(0,0,30,130,$html,0,1,0,true,'',true);
 
-$pdf->Cell(0,15,$invoice['Homeaddress'],0,1,'J');//dummycell
+$pdf->Cell(0,15,$invoice['Homeaddress'],0,1,'J');
 $pdf->Cell(0,1,'',0,1);//dummycell
 
 $html = <<<EOD
@@ -113,6 +119,12 @@ for
 Purpose.
 EOD;
 $pdf->writeHTMLCell(0,0,30,170,$html,0,1,0,true,'',true);
+
+$pdf->Cell(35,13,'',0,0);//dummycell
+$pdf->Cell(22,13,$dDate,0,0);//date
+$pdf->Cell(8,13,'',0,0);//dummycell
+$pdf->Cell(35,13,$tDate,0,0);//date
+
 
 $html = <<<EOD
 Issued this _______ of ______________         

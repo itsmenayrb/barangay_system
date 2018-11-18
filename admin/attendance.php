@@ -14,6 +14,7 @@
     <a href="message.php">Messages</a>
     <a href="members.php">Members</a>
     <a href="attendance.php">Attendance</a>
+    <a href="user_req.php">User Requests</a><!---dedpol--->
     <div class="dropdown-divider" style="width: 80%; margin: 0 auto;"></div>
     <a href="signout.php">Sign Out</a>
 </div>

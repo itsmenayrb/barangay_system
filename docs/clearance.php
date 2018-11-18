@@ -2,15 +2,20 @@
 require_once('../library/examples/tcpdf_include.php');
 require_once('../library/tcpdf.php');
 require_once('../fpdf17/fpdf.php');
+require_once('../includes/action.inc.php');
 
-$conn = mysqli_connect('localhost','root','');
-mysqli_select_db($conn,'barangaysalitranii');
-//get db data
+session_start();
+
+isset($_SESSION['id']);
+$id= $_SESSION['id'];
+
 $sql = mysqli_query($conn,"SELECT * FROM residents INNER JOIN homeaddress
 ON residents.user_ID = homeaddress.id
-WHERE residents.user_ID = residents.user_ID");
+WHERE residents.user_ID = '".$id."'");
 
 $invoice = mysqli_fetch_array($sql);
+
+$tDate = date("F j, Y");
 
 class MYPDF extends TCPDF
 {
@@ -57,12 +62,17 @@ $pdf->AddPage();
 //$image_file = K_PATH_IMAGES.'image.png'; 
 //$pdf->Image($image_file,15,400,190,195,'PNG','','T',false,300,'C',false,false,0,false,false,false);
 
+
+
 $pdf->SetFont('Times','B',12);
 $html = <<<EOD
 <h1>OFFICE OF THE SANGGUNIANG BARANGAY&nbsp;</h1>
 <h1>BARANGAY CLEARANCE</h1>
 EOD;
 $pdf->writeHTMLCell(0,0,25,55,$html,0,1,0,true,'C',true);
+
+$pdf->Cell(145,5,'',0,0);//dummycell
+$pdf->Cell(25,5,' '.$tDate,0,0);//dummycell
 
 $pdf->SetFont('Times','B',12);
 $pdf->writeHTMLCell(0,0,5,75,'Hon. Marvin T. Alindog',0,1,0,true,'L',true);
@@ -86,24 +96,26 @@ $pdf->writeHTMLCell(0,0,5,170,'Sangguniang Barangay Member',0,1,0,true,'L',true)
 $pdf->writeHTMLCell(0,0,5,185,'Barangay Treasurer',0,1,0,true,'L',true);
 $pdf->writeHTMLCell(0,0,5,205,'Barangay Secretary',0,1,0,true,'L',true);
 
+//$pdf->Cell(0,5,'',1,0);//dummycell
+
 $pdf->SetFont('Times','',12);
 $html = <<<EOD
 <p><b>Date:</b></p>
-<p>Control No. : </p>
+<p>Control No. :</p>
 EOD;
-$pdf->writeHTMLCell(0,0,150,75,$html,0,1,0,true,'C',true);
+$pdf->writeHTMLCell(0,0,135,75,$html,0,1,0,true,'C',true);
 
 $html = <<<EOD
-<p><b>To whom it may concern:</b></p>
-<p align="Left">This is to certify that ___________________________(name),________(age)</p>
-<p>years of age,Filipino citizen and whose specimen signature appears below, is a resident of __________________________________(address).&nbsp;</p>
+<b>To whom it may concern:</b><br><br>
+This is to certify that &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+years of age,Filipino citizen and whose specimen signature appears below, is a resident of
 EOD;
-$pdf->Cell(0,10,'',0,1);//dummycell
-$pdf->Cell(40,10,'',0,0);
-$pdf->Cell(75,13,'    '.$invoice['Prefix'].' '.$invoice['FirstName'].' '.$invoice['MiddleName'].' '.$invoice['LastName'].' '.$invoice['Suffix'],0,0,'');
-$pdf->Cell(20,13,$invoice['Age'],0,1,'C');
+$pdf->Cell(0,8,'',0,1);//dummycell
+$pdf->Cell(80,10,'',0,0);
+$pdf->Cell(40,8,'    '.$invoice['Prefix'].' '.$invoice['FirstName'].' '.$invoice['MiddleName'].' '.$invoice['LastName'].' '.$invoice['Suffix'],0,0,'');
+$pdf->Cell(10,8,$invoice['Age'],0,1,'C');
 $pdf->Cell(0,5,'',0,1);//dummycell
-$pdf->Cell(72,10,'',0,0);//dummycell
+$pdf->Cell(45,10,'',0,0);//dummycell
 $pdf->Cell(72,10,$invoice['Homeaddress'],0,1);
 $pdf->writeHTMLCell(0,0,70,90,$html,0,1,0,true,'',true);
 $html = <<<EOD
@@ -111,11 +123,11 @@ $html = <<<EOD
 <p>That he/she had no derogatory records on file with this Barangay.</p>
 <p>That he/she is know to the community to be of good moral character, peaceful and law-abiding citizen.</p>
 EOD;
-$pdf->writeHTMLCell(0,0,70,125,$html,0,1,0,true,'J',true);
+$pdf->writeHTMLCell(0,0,70,115,$html,0,1,0,true,'J',true);
 
 $html = <<<EOD
 <p>This <b>CERTIFICATION</b> is issued upon the request of the above named for the purpose stated below.</p>
-<p>For ___________(purpose)<b> Purpose</b> only</p>
+<p>For  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b> Purpose</b> only</p>
 EOD;
 $pdf->writeHTMLCell(0,0,70,160,$html,0,1,0,true,'J',true);
 

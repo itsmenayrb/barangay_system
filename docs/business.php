@@ -2,15 +2,21 @@
 require_once('../library/examples/tcpdf_include.php');
 require_once('../library/tcpdf.php');
 require_once('../fpdf17/fpdf.php');
+require_once('../includes/action.inc.php');
 
-$conn = mysqli_connect('localhost','root','');
-mysqli_select_db($conn,'barangaysalitranii');
+session_start();
+
+isset($_SESSION['id']);
+$id= $_SESSION['id'];
 
 $sql = mysqli_query($conn,"SELECT * FROM residents INNER JOIN homeaddress
 ON residents.user_ID = homeaddress.id
-WHERE residents.user_ID = residents.user_ID");
+WHERE residents.user_ID = '".$id."'");
 
 $invoice = mysqli_fetch_array($sql);
+
+$tDate = date("F, Y");
+$dDate=date("j");
 
 class MYPDF extends TCPDF
 {
@@ -111,8 +117,14 @@ no objection for the issuance of MAYOR'S PERMIT being applied for :
 EOD;
 $pdf->writeHTMLCell(0,0,70,165,$html,0,1,0,true,'J',true);
 
+$pdf->Cell(0,5,'',0,1);//dummycell
+$pdf->Cell(68,8,'',0,0);//dummycell
+$pdf->Cell(15,8,$dDate,0,0);
+$pdf->Cell(9,8,'',0,0);//dummycell
+$pdf->Cell(23,8,$tDate,0,0);
+
 $html = <<<EOD
-Issued this ____ day of ___________, at Barangay Hall Salitran II, City of
+Issued this ____ day of _______________, at Barangay Hall Salitran II, City of
 Dasmariñas, Cavite.
 EOD;
 $pdf->writeHTMLCell(0,0,70,195,$html,0,1,0,true,'J',true);
