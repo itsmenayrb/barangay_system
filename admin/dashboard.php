@@ -17,7 +17,7 @@
                     <main class="col bg-faded py-3">
                         <div class="row" style="margin-top: 10px;"> <!-- Employees Profile Punong Barangay-->
                             <div class="col-sm-12 col-md-6 offset-md-3">
-                                <p class="text-center display-4">Barangay Officials</p>
+                                <p class="text-center h2">Barangay Officials</p>
                                 <div class="card-container">
                                     <div class="card">
                                         <div class="front"> <!-- Front -->

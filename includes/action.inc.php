@@ -207,8 +207,8 @@ if(isset($_POST['send'])){
       $sql = "UPDATE users SET Token = '$token' WHERE Email = '$email'";
       mysqli_query($conn,$sql);
 
-      require_once '../PHPMailer/PHPMailer.php';
-      require_once '../PHPMailer/Exception.php';
+      require_once 'PHPMailer/PHPMailer.php';
+      require_once 'PHPMailer/Exception.php';
 
       $mail = new PHPMailer();
       $mail->addAddress($email);
