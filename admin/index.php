@@ -49,3 +49,6 @@
     <?php if (isset($_SESSION['Position'])) : ?>
         <script type="text/javascript">window.location='dashboard.php';</script>
     <?php endif ?>
+<script type="text/javascript">
+    $('#login-form').validate();
+</script>

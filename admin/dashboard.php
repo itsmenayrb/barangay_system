@@ -14,27 +14,7 @@
     if ($resultsCheck > 0) : ?>
         <?php if ($row = mysqli_fetch_assoc($results)) : ?>
             <?php if (isset($_SESSION['Position']) == 'Barangay Captain') { ?> <!--NAVIGATION -->
-                <span class="fas fa-bars fa-3x float-left text-info" style="margin-top: 15px; margin-left: 15px;" onclick="openNav()"></span>
-                <div id="mySidenav" class="sidenav alert-success">
-                    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-                    <a href="dashboard.php">Home</a>
-                    <a href="appointments.php">Appointments</a>
-                    <a href="message.php">Messages</a>
-                    <a href="members.php">Members</a>
-                    <a href="attendance.php">Attendance</a>
-                    <a href="user_req.php">User Requests</a><!---dedpol--->
-                    <div class="dropdown-divider" style="width: 80%; margin: 0 auto;"></div>
-                    <a href="signout.php">Sign Out</a>
-                </div>
-                <!-- content -->
-                <div id="main">
-                    <div class="container">
-                        <nav class="navbar navbar-expand-smd navbar-dark bg-info">
-                            <a class="navbar-brand" href="dashboard.php">Dashboard</a>
-                            <div class="float-right">
-                                <h5 class="lead text-light">You are signed-in as <a href="#" class="text-dark"><?php echo $_SESSION['Username']; ?></a> | <a href="signout.php" class="text-light"><i class="btn btn-outline-light fas fa-sign-out-alt" data-toggle="tooltip" data-placement="right" title="Sign Out"></i></a></h5>
-                            </div>
-                        </nav>
+                    <main class="col bg-faded py-3">
                         <div class="row" style="margin-top: 10px;"> <!-- Employees Profile Punong Barangay-->
                             <div class="col-sm-12 col-md-6 offset-md-3">
                                 <p class="text-center display-4">Barangay Officials</p>
@@ -211,49 +191,42 @@
                                 </div> <!-- end of card-container -->
                             </div>
                         </div> <!-- end of row -->
-                        <div class="container" style="margin-top: 20px;">
-                            <div class="card rounded-0">
-                                <div class="card-body">
-                                    <div class='container'>
-                                        <div class='table-responsive'>
-                                            <table class='table table-hover table-bordered' id="employeeTable">
-                                                <thead class='thead-light'>
-                                                    <tr>
-                                                        <th class="alert-success">Employee ID</th>
-                                                        <th>Full Name</th>
-                                                        <th>Position</th>
-                                                        <th>Address</th>
-                                                        <th>Contact Number</th>
-                                                        <th><i class="fa fa-cogs"></i></th>
-                                                    </tr>
-                                                </thead>
-                                                <tr>
-                                                <!-- QUERY FOR DISPLAYING OF ALL OF EMPLOYEES -->
-                                                    <?php
-                                                        $sql = "SELECT * FROM employee";
-                                                        $results = mysqli_query($conn, $sql);
-                                                        $resultsCheck = mysqli_num_rows($results);
+                        <div class='table-responsive'>
+                            <table class='table table-hover table-bordered' id="employeeTable">
+                                <thead class='thead-light'>
+                                    <tr>
+                                        <th class="alert-success">Employee ID</th>
+                                        <th>Full Name</th>
+                                        <th>Position</th>
+                                        <th>Address</th>
+                                        <th>Contact Number</th>
+                                        <th><i class="fa fa-cogs"></i></th>
+                                    </tr>
+                                </thead>
+                                <tr>
+                                <!-- QUERY FOR DISPLAYING OF ALL OF EMPLOYEES -->
+                                    <?php
+                                        $sql = "SELECT * FROM employee";
+                                        $results = mysqli_query($conn, $sql);
+                                        $resultsCheck = mysqli_num_rows($results);
 
-                                                        if($resultsCheck > 0){
-                                                            while($row = $results->fetch_assoc()){
-                                                                echo "<td class='alert-success'>" . $row['employee_id'] . "</td>";
-                                                                echo "<td>" . $row['FirstName'] . " " . $row['MiddleName'] . " " . $row['LastName'] . " " . $row['Suffix'] . "</td>";
-                                                                echo "<td>" . $row['Position'] . "</td>";
-                                                                echo "<td>" . $row['homeaddress'] . "</td>";
-                                                                echo "<td>" . $row['contactnumber'] . "</td>";
-                                                                echo "<td><i class='fa fa-user-edit text-info'></i> <i class='fa fa-trash-alt text-danger'></i></td>";
-                                                                echo "</tr>";
-                                                            }
-                                                            echo "</table>";
-                                                        }
-                                                    ?>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                                        if($resultsCheck > 0){
+                                            while($row = $results->fetch_assoc()){
+                                                echo "<td class='alert-success'>" . $row['employee_id'] . "</td>";
+                                                echo "<td>" . $row['FirstName'] . " " . $row['MiddleName'] . " " . $row['LastName'] . " " . $row['Suffix'] . "</td>";
+                                                echo "<td>" . $row['Position'] . "</td>";
+                                                echo "<td>" . $row['homeaddress'] . "</td>";
+                                                echo "<td>" . $row['contactnumber'] . "</td>";
+                                                echo "<td><i class='fa fa-user-edit text-info'></i> <i class='fa fa-trash-alt text-danger'></i></td>";
+                                                echo "</tr>";
+                                            }
+                                            echo "</table>";
+                                        }
+                                    ?>
                         </div>
-                    </div>
+                    </main>
                 </div>
+            </div>
             <?php } elseif (isset($_SESSION['Position']) == 'Barangay Tanod') { ?>
                 <span class="fas fa-bars fa-3x" style="margin-top: 5px; margin-left: 15px;" onclick="openNav()"></span>
                 <div id="mySidenav" class="sidenav">
@@ -271,3 +244,8 @@
             <?php } ?>
         <?php endif ?>
     <?php endif ?>
+</body>
+<script type="text/javascript">
+    $('#employeeTable').DataTable();
+</script>
+</html>

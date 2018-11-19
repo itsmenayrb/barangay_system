@@ -230,7 +230,7 @@
 include 'includes/dbh.inc.php';
 ?>
 		<div class="container">
-		Request Forms : 
+		Request Forms :
 		<form method='post' action="preview.php" name="form" id="form">
 		<select name="forms">
 		<option disabled selected>FORMS</option>

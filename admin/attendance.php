@@ -6,33 +6,7 @@
     <?php header("Location: index.php"); ?>
 <?php endif ?>
 <!-- navigation -->
-<span class="fas fa-bars fa-3x float-left" style="margin-top: 15px; margin-left: 15px;" onclick="openNav()"></span>
-<div id="mySidenav" class="sidenav">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a href="dashboard.php">Home</a>
-    <a href="appointments.php">Appointments</a>
-    <a href="message.php">Messages</a>
-    <a href="members.php">Members</a>
-    <a href="attendance.php">Attendance</a>
-    <a href="user_req.php">User Requests</a><!---dedpol--->
-    <div class="dropdown-divider" style="width: 80%; margin: 0 auto;"></div>
-    <a href="signout.php">Sign Out</a>
-</div>
-<!-- content -->
-<div id="main">
-	<div class="container">
-		<nav class="navbar navbar-expand-smd navbar-dark bg-dark">
-            <a class="navbar-brand" href="dashboard.php">Dashboard</a>
-            <div class="float-right">
-                <h5 class="lead text-light">You are signed-in as <a href="#"><?php echo $_SESSION['Username']; ?></a> | <a href="signout.php" class="text-light"><i class="btn btn-outline-light fas fa-sign-out-alt" data-toggle="tooltip" data-placement="right" title="Sign Out"></i></a></h5>
-            </div>
-        </nav>
-		<div style="margin-top: 10px;">
-	        <ol class="breadcrumb">
-	          <li class="breadcrumb-item"><a href="dashboard.php">Home</a></li>
-	          <li class="breadcrumb-item active">Attendance</li>
-	        </ol>
-	    </div>
+	<main class="col bg-faded py-3">
 		<div class="row">
 			<div class="col-md-6">
 				<div class="card">
@@ -200,6 +174,28 @@
 			</div>
 			</div>
 		</div>
+	</main>
 	</div>
 </div>
-<?php include 'scripts.php'; ?>
+</body>
+<script type="text/javascript">
+	$('#timesheetTable').DataTable({
+        "scrollX" : true,
+        "pagingType": "full_numbers",
+        order: [[ 3, 'desc'] , [ 6 , 'desc']],
+        dom: 'Bfrtip',
+        buttons : [
+            { extend: 'pdf' , className: 'form-control btn btn-primary'},
+            { extend: 'print', className: 'form-control btn btn-info'},
+            { extend: 'excel', className: 'form-control btn btn-primary' },
+            { extend: 'copy', className: 'form-control btn btn-info'}
+        ]
+    });
+    $(function() {
+      $('#attendanceSelector').change(function(){
+        $('.btnAttendance').hide();
+        $('#' + $(this).val()).show();
+      });
+    });
+</script>
+</html>
