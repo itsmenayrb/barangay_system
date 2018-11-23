@@ -51,9 +51,11 @@
 
 			if(!$imageInsertRes) {
 				echo $conn -> error;
+				header("Location: ../index.php?status=message_not_sent");
 			}
 		}
 		
+		header("Location: ../index.php?status=message_sent");
 		return;
 	}
 	
