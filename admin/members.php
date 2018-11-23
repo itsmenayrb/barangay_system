@@ -13,6 +13,12 @@
         <?php if ($row = mysqli_fetch_assoc($results)) : ?>
             <?php if (isset($_SESSION['Position']) == 'Barangay Captain') { ?> <!--NAVIGATION -->
             			<main class="col bg-faded py-3">
+            				<div>
+						        <ol class="breadcrumb">
+						          <li class="breadcrumb-item"><a href="dashboard.php">Home</a></li>
+						          <li class="breadcrumb-item active">Members</li>
+						        </ol>
+						    </div>
 	                        <div class="row""> <!-- ROW FOR REGISTERED USERS -->
 	                        	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 	                        		<div class="card rounded-0">
@@ -20,18 +26,18 @@
 	                        				<p class="lead text-center">Registered User</p>
 	                        			</div>
 	                        			<div class="card-body">
-	                        				<table class="table table-hover table-bordered nowrap" style="width: 100%;" id="registeredUserTable">
-			                        			<tr>
-			                        				<thead class="thead-light">
-			                        					<td>#</td>
-			                        					<td>Username</td>
-			                        					<td>Fullname</td>
-			                        					<td>Address</td>
-			                        					<td>Contact Number</td>
-			                        					<td>Status</td>
-			                        					<td>Last Login</td>
-			                        				</thead>
-			                        			</tr>
+	                        				<table class="table table-hover nowrap display" style="width: 100%;" id="registeredUserTable">
+			                        			<thead class="thead-light">
+			                        				<tr>
+			                        					<th>#</th>
+			                        					<th>Username</td>
+			                        					<th>Fullname</th>
+			                        					<th>Address</th>
+			                        					<th>Contact Number</th>
+			                        					<th>Status</th>
+			                        					<th>Last Login</th>
+			                        				</tr>
+			                        			</thead>
 			                        			<tr>
 			                        				<?php
 			                        					$sql = "SELECT users.id, users.Username, users.Status, residents.user_ID, residents.Prefix, residents.FirstName, residents.MiddleName, residents.LastName, residents.Suffix, residents.Homeaddress, residents.TelephoneNumber, residents.CellphoneNumber FROM users INNER JOIN residents ON users.id = residents.user_ID";
@@ -65,9 +71,9 @@
 	                        				<p class="lead text-center">Registered Sub-user</p>
 	                        			</div>
 	                        			<div class="card-body">
-	                        				<table class="table table-hover table-bordered nowrap" style="width: 100%;" id="registeredSubUserTable">
-			                        			<tr>
-			                        				<thead class='thead-light'>
+	                        				<table class="table table-hover nowrap display" style="width: 100%;" id="registeredSubUserTable">
+			                        			<thead class='thead-light'>
+			                        				<tr>
 			                        					<th>#</th>
 			                        					<th>Username</th>
 			                        					<th>Fullname</th>
@@ -76,8 +82,8 @@
 			                        					<th>Contact Number</th>
 			                        					<th>Status</th>
 			                        					<th>Date Added</th>
-			                        				</thead>
-			                        			</tr>
+			                        				</tr>
+			                        			</thead>
 			                        			<tr>
 			                        				<?php
 			                        					$sql = "SELECT * FROM subusers";
@@ -115,9 +121,22 @@
             <?php } ?>
         <?php endif ?>
     <?php endif ?>
-</body>
+<script type="text/javascript" src="../assets/datatables/dataTables.buttons.min.js"></script>
+<script type="text/javascript" src="../assets/datatables/buttons.flash.min.js"></script>
+
 <script type="text/javascript">
-	$('#registeredSubUserTable').DataTable();
-    $('#registeredUserTable').DataTable();
+	$("table.display").DataTable({
+		"scrollX": true,
+		"pagingType": "full_numbers",
+		dom: 'Bfrtip',
+        buttons : [
+            { extend: 'pdf' , className: 'form-control btn-block'},
+            { extend: 'print', className: 'form-control btn btn-info'},
+            { extend: 'excel', className: 'form-control btn btn-primary' },
+            { extend: 'copy', className: 'form-control btn btn-info'},
+            { extend: 'print', className: 'form-control btn btn-secondary'},
+        ]
+	});
 </script>
+</body>
 </html>

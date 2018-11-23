@@ -12,6 +12,12 @@
         <?php if ($row = mysqli_fetch_assoc($results)) : ?>
             <?php if (isset($_SESSION['Position']) == 'Barangay Captain') { ?> <!--NAVIGATION -->
                         <main class="col bg-faded py-3">
+                            <div>
+                                <ol class="breadcrumb">
+                                  <li class="breadcrumb-item"><a href="dashboard.php">Home</a></li>
+                                  <li class="breadcrumb-item active">User Form Requests</li>
+                                </ol>
+                            </div>
                             <div class="card rounded-0 my-2">
                                 <div class="card-header alert-success">
                                     <p class="lead">User Request</p>

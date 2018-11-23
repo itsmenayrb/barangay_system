@@ -7,6 +7,12 @@
 <?php endif ?>
 <!-- navigation -->
 	<main class="col bg-faded py-3">
+		<div>
+	        <ol class="breadcrumb bg-faded">
+	          <li class="breadcrumb-item"><a href="dashboard.php">Home</a></li>
+	          <li class="breadcrumb-item active">Attendance</li>
+	        </ol>
+	    </div>
 		<div class="row">
 			<div class="col-md-6">
 				<div class="card">

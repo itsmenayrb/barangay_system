@@ -34,7 +34,7 @@
     <script type="text/javascript" src="./assets/datatables/jszip.min.js"></script>
     <!-- END OF BOOSTRAP AND CSS SCRIPT -->
 
-    <div class="jumbotron jumbotron-fluid"> <!-- JUMBOTRON -->
+    <div class="jumbotron jumbotron-fluid" id="titleHeader"> <!-- JUMBOTRON -->
         <div class="container">
             <div class="row">
                 <div class="d-none d-md-block col-md-2 col-lg-2">

@@ -17,6 +17,12 @@
             <?php if ($row = mysqli_fetch_assoc($results)) : ?>
                 <?php if (isset($_SESSION['Position']) == 'Barangay Captain') { ?> <!--NAVIGATION -->
                             <main class="col bg-faded py-3">
+                                <div>
+                                    <ol class="breadcrumb">
+                                      <li class="breadcrumb-item"><a href="dashboard.php">Home</a></li>
+                                      <li class="breadcrumb-item active">Appointments</li>
+                                    </ol>
+                                </div>
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <div class="card rounded-0">
@@ -24,9 +30,11 @@
                                                 <p class="lead">Appointment Request</p>
                                             </div>
                                             <div class="card-body">
-                                                <table class="table table-hover table-bordered nowrap" id="appointmentRequestTable">
+                                                <div class='table-responsive'>
+                                                <table class="table table-hover table-bordered" id="appointmentRequestTable">
                                                     <tr>
                                                         <thead class="thead-light">
+                                                            <th><input type='checkbox' class='custom-control custom-checkbox' name='checkboxAppointmentAll'/></th>
                                                             <th>No.</th>
                                                             <th>Username</th>
                                                             <th>Fullname</th>
@@ -48,6 +56,7 @@
 
                                                             if($resultsCheck > 0){
                                                                 while($row = $results->fetch_assoc()){
+                                                                    echo "<td><input type='checkbox' class='custom-control custom-checkbox' name='checkboxAppointment'/></td>";
                                                                     echo "<td>" . $row['id'] . "</td>";
                                                                     echo "<td>" . $row['username'] . "</td>";
                                                                     echo "<td>" . $row['fullname'] . "</td>";
@@ -71,13 +80,36 @@
                                                                         echo "<input type='hidden' name='appointmentDate' value='".$row['appointment_date']."'/>";
                                                                         echo "<input type='hidden' name='appointmentTime' value='".$row['appointment_time']."'/>";
                                                                         echo "<input type='hidden' name='appointmentPurpose' value='".$row['purpose']."'/>";
-                                                                        echo "<input type='submit' class='btn btn-primary' value='Accept' name='acceptAppointmentBtn'/>&nbsp;";
-                                                                        echo "<input type='submit' class='btn btn-danger' value='Decline' name='declineAppointmentBtn'/>";
+                                                                        echo "<input type='submit' class='btn btn-primary' value='Accept' id='acceptAppointmentId' name='acceptAppointmentBtn' onClick='return myFunctionAppointmentAccept(this); return false;'/>";
+                                                                        echo "<button type='button' class='btn btn-danger' id='btnForModalAppointment' onClick='return myFunctionAppointmentDecline(this); return false;'>Decline</button>";
+                                                                        ?>
+                                                                        <div class='modal fade' tabindex='-1' id='appointmentModal' role='dialog'>
+                                                                            <div class='modal-dialog' role='document'>
+                                                                                <div class='modal-content'>
+                                                                                    <div class='modal-header'>
+                                                                                        <h4 class='modal-title'>Reason:</h4>
+                                                                                        <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+                                                                                            <span aria-hidden='true'>&times;</span>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                    <div class='modal-body'>
+                                                                                        <textarea name=' id=' cols='50' rows='2'></textarea>
+                                                                                    </div>
+                                                                                    <div class='modal-footer form-inline'>
+                                                                                        <button type='button' class='btn btn-secondary' data-dismiss='modal'>Close</button>
+                                                                                        <input type='submit' class='btn btn-danger' value='Decline' name='declineAppointmentBtn' id='declineAppointmentBtnId'/>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <?php
                                                                         echo "</form>";
                                                                     } elseif ($row['status'] == 'Deleted'){
                                                                         echo "Appointment Deleted";
                                                                     } elseif ($row['status'] == 'Accepted') {
                                                                         echo "Appointment Accepted";
+                                                                    } else {
+                                                                        echo "Appointment Declined";
                                                                     }
                                                                     echo "</td>";
                                                                     echo "</tr>";
@@ -85,6 +117,7 @@
                                                                 echo "</table>";
                                                             }
                                                         ?>
+                                                    </div>
                                             </div>
                                             <div class="card-footer alert-success"></div>
                                         </div> <!-- end of card -->
@@ -100,8 +133,28 @@
     <?php } ?>
 </body>
 <script type="text/javascript">
-    $('#appointmentRequestTable').DataTable({
-        "scrollX" : true
-    });
+    function myFunctionAppointmentAccept(f){
+        var r = confirm("Accept this appointment?");
+
+        if(r == true){
+            f.submit();
+            return false;
+        } else {
+            return false;
+        }
+    }
+    function myFunctionAppointmentDecline(f){
+        var r = confirm("Decline this appointment?");
+
+        if(r == true){
+            $('#appointmentModal').modal({
+                'show': true,
+                focus: true
+            });
+            return false;
+        } else {
+            return false;
+        }
+    }
 </script>
 </html>

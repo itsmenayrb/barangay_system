@@ -4,6 +4,25 @@
  */
 body { min-height: 100vh; }
 
+.scrollToTop{
+    position: fixed;
+    bottom: 80px;
+    right: 50px;
+    width: 60px;
+    line-height: 60px;
+    text-align: center;
+    background: #0063e8;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    display: none;
+    z-index: 99;
+}
+
+.scrollToTop:hover{
+    background: #eee;
+}
+
 a { text-decoration: none; }
 /*
     NAVIGATION CSS!!!
@@ -45,7 +64,7 @@ a { text-decoration: none; }
     JUMBOTRON CSS!!!
 */
 
-.jumbotron{
+#titleHeader{
     background-image: url("img/pic-jumbotron.jpg");
     background-size: cover;
     padding: 10px;
@@ -178,26 +197,215 @@ input[type=text] , input[type=password] , input[type=email]{
 PROFILE CSS!!
 PROFILE CSS!! */
 
-.main-section{
-    background: white;
-    border: 0 none;
-    border-radius: 3px;
-    box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
-    padding: 20px 30px;
-    box-sizing: border-box;
-    width: 80%;
-    margin: 0 10%;
+/* PROFILE INFO */
+#titleProfile{
+    margin-bottom: 10px;
 }
 
-.main-section legend{
-    color:black;
-    font-size: 15px;
-    text-transform: capitalize;
+#profile-bg-diagonal{
+    width: 60%;
+    height: 700px;
+    float: right;
+    background-image: url(img/Pencil.jpg);
+    /*border-left: 200px solid white;
+    border-top: 700px solid transparent;*/
+    background-position: fixed;
+}
+
+#profile-content-box{
+    float: left;
+    height: 700px;
+}
+
+#profile-content-box-outer{
+    width: 100%;
+    height: 100%;
+    display: table;
+}
+
+#profile-content-box-inner{
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.bg-parallax{
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+#profile .content-title h3{
+    text-align: left;
+    font-weight: bold;
+}
+
+#profile-desc h6{
+    margin-bottom: 30px;
+}
+
+.btn-primary-design{
+    padding: 15px 70px;
+    border: none;
+    border-radius: 0;
+}
+/* PROFILE APPOINTMENT */
+#appointment{
+    margin-top: 10px;
+}
+#appointment-bg-diagonal{
+    width: 60%;
+    height: 700px;
+    float: right;
+    background-image: url(img/appointment.jpg);
+    border-left: 200px solid white;
+    border-top: 700px solid transparent;
+    background-position: fixed;
+}
+
+#appointment-content-box{
+    float: left;
+    height: 700px;
+}
+
+#appointment-content-box-outer{
+    width: 100%;
+    height: 100%;
+    display: table;
+}
+
+#appointment-content-box-inner{
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.bg-parallax{
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+#appointment .content-title h3{
+    text-align: left;
+    font-weight: bold;
+}
+
+#appointment-desc{
+    margin-bottom: 30px;
+}
+
+.btn-primary-design{
+    padding: 15px 70px;
+    border: none;
+    border-radius: 0;
+}
+
+/* PROFILE REQUEST FORM */
+#requestForm{
+    margin-top: 10px;
+}
+#requestForm-bg-diagonal{
+    width: 60%;
+    height: 700px;
+    float: left;
+    background-image: url(img/forms_banner.jpg);
+    border-right: 200px solid white;
+    border-top: 700px solid transparent;
+    background-position: fixed;
+}
+
+#requestForm-content-box{
+    float: right;
+    height: 700px;
+}
+
+#requestForm-content-box-outer{
+    width: 100%;
+    height: 100%;
+    display: table;
+}
+
+#requestForm-content-box-inner{
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.bg-parallax{
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+#requestForm .content-title h3{
+    text-align: left;
+    font-weight: bold;
+}
+
+#requestForm-desc{
+    margin-bottom: 30px;
+}
+
+.btn-primary-design{
+    padding: 15px 70px;
+    border: none;
+    border-radius: 0;
+}
+
+/* PROFILE APPOINTMENT */
+#relationship{
+    margin-top: 10px;
+}
+#relationship-bg-diagonal{
+    width: 60%;
+    height: 700px;
+    float: left;
+    background-image: url(img/family.jpg);
+    background-position: fixed;
+}
+
+#relationship-content-box{
+    float: right;
+    height: 700px;
+}
+
+#relationship-content-box-outer{
+    width: 100%;
+    height: 100%;
+    display: table;
+}
+
+#relationship-content-box-inner{
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.bg-parallax{
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+#relationship .content-title h3{
+    text-align: left;
+    font-weight: bold;
+}
+
+#relationship-desc h6{
+    margin-bottom: 30px;
+}
+
+.btn-primary-design{
+    padding: 15px 70px;
+    border: none;
+    border-radius: 0;
 }
 
 /* APPOINTMENT */
 #appointmentBtnEdit{
-    background-color: white;
+    background-color: transparent;
     border: none;
     cursor: pointer;
     text-decoration: none;
@@ -212,7 +420,7 @@ PROFILE CSS!! */
 }
 
 #appointmentBtnDel{
-    background-color: white;
+    background-color: transparent;
     border: none;
     cursor: pointer;
     text-decoration: none;
