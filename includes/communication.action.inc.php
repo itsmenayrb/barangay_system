@@ -22,12 +22,13 @@
 		$row = $result -> fetch_assoc();
 		$complaint_id = $row['id'];
 		
-		// Generate a new random string
-		$filename = bin2hex(openssl_random_pseudo_bytes(30));
+		
 		
 		$error=array();
     $extension=array("jpeg","jpg","png","gif");
 		foreach($_FILES["files"]["tmp_name"] as $key => $tmp_name) {
+			// Generate a new random string
+			$filename = bin2hex(openssl_random_pseudo_bytes(30));
 
 			// Upload the images
 			$file_name=$_FILES["files"]["name"][$key];
