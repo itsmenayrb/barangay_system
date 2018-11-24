@@ -53,10 +53,10 @@ if (isset($_POST['submit'])) {
   $mname = checkInput($_POST['mname']);
   $lname = checkInput($_POST['lname']);
   $suffix = checkInput($_POST['suffix']);
-  //$gender = checkInput($_POST['gender']);
+  $gender = checkInput($_POST['gender']);
   $birthday = checkInput($_POST['birthday']);
   $age = checkInput($_POST['age']);
-  //$birthplace = checkInput($_POST['birthplace']);
+  $birthplace = checkInput($_POST['birthplace']);
   $block = checkInput($_POST['block']);
   $street = checkInput($_POST['street']);
   $subdivision = checkInput($_POST['subdivision']);
@@ -114,7 +114,7 @@ if (isset($_POST['submit'])) {
     $hashedSecurityQuestionTwoAnswer = password_hash($securityquestiontwoanswer, PASSWORD_DEFAULT);
     $sql = "INSERT INTO users (Username, Email, Pwd, SecurityQuestion1, AnswerOne, SecurityQuestion2, AnswerTwo, DateCreated)
     VALUES (?,?,?,?,?,?,?,?)";
-    $sql2 = "INSERT INTO residents (Prefix, FirstName, MiddleName, LastName, Suffix, Bday, Age, HomeAddress, TelephoneNumber,CellphoneNumber) VALUES (?,?,?,?,?,?,?,?,?,?)";
+    $sql2 = "INSERT INTO residents (Prefix, FirstName, MiddleName, LastName, Suffix, Sex, Bday, Age, Bplace, HomeAddress, TelephoneNumber,CellphoneNumber) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
     $sql3 = "INSERT INTO homeaddress (lot, street, subdivision) VALUES (?,?,?)";
 
     $stmt = mysqli_stmt_init($conn);
@@ -132,7 +132,7 @@ if (isset($_POST['submit'])) {
     }
     else{
       mysqli_stmt_bind_param($stmt, "ssssssss", $username, $email, $hashedPassword, $securityquestionone, $hashedSecurityQuestionOneAnswer, $securityquestiontwo, $hashedSecurityQuestionTwoAnswer, $dateCreated);
-      mysqli_stmt_bind_param($stmt2, "ssssssisii", $prefix, $fname, $mname, $lname, $suffix, $birthday, $age, $address, $telephonenumber, $cellphonenumber);
+      mysqli_stmt_bind_param($stmt2, "sssssssissii", $prefix, $fname, $mname, $lname, $suffix, $gender, $birthday, $age, $birthplace, $address, $telephonenumber, $cellphonenumber);
       mysqli_stmt_bind_param($stmt3, "sss", $block, $street, $subdivision);
 
       mysqli_stmt_execute($stmt);

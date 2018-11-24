@@ -48,10 +48,10 @@
             });
 
             $("#viewNews").click(function(){
-            $("html,body").animate({
-                scrollTop: $("#news").offset().top
-            }, 1000);
-        });
+                $("html,body").animate({
+                    scrollTop: $("#news").offset().top
+                }, 1000);
+            });
         });
     </script>
 </head>
@@ -109,8 +109,8 @@
                             </div>
                         </li>
                     <?php } else { ?>
-                            <a role='button' class='btn btn-primary btn-sm' style="margin-right: 10px;" href="login.php"><span class="fas fa-user"></span> Login</a>
-                            <a role='button' class='btn btn-outline-secondary btn-sm' href="register.php"><span class="fas fa-user-plus"></span> Register</a>
+                            <a role='button' class='btn btn-primary btn-sm' style="margin-right: 10px;" href="login.php#signIn" id="btnForSignIn"><span class="fas fa-user"></span> Login</a>
+                            <a role='button' class='btn btn-outline-secondary btn-sm' href="register.php#register"><span class="fas fa-user-plus"></span> Register</a>
                     <?php } ?>
                 </form>
             </div>

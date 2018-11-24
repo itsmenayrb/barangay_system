@@ -24,40 +24,47 @@
         </p>
   	</div>
 <?php } else { ?>
-	<div class="container" id="loginContainer">
-		<div class="card rounded-0">
-			<div class="card-header alert-success">
-				<p class="lead text-center">Sign in to start your session</p>
-			</div>
-			<div class="card-body">
-				<form action="login.php" method="post" id="login-form">
-					<?php include 'includes/errors.inc.php'; ?>
-					<?php include 'includes/success.inc.php'; ?>
-					<div class="input-group mb-3">
-						<div class="input-group-prepend">
-							<span class="input-group-text fas fa-user"></span>
+	<div id="signIn">
+		<div id="signIn-bg-diagonal" class="bg-parallax"></div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div id="signIn-content-box">
+						<div id="signIn-content-box-outer">
+							<div id="signIn-content-box-inner">
+								<form action="login.php" method="post" id="login-form">
+										<?php include 'includes/errors.inc.php'; ?>
+										<?php include 'includes/success.inc.php'; ?>
+								<div class="content-title">
+									<h3 class="pb-2">Sign In to start your session</h3>
+								</div>
+									<div id="signIn-desc">
+										<h1 class="lead">Username:</h1>
+										<input type="text" class="form-control" name="username" id="username" minlength="5" required/>
+										<h1 class="lead">Password:</h1>
+										<input type="password" class="form-control" name="password" id="password" minlength="8" required/>
+										<br>
+										<div class="custom-control custom-checkbox" id="terms">
+											<input type="checkbox" class="custom-control-input" id="checkboxRM" name="checkboxRM"/>
+											<label class="custom-control-label" for="checkboxRM">Remember me.</label>
+											<a class="float-right" href="forgotpassword.php" role="button">Forgot Password?</a>
+										</div>
+									</div>
+									<div id="signIn-btn">
+										<div class="form-group">
+											<input type="submit" class="btn btn-primary btn-primary-design" name="login" id="login" value="Sign In"/>
+										</div>
+									</div>
+								</form> <!-- END OF FORM-->
+							</div>
 						</div>
-						<input type="text" class="form-control" name="username" id="username" minlength="5" placeholder="Username" required/>
 					</div>
-					<div class="input-group mb-3">
-						<div class="input-group-prepend">
-							<span class="input-group-text fas fa-lock"></span>
-						</div>
-						<input type="password" class="form-control" name="password" id="password" minlength="8" placeholder="Password" required/>
-					</div>
-					<div class="custom-control custom-checkbox" id="terms">
-						<input type="checkbox" class="custom-control-input" id="checkboxRM" name="checkboxRM"/>
-						<label class="custom-control-label" for="checkboxRM">Remember me.</label>
-						<a class="float-right" href="forgotpassword.php" role="button">Forgot Password?</a>
-					</div>
-					<br>
-					<div class="form-group">
-						<input type="submit" class="form-control btn btn-primary" name="login" id="login" value="Sign In"/>
-					</div>
-				</form> <!-- END OF FORM-->
+				</div>
 			</div>
-			<div class="card-footer alert-success"></div>
 		</div>
-	</div> <!-- END OF CONTAINER -->
+	</div>
 <?php } ?>
+<script type="text/javascript">
+	$("#login-form").validate();
+</script>
 <?php include 'footer.php'; ?>
