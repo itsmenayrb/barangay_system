@@ -33,6 +33,16 @@ in admin site -->
     $officialOut = '17:00:00';
     $date = date('Y-m-d');
 
+    $status = "";
+    $appointmentId = "";
+    $appointmentUsername = "";
+    $appointmentEmail = "";
+    $appointmentDate = "";
+    $appointmentTime = "";
+    $appointmentPurpose = "";
+
+    use PHPMailer\PHPMailer\PHPMailer;
+
     // REGISTRATION
     // REGISTRATION
     // REGISTRATION
@@ -691,5 +701,59 @@ in admin site -->
                 mysqli_close($conn);
                 echo "<script type='text/javascript'>window.location='attendance.php';</script>";
             }
+        }
+    }
+
+    //If admin accepted the appointment
+    if (isset($_POST['acceptAppointmentBtn'])) {
+        $appointmentEmail = checkInput($_POST['appointmentEmail']);
+        $appointmentId = checkInput($_POST['appointmentId']);
+        $appointmentUsername = checkInput($_POST['appointmentUsername']);
+        $appointmentDate = checkInput($_POST['appointmentDate']);
+        $appointmentTime = checkInput($_POST['appointmentTime']);
+        $appointmentPurpose = checkInput($_POST['appointmentPurpose']);
+
+        $sql = "SELECT * FROM appointment WHERE id='$appointmentId' AND username='$appointmentUsername'";
+        $results = mysqli_query($conn, $sql);
+        $resultsCheck = mysqli_num_rows($results);
+
+        if($resultsCheck > 0){
+            $status = "Accepted";
+
+            require_once "../includes/PHPMailer/PHPMailer.php";
+            require_once "../includes/PHPMailer/Exception.php";
+
+            $mail = new PHPMailer();
+            $mail->addAddress($email);
+            $mail->setFrom("yourhelpdesk@salitrandos.x10host.com" , "Reset Password");
+            $mail->Subject = "Reset Password";
+            $mail->isHTML(true);
+            $mail->Body = "
+              Hi, <br><br>
+              Your request for appointment on $appointmentDate, $appointmentTime to $appointmentPurpose has been approved.<br>
+              If you have further questions, do not hesitate to contact us.<br><br>
+              Thank you,<br>
+              Administrator";
+
+            if($mail->send()){
+                echo "<script>alert('Message sent!');</script>";
+            } else {
+                echo "<script>alert('Message sending failed');</script>";
+            }
+
+            $sql = "UPDATE appointment SET status=? WHERE id='$appointmentId' AND username='$appointmentUsername'";
+            $stmt = mysqli_stmt_init($conn);
+
+            if(!mysqli_stmt_prepare($stmt, $sql)){
+                array_push($errors, "Something went wrong. Please try again later.");
+            }
+            else{
+                mysqli_stmt_bind_param($stmt, "s", $status);
+                mysqli_stmt_execute($stmt);
+            }
+            mysqli_stmt_close($stmt);
+            mysqli_close($conn);
+        } else {
+            array_push($errors, "There is nothing to accept.");
         }
     }

@@ -1,30 +1,13 @@
-<!-- TODO: MESSAGE AND NOTIFICATIONS --
--- this is page will display all the inquiries or messages --> 
+ <!-- TODO: MESSAGE AND NOTIFICATIONS --
+-- this is page will display all the inquiries or messages -->
 
 <?php include 'header.php'; ?>
 <?php if(!isset($_SESSION['Position'])) :?>
     <?php header("Location: index.php"); ?>
 <?php endif ?>
-<span class="fas fa-bars fa-3x float-left" style="margin-top: 15px; margin-left: 15px;" onclick="openNav()"></span>
-<div id="mySidenav" class="sidenav">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a href="dashboard.php">Home</a>
-    <a href="#">Reports</a>
-    <a href="message.php">Messages</a>
-    <a href="#">Members</a>
-    <a href="attendance.php">Attendance</a>
-    <div class="dropdown-divider" style="width: 80%; margin: 0 auto;"></div>
-    <a href="signout.php">Sign Out</a>
-</div>
-<div id="main">
+<main class="col bg-faded py-3">
 	<div class="container">
-		<nav class="navbar navbar-expand-smd navbar-dark bg-dark">
-            <a class="navbar-brand" href="dashboard.php">Dashboard</a>
-            <div class="float-right">
-                <h5 class="lead text-light">You are signed-in as <a href="#"><?php echo $_SESSION['Username']; ?></a> | <a href="signout.php" class="text-light"><i class="btn btn-outline-light fas fa-sign-out-alt" data-toggle="tooltip" data-placement="right" title="Sign Out"></i></a></h5>
-            </div>
-        </nav>
-        <div style="margin-top: 10px;">
+        <div>
 	        <ol class="breadcrumb">
 	          <li class="breadcrumb-item"><a href="dashboard.php">Home</a></li>
 	          <li class="breadcrumb-item active">Messages</li>
@@ -154,3 +137,4 @@
 		</section>
 	</div>
 </div>
+</main>
