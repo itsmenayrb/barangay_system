@@ -122,4 +122,198 @@
             <p class="display-3">Barangay Salitran II</p>
             <p class="h6">City of Dasmariñas, Province of Cavite.</p>
         </div>
-    </section>
+    </div>
+    <!-- SUGGESTIONS -->
+    <div class="modal fade" id="suggestionModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title text-center">Suggestions</h3>
+                    <button class="close" type="button" data-dismiss="modal">x</button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <form method="post" action="./includes/communication.action.inc.php" id="suggestForm">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                    <div class="form-group">
+                                        <small class="form-text text-muted">First Name</small>
+                                        <input type="text" class="form-control" name="firstname" required/>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                    <div class="form-group">
+                                        <small class="form-text text-muted">Last Name</small>
+                                        <input type="text" class="form-control" name="lastname" required/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <small class="form-text text-muted">Email</small>
+                                <input type="text" class="form-control" name="email" required/>
+                            </div>
+                            <div class="form-group">
+                                <small class="form-text text-muted">Subject</small>
+                                <input type="text" class="form-control" name="subject" required/>
+                            </div>
+                            <div class="form-group">
+                                <small class="form-text text-muted">Message</small>
+                                <textarea name="suggestion" id="suggestion" cols="25" rows="8" class="form-control" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" class="form-control btn btn-primary" name="suggest" value="Send"/>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- INQUIRY -->
+    <div class="modal fade" id="inquiryModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title text-center">Inquiry</h3>
+                    <button class="close" type="button" data-dismiss="modal">x</button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <form method="post" action="./includes/communication.action.inc.php" id="inquireForm">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                    <div class="form-group">
+                                        <small class="form-text text-muted">First Name</small>
+                                        <input type="text" class="form-control" name="firstname" required/>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                    <div class="form-group">
+                                        <small class="form-text text-muted">Last Name</small>
+                                        <input type="text" class="form-control" name="lastname" required/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <small class="form-text text-muted">Email</small>
+                                <input type="text" class="form-control" name="email" required/>
+                            </div>
+                            <div class="form-group">
+                                <small class="form-text text-muted">Contact Number:</small>
+                                <input type="text" class="form-control" name="contactnumber" required/>
+                            </div>
+                            <div class="form-group">
+                                <small class="form-text text-muted">Subject</small>
+                                <input type="text" class="form-control" name="subject" required/>
+                            </div>
+                            <div class="form-group">
+                                <small class="form-text text-muted">Message</small>
+                                <textarea name="inquiry" id="inquiry" cols="25" rows="8" class="form-control" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" class="form-control btn btn-primary" name="inquire" value="Inquire"/>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- COMPLAINT -->
+    <div class="modal fade" id="alertModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title text-center">Reminder</h3>
+                    <button class="close" type="button" data-dismiss="modal">x</button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <p class="text-justify">Please ensure that your contact information is full and correct as all reports
+                            and complaints needs a deep investigation and verification. Rest Assured that your
+                            credentials will be kept confidential. Thank you.
+                        </p>
+                        <input type="button" class="btn btn-default float-right" data-dismiss="modal"
+                        data-toggle="modal" data-target="#complaintModal" value="OK"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="complaintModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title text-center">Report</h3>
+                    <button class="close" type="button" data-dismiss="modal">x</button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <form method="post" action="./includes/communication.action.inc.php" id="complaintForm" enctype="multipart/form-data">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                    <div class="form-group">
+                                        <small class="form-text text-muted">First Name:</small>
+                                        <input type="text" class="form-control" name="firstname" required/>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                    <div class="form-group">
+                                        <small class="form-text text-muted">Last Name:</small>
+                                        <input type="text" class="form-control" name="lastname" required/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <small class="form-text text-muted">Contact Number:</small>
+                                <input type="text" class="form-control" name="contactnumber" required/>
+                            </div>
+                            <div class="form-group">
+                                <small class="form-text text-muted">Email:</small>
+                                <input type="text" class="form-control" name="email" required/>
+                            </div>
+                            <div class="form-group">
+                                <small class="form-text text-muted">Subject</small>
+                                <input type="text" class="form-control" name="subject" required/>
+                            </div>
+                            <div class="form-group">
+                                <small class="form-text text-muted">Message</small>
+                                <textarea name="complaintMessage" id="complaintMessage" cols="25" rows="8" class="form-control"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <small class="form-text text-muted">Attachment</small>
+                                <input type="file" name="files[]" id="attachment" class="form-control" multiple/>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" class="form-control btn btn-primary" name="complaint" value="File"/>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FAQ'S -->
+    <div class="modal fade" id="faqModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title text-center">Frequently Asked Question</h3>
+                    <button class="close" type="button" data-dismiss="modal">x</button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <p class="display-4">Under Construction ... </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</head>
+<script>
+    $('#inquireForm').validate();
+    $('#complaintForm').validate();
+</script>
+<body>

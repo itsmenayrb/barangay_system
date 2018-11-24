@@ -1,163 +1,118 @@
 <?php include 'header.php';?>
+
 <?php include 'includes/dbh.inc.php';?>
 
-<?php 
-if (isset($_POST['signup'])){
-            $contactnumber= $_POST['contactnumber'];
-            $purpose = $_POST['purpose'];
-            $username = $_POST['username'];
-            $query = "INSERT INTO `user_requests` (`id`, `username`,`contactnumber,`purpose) VALUES (NULL,'$username', $contactnumber','$purpose')";
-            if(performQuery($query)){
-                echo "Your account request is now pending for approval. Please wait for confirmation. Thank you.";
-            }else{
-                echo "Unknown error occured.";
-            }
-}
-?>
-<html>
-<br>
-<a href="profile.php"><font size="4">Back</a>
-<br>
-<a href="index.php">Home</font></a>
-<br>
-<h1>Here is the Preview of your Request</h1>
-<body>
-            <table style="position: absolute;top: 400px;left: 1010px;">
-            <tr>
-            <td class='alert-success'><b><font size="6">Please fill this up to proceed</b>
-            </td>
-            </tr>
-            <tr>
-            <td class='alert-success'>User name :
-            <input name="username"type="text" placeholder="User name" required>
-            </td>
-            </tr>
-            <tr>
-            <td class='alert-success'>Contact No. :
-            <input name="contactnumber"type="text" placeholder="Contact No." required>
-            </td>
-            </tr>
-            <tr>
-            <td class='alert-success'><b>And Lastly, the PURPOSE of request</b>
-            </td>
-            </tr>
-            <tr>
-            <td class='alert-success'>Purpose :<br>
-            <textarea name="purpose" style="width:400px;height:150px;" placeholder="e.g. Financial Assistance" required></textarea>
-            </font>
-            </td>
-            </tr>
-            </table>
+<?php if(!isset($_SESSION['Username'])) { ?>
+	<div class="container">
+		<section style="margin-top: 10px;">
+	      <div class="container-fluid">
+	        <div class="row mb-2">
+	          <div class="col-sm-6">
+	            <h1 style="margin-top: 10px;" class="text-danger">404 Error Page</h1>
+	          </div>
+	          <div class="col-sm-6" style="margin-top: 10px;">
+	            <ol class="breadcrumb float-sm-right">
+	              <li class="breadcrumb-item"><a href="#">Home</a></li>
+	              <li class="breadcrumb-item active">404 Error Page</li>
+	            </ol>
+	          </div>
+	        </div>
+	      </div><!-- /.container-fluid -->
+    	</section>
+    	<p class="text-center display-4"><i class="fas fa-exclamation-triangle text-warning"></i> Oops! Page not found.</p>
+    	<p class="text-center h1">
+            We could not find the page you were looking for.
+            Meanwhile, you may <a href="index.php">return to Home page</a> and try to log in.
+        </p>
+  	</div>
+<?php } else { ?>
 
-            <table border='1'style="position: absolute;top: 800px;left: 1010px;">
-            <tr>
-            <td class='alert-success'><font size="4"><b>NOTICE TO PUBLIC:</b></font></td>
-            </tr>
-            <tr>
-            <td class='alert-success'><font size="4">
-                The following are <u><b>REQUIREMENTS</b></u> to <u><b>CLAIM</b></u> the <u><b>FORMS</b></u><br>
-                If failed to comply the said <u><b>REQUIREMENTS</b></u>claiming will <br>not be possible.</font>
-            </td>
-            </tr>
-            <tr>
-            <td>
-            For <b>BARANGAY CLEARANCE</b>
-            </td>
-            </tr>
-            <tr><td>PLEASE bring : <br><b>NSO BIRTH CERTIFICATE (Original and 1 Photo copy)<br>Land Title (Photo copy )only if not a bona fide resident</b></td></tr><br>
-            <tr>
-            <td>
-            For <b>INDIGENCY CERTIFICATE</b>    
-            </td>
-            </tr>
-            <tr><td>PLEASE bring : <br><b>NSO BIRTH CERTIFICATE (Original and 1 Photo copy)<br>DSWD Indigency Card (Original and Photo copy)<br>or Parent's Pay slip</b></td></tr><br>
-            <tr>
-            <td>
-            For <b>BARANGAY ENDORSEMENT</b>    
-            </td>
-            </tr>
-            <tr><td>You MUST bring : <br><b>NSO BIRTH CERTIFICATE (Original and 1 Photo copy)<br>Photocopy of School REGISTRATION FORM<br>Photocopy of School ASSESSMENT FORM or EVALUATION FORM</b></td></tr><br>
-            <tr>
-            <td>
-            For <b>BARANGAY CERTIFICATE</b>
-            </td>
-            </tr>
-            <tr><td>PLEASE bring : <br><b>NSO BIRTH CERTIFICATE (Original and 1 Photo copy)<br>Land Title (Photo copy)only if not a bona fide resident</b></td></tr><br>
-             <tr>
-            <td>
-            For <b>BUSINESS CLEARANCE</b>
-            </td>
-            </tr>
-            <tr><td>PLEASE bring : <br><b>NSO BIRTH CERTIFICATE (Original and 1 Photo copy)<br>Land Title (Photo copy)</b></td></tr><br>
-            <tr>
+<?php    $current = $_SESSION['Username'];
 
-            </table>
-<button name="signup" style="position:absolute; TOP:730px; LEFT:1300px; width:150px; height:50px; class="btn btn-lg btn-primary btn-block" type="submit" onclick="alertFunction()">Request</button>
-<br>
-<script>
-function alertFunction() {
-    alert("The request will take several hours to process. We ask for your patience. Thank you!");
-}
-</script>
-<?php
+	if(!isset($_GET['id'])) { ?>
 
-if(isset($_POST['forms']))
+		<?php $autoID = (NULL); ?>
+
+		<div class="container" style="padding: 20px;">
+			<div style="margin-top: 10px;">
+		    	<ol class="breadcrumb">
+		      		<li class="breadcrumb-item"><a href="index.php">Home</a></li>
+		      		<li class="breadcrumb-item"><a href="profile.php">Profile</a></li>
+		      		<li class="breadcrumb-item active">Request Forms</li>
+                    <li class="ml-auto"><a href="#"><b>Submit Request</b></a></li>
+		    	</ol>
+			</div>
+    <?php } ?>
+
+ <?php if(isset($_POST['forms']))
 {
-	if($_POST['forms']=='clearance')//barangay clearance
-	{
-	echo '<object data="docs/clearance.php" type="application/pdf" style="position:absolute; top:400px;width:1000px;height:1000px;">alt : 
-				<a href="docs/clearance.php">clearance.php</a></object>';
+        if($_POST['forms']=='clearance')//barangay clearance
+            {
+        echo '<object data="docs/clearance.php" type="application/pdf" style="position: top:400px;width:1000px;height:1200px;">alt : 
+                    <a href="docs/clearance.php">clearance.php</a></object>';
 
-	}
-else if($_POST['forms']=='indigency')//indigency cert
-	{
-echo '<object data="docs/indigency.php" type="application/pdf" style="position:absolute; top:400px;width:1100px;height:1000px;">alt : 
-				<a href="docs/indigency.php">indigency.php</a></object>';
-	}
+            }
+        else if($_POST['forms']=='indigency')//indigency cert
+            {
+        echo '<object data="docs/indigency.php" type="application/pdf" style="position: top:400px;width:1100px;height:1200px;">alt : 
+                        <a href="docs/indigency.php">indigency.php</a></object>';
+            }
 
-else if($_POST['forms']=='endorsement')//endorsement cert
-	{
-echo '<object data="docs/endorsement.php" type="application/pdf" style="position:absolute; top:400px;width:1100px;height:1000px;">alt : 
-				<a href="docs/endorsement.php">endorsement.php</a></object>';
-}
-else if($_POST['forms']=='certification')//barangay cert
-	{
-echo '<object data="docs/certification.php" type="application/pdf" style="position:absolute; top:400px;width:1100px;height:1000px;">alt : 
-				<a href="docs/certification.php">certification.php</a></object>';
-}
-else if($_POST['forms']=='business')//business clearance
-	{
-echo '<object data="docs/business.php" type="application/pdf" style="position:absolute; top:400px;width:1100px;height:1000px;">alt : 
-				<a href="docs/business.php">business.php</a></object>';
-}
-else{
-    echo '<font size="10">There is nothing to display';
-}
-}
-
-?>
-<!---php fx to connect db-->
-<?php
-    
-    define('DBINFO','mysql:host='.$dbServername.';dbname='.$dbName);
-    define('DBUSER',$dbUsername);
-    define('DBPASS',$dbPassword);
-    function performQuery($query){
-        $con = new PDO(DBINFO,DBUSER,DBPASS);
-        $stmt = $conn->prepare($query);
-        if($stmt->execute()){
-            return true;
-        }else{
-            return false;
+        else if($_POST['forms']=='endorsement')//endorsement cert
+            {
+        echo '<object data="docs/endorsement.php" type="application/pdf" style="position: top:400px;width:1100px;height:1200px;">alt : 
+                        <a href="docs/endorsement.php">endorsement.php</a></object>';
         }
-    }
-    function fetchAll($query){
-        $conn = new PDO(DBINFO, DBUSER, DBPASS);
-        $stmt = $con->query($query);
-        return $stmt->fetchAll();
-    }
-
+        else if($_POST['forms']=='certification')//barangay cert
+            {
+        echo '<object data="docs/certification.php" type="application/pdf" style="position: top:400px;width:1100px;height:1200px;">alt : 
+                        <a href="docs/certification.php">certification.php</a></object>';
+        }
+        else if($_POST['forms']=='business')//business clearance
+            {  
+        echo    '<div class="row">
+	                <div class="col-md-7">
+					<div class="card border-info rounded-0">
+						<div class="card-header alert-success">
+							<div class="fs-title">
+								<h4>BUSINESS CLEARANCE</h4>
+							</div>
+						</div>
+						<div class="card-body">
+							<?php include "includes/errors.inc.php"; ?>
+							<?php include "includes/success.inc.php"; ?>
+							<form action="preview.php" method="post" style="width: 90%;margin: 0 auto;">
+								<h6 class="form-text text-muted">Please fill this up to proceed.</h6>
+								<small class="form-text text-muted">Business Name or Trade: </small>
+								<input type="text" class="form-control" name="business" required/>
+								<small class="form-text text-muted">Location: <i>(Location must be in Barangay Salitran II sovereignty only).</i></small>
+								<input type="text" class="form-control" name="location" required/>
+								<small class="form-text text-muted">Operator: <i>(Who will manage this business).</i></small>
+                                <input type="text" class="form-control" name="operator" required/>
+                                <small class="form-text text-muted">&nbsp;</small>
+                                <input type="submit" value="Submit" name="request" class="form-control btn btn-outline-success" onClick="showBusinessForm();"/>
+							</form>
+						</div>
+						<div class="card-footer alert-success"></div>
+					</div>
+				</div>
+			</div>
+        </div>';
+        
+        }
+}
+else 
+{
+    echo '<h2>There is nothing to display. Please select what FORMS you want to request!</h2><br><a href="profile.php">Back</a>';
+}
 ?>
-<!----endphpfx-->
-</body>
-</html>
+<script>
+                    function showBusinessForm(){
+                      <?php echo   '<object data="docs/business.php" type="application/pdf" style="position: top:400px;width:1100px;height:1200px;">alt : 
+                                    <a href="docs/business.php">business.php</a></object>';
+                                    ?>
+                    }
+                    </script>
+<?php } ?>
+<?php include 'footer.php'; ?>
+                    
