@@ -122,7 +122,6 @@
             <p class="display-3">Barangay Salitran II</p>
             <p class="h6">City of Dasmariñas, Province of Cavite.</p>
         </div>
-<<<<<<< HEAD
     </div>
     <!-- SUGGESTIONS -->
     <div class="modal fade" id="suggestionModal">
@@ -318,6 +317,3 @@
     $('#complaintForm').validate();
 </script>
 <body>
-=======
-    </section>
->>>>>>> f9ec077d38364c668687bd55bb87847bb4dd1e42
