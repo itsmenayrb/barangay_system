@@ -1,7 +1,7 @@
 <?php
     include 'header.php';
 ?>
-    <div class="container-fluid">
+<div class="container-fluid">
     <div class="carousel slide mb-2" id="myCarousel" data-ride="carousel"> <!-- CAROUSEL -->
         <ol class="carousel-indicators">
             <li data-target="myCarousel" data-slide-to="0" class="active"></li>

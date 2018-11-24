@@ -328,13 +328,6 @@ PROFILE CSS!! */
     vertical-align: middle;
 }
 
-.bg-parallax{
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-}
-
 #profile .content-title h3{
     text-align: left;
     font-weight: bold;
@@ -377,13 +370,6 @@ PROFILE CSS!! */
 #appointment-content-box-inner{
     display: table-cell;
     vertical-align: middle;
-}
-
-.bg-parallax{
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
 }
 
 #appointment .content-title h3{
@@ -431,13 +417,6 @@ PROFILE CSS!! */
     vertical-align: middle;
 }
 
-.bg-parallax{
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-}
-
 #requestForm .content-title h3{
     text-align: left;
     font-weight: bold;
@@ -479,13 +458,6 @@ PROFILE CSS!! */
 #relationship-content-box-inner{
     display: table-cell;
     vertical-align: middle;
-}
-
-.bg-parallax{
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
 }
 
 #relationship .content-title h3{
@@ -607,13 +579,6 @@ PROFILE CSS!! */
     vertical-align: middle;
 }
 
-.bg-parallax{
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-}
-
 #register .content-title h3{
     text-align: left;
     font-weight: bold;
@@ -648,13 +613,6 @@ PROFILE CSS!! */
 #registerPersonal-content-box-inner{
     display: table-cell;
     vertical-align: middle;
-}
-
-.bg-parallax{
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
 }
 
 #registerPersonal .content-title h3{
@@ -703,13 +661,6 @@ footer{
 #signIn-content-box-inner{
     display: table-cell;
     vertical-align: middle;
-}
-
-.bg-parallax{
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
 }
 
 #signIn .content-title h3{
