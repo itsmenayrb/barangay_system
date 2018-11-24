@@ -1,6 +1,5 @@
 <?php include 'header.php'; ?>
 <?php if(isset($_SESSION['Username'])) { ?>
-<div id="top" style="display: none;"></div>
 <?php
 	$appointment_date = "";
 	$appointment_time = "";
@@ -93,7 +92,7 @@
 											<h6 class="lead">You can request forms for them.</h6>
 										</div>
 										<div id="relationship-btn">
-											<a href="appointment.request.php" class="btn btn-primary btn-primary-design mb-3" role="button">Create</a>
+											<a href="subaccount.php" class="btn btn-primary btn-primary-design mb-3" role="button">Create</a>
 											<small class="form-text text-muted">Already have?</small>
 											<a href="#" class="btn-link" role="button" style="left: 0;">You can view here.</a>
 										</div>
