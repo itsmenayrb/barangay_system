@@ -44,30 +44,25 @@
 						<div class="card-body p-0">
 							<ul class="nav nav-pills flex-column">
 								<li class="nav-item active">
-									<a href="#" class="nav-link">
-										<i class="fa fa-inbox"></i> Inbox
+									<a href="./message.php" class="nav-link">
+										<i class="fa fa-inbox"></i> Suggestions & Recommendations
 									</a>
 								</li>
 								<li class="nav-item">
-				                  <a href="#" class="nav-link">
-				                    <i class="fas fa-envelope"></i> Sent
-				                  </a>
-				                </li>
-				                <li class="nav-item">
-				                  <a href="#" class="nav-link">
-				                    <i class="fas fa-file"></i> Drafts
-				                  </a>
-				                </li>
-				                <li class="nav-item">
-				                  <a href="#" class="nav-link">
-				                    <i class="fas fa-filter"></i> Junk
-				                  </a>
-				                </li>
-				                <li class="nav-item">
-				                  <a href="#" class="nav-link">
-				                    <i class="fas fa-trash-alt"></i> Trash
-				                  </a>
-				                </li>
+				          <a href="./inquiries.php" class="nav-link">
+				            <i class="fas fa-envelope"></i> Inquiries
+				          </a>
+				        </li>
+				        <li class="nav-item">
+				          <a href="./commendations.php" class="nav-link">
+				            <i class="fas fa-file"></i> Commendations
+				          </a>
+				        </li>
+				        <li class="nav-item">
+				          <a href="./complaints.php" class="nav-link">
+				            <i class="fas fa-filter"></i> Complaints
+				          </a>
+				        </li>
 							</ul>
 						</div>
 					</div>
@@ -120,6 +115,33 @@
 			                    <td class="mailbox-attachment"></td>
 			                    <td class="mailbox-date">1 min ago</td>
 			                  </tr>
+
+												<?php 
+													include_once "../includes/dbh.inc.php";
+													
+
+													$results = $conn -> query("SELECT * FROM recommendations");
+													
+													echo $conn -> error;
+
+													while($row = $results -> fetch_assoc()) {
+														$id = $row['id'];
+														$subject = $row['subject'];
+														$message = substr($row['recommendation'], 0, 50);
+
+														$template = "
+															<tr>
+																<td><input type='checkbox'></td>
+																<td class='mailbox-star'><a href='#'><i class='fa fa-star text-warning'></i></a></td>
+																<td class='mailbox-name'><a href='./message.display.php?recommend=$id'>$subject</a></td>
+																<td class='mailbox-subject'>$message</td>
+																<td class='mailbox-attachment'></td>
+																<td class='mailbox-date'>1 min ago</td>
+															</tr>
+														";
+														echo $template;
+													}
+												?>
 			                  </tbody>
 			                </table>
 			                <!-- /.table -->
