@@ -22,7 +22,7 @@ news, activity, projects, jobs, FAQ's, Mission, Vision, Core Values and etc. -- 
 
 # For Admin
 1) Register, Login, and Password Recovery for Admin -- DONE
-2) Display Reports, Inquiry, Commendations and Suggestions -- TODO
+2) Display Reports, Inquiry, Commendations and Suggestions -- DONE
     - Admin can reply via the web that will send through email -- Not possible, not enough time for dev't @larongbingo
     - User will be notified on the status of their transactions -- DONE
 3) Admin has an option to cancel or approved the appointment -- DONE
@@ -30,3 +30,10 @@ news, activity, projects, jobs, FAQ's, Mission, Vision, Core Values and etc. -- 
 5) The page should has essential content for government website such as
 news, activity, projects, jobs, FAQ's, Mission, Vision, Core Values and etc. -- TODO
 6) Accept/Reject request of forms -- TODO
+
+## Note on pushing or contributing
+After committing all changes, on a command prompt, enter the following commands:
+```
+git pull
+git rebase
+```
