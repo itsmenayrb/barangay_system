@@ -94,7 +94,7 @@
 										<div id="relationship-btn">
 											<a href="subaccount.php" class="btn btn-primary btn-primary-design mb-3" role="button">Create</a>
 											<small class="form-text text-muted">Already have?</small>
-											<a href="#" class="btn-link" role="button" style="left: 0;">You can view here.</a>
+											<a href="view.appointment.and.subaccount.php" class="btn-link" role="button" style="left: 0;">You can view here.</a>
 										</div>
 									</div>
 								</div>
@@ -120,7 +120,7 @@
 										<div id="appointment-btn">
 											<a href="appointment.request.php" class="btn btn-primary btn-primary-design mb-3" role="button">Request Appointment</a>
 											<small class="form-text text-muted">Already have?</small>
-											<a href="#" class="btn-link" role="button" style="left: 0;">View my appointment</a>
+											<a href="view.appointment.and.subaccount.php#viewAppointment" class="btn-link" role="button" style="left: 0;">View my appointment</a>
 										</div>
 									</div>
 								</div>

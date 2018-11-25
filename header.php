@@ -63,7 +63,7 @@
 </head>
 <body>
     <div class="container">
-        <h1 class="h5 m-auto text-center sticky-top">Have an inquiry, questions, or wanted to file a case? Click <a href="contactus.php#contactSelection" class="btn-link">here</a>.</h1>
+        <h1 class="h5 m-auto text-center sticky-top">Have an inquiry, questions, or wanted to file a case? Click <a href="contactus.php" class="btn-link">here</a>.</h1>
     </div>
     <div id="top" style="display: none;"></div>
     <nav class="navbar navbar-dark sticky-top navbar-expand-lg">
@@ -78,7 +78,7 @@
             <div class="collapse navbar-collapse" id="mainNavigation">
                 <ul class="navbar-nav mr-md-auto">
                     <li class="nav-item active"><a class="nav-link" href="index.php"><span class="fas fa-home"></span> Home<span class="sr-only">(current)</span> </a> </li>
-                    <li class="nav-item"><a class="nav-link" id="viewNews" href="#news"><span class="fas fa-newspaper"></span> News</a> </li>
+                    <li class="nav-item"><a class="nav-link" id="viewNews" href="index.php#news"><span class="fas fa-newspaper"></span> News</a> </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false"><span class="fas fa-download"></span> Forms</a>

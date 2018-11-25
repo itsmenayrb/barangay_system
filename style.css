@@ -232,6 +232,38 @@ section.aboutSalitran{
     margin-bottom: 30px;
 }
 
+#viewAppointment-bg-diagonal{
+    width: 40%;
+    height: 700px;
+    float: right;
+    background-image: url(img/appointment.jpg);
+    background-position: fixed;
+}
+
+#viewAppointment-content-box{
+    float: left;
+    height: 700px;
+}
+
+#viewAppointment-content-box-outer{
+    width: 100%;
+    height: 100%;
+    display: table;
+}
+
+#viewAppointment-content-box-inner{
+    display: table-cell;
+    vertical-align: middle;
+}
+
+#viewAppointment .content-title h3{
+    text-align: left;
+    font-weight: bold;
+}
+
+#viewAppointment-desc h6{
+    margin-bottom: 30px;
+}
 div.contact{
     display: none;
 }
@@ -470,6 +502,42 @@ PROFILE CSS!! */
     border-radius: 0;
 }
 
+#viewRelationship{
+    margin-top: 10px;
+}
+#viewRelationship-bg-diagonal{
+    width: 55%;
+    height: 700px;
+    float: left;
+    background-image: url(img/family.jpg);
+    background-position: fixed;
+}
+
+#viewRelationship-content-box{
+    float: right;
+    height: 700px;
+}
+
+#viewRelationship-content-box-outer{
+    width: 100%;
+    height: 100%;
+    display: table;
+}
+
+#viewRelationship-content-box-inner{
+    display: table-cell;
+    vertical-align: middle;
+}
+
+#viewRelationship .content-title h3{
+    text-align: left;
+    font-weight: bold;
+}
+
+#viewRelationship-desc h6{
+    margin-bottom: 30px;
+}
+
 /* PROFILE APPOINTMENT */
 #relationship{
     margin-top: 10px;
@@ -545,7 +613,7 @@ PROFILE CSS!! */
 }
 
 #relationshipBtnEdit{
-    background-color: white;
+    background-color: transparent;
     border: none;
     cursor: pointer;
     text-decoration: none;
@@ -560,7 +628,7 @@ PROFILE CSS!! */
 }
 
 #relationshipBtnDel{
-    background-color: white;
+    background-color: transparent;
     border: none;
     cursor: pointer;
     text-decoration: none;
@@ -575,7 +643,7 @@ PROFILE CSS!! */
 }
 
 #relationshipBtnSetPrimary{
-    background-color: white;
+    background-color: transparent;
     border: none;
     cursor: pointer;
     text-decoration: none;
