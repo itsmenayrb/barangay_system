@@ -139,12 +139,13 @@ if (isset($_POST['submit'])) {
       mysqli_stmt_execute($stmt2);
       mysqli_stmt_execute($stmt3);
 
-      array_push($success,"Registered Successfully!");
+      array_push($success,"Registered Successfully! You will be redirected to the log in page after 5 seconds. If not, click <a href='login.php#signIn class='btn-link'>here.</a>");
     }
     mysqli_stmt_close($stmt);
     mysqli_stmt_close($stmt2);
     mysqli_stmt_close($stmt3);
     mysqli_close($conn);
+    header("refresh:5;url=login.php#signIn");
   }
 }
 //-------------------------------------------------------------------------------------------

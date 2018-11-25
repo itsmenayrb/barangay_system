@@ -143,7 +143,7 @@
 										<div id="requestForm-desc">
 											<h6 class="lead">Just fill up the following:</h6>
 											<form method="post" action="preview.php">
-											<select name="forms" required>
+											<select name="forms" class="form-control" required>
 													<option disabled selected>FORMS</option>
 													<option value="indigency">Indigency Certificate</option>
 													<option value="clearance">Barangay Clearance</option>
@@ -171,7 +171,7 @@
 					</div>
 				</div>
 			</div>
-			<a href="#top" class="scrollToTop"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
+			<a href="#titleProfile" class="scrollToTop"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
 		<?php endwhile ?>
 	<?php } else { ?>
 	<?php } ?>
@@ -190,7 +190,7 @@
 
 		$(".scrollToTop").click(function(){
 			$("html,body").animate({
-				scrollTop: 0
+				scrollTop: $("#titleProfile").offset().top
 			}, 1000);
 		});
 

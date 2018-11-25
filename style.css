@@ -71,6 +71,7 @@ a { text-decoration: none; }
 
 nav{
     background: rgba(0,0,0,0.8);
+    box-shadow: rgba(0,0,0,.4) 0 10px 80px 10px;
 }
 
 nav.black{
@@ -228,6 +229,43 @@ section.aboutSalitran{
 }
 
 #contactUs-desc h6{
+    margin-bottom: 30px;
+}
+
+div.contact{
+    display: none;
+}
+
+#faqs-bg-diagonal{
+    width: 60%;
+    height: 800px;
+    float: left;
+    background-image: url(img/faq.jpg);
+    background-position: fixed;
+}
+
+#faqs-content-box{
+    float: right;
+    height: 800px;
+}
+
+#faqs-content-box-outer{
+    width: 100%;
+    height: 100%;
+    display: table;
+}
+
+#faqs-content-box-inner{
+    display: table-cell;
+    vertical-align: middle;
+}
+
+#faqs .content-title h3{
+    text-align: left;
+    font-weight: bold;
+}
+
+#faqs-desc h6{
     margin-bottom: 30px;
 }
 

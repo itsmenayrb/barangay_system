@@ -52,10 +52,19 @@
                     scrollTop: $("#news").offset().top
                 }, 1000);
             });
+
+            $("#viewContactUs").click(function(){
+                $("html,body").animate({
+                    scrollTop: $("#contactUs").offset().top
+                }, 1000);
+            });
         });
     </script>
 </head>
 <body>
+    <div class="container">
+        <h1 class="h5 m-auto text-center sticky-top">Have an inquiry, questions, or wanted to file a case? Click <a href="contactus.php#contactSelection" class="btn-link">here</a>.</h1>
+    </div>
     <div id="top" style="display: none;"></div>
     <nav class="navbar navbar-dark sticky-top navbar-expand-lg">
         <div class="container">
@@ -74,25 +83,17 @@
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false"><span class="fas fa-download"></span> Forms</a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="docs/barangay clearance.pdf"><span class="fas fa-file"></span> Barangay Clearance</a>
-                            <a class="dropdown-item" href="docs/barangay certification.pdf"><span class="fas fa-file"></span> Barangay Certificate</a>
-                            <a class="dropdown-item" href="docs/barangay endorsement.pdf"><span class="fas fa-file"></span> Barangay Endorsement</a>
-                            <a class="dropdown-item" href="docs/barangay business.pdf"><span class="fas fa-file"></span> Business Clearance </a>
-                            <a class="dropdown-item" href="docs/barangay indigency.pdf"><span class="fas fa-file"></span> Indigency Certificate</a>
+                            <a class="dropdown-item" href="docs/barangay clearance.pdf">Barangay Clearance</a>
+                            <a class="dropdown-item" href="docs/barangay certification.pdf">Barangay Certificate</a>
+                            <a class="dropdown-item" href="docs/barangay endorsement.pdf">Barangay Endorsement</a>
+                            <a class="dropdown-item" href="docs/barangay business.pdf">Business Clearance </a>
+                            <a class="dropdown-item" href="docs/barangay indigency.pdf">Indigency Certificate</a>
                             <!--pre wala daw barangay id at cedula sa salitran-->
                             <!-- <div class="dropdown-divider"></div> -->
                         </div>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                           aria-haspopup="true" aria-expanded="false"><span class="fas fa-comments"></span> Contact US</a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" style="cursor: pointer;" role="button" data-toggle="modal" data-target="#commendationModal">Commendations</a>
-                            <a class="dropdown-item" style="cursor: pointer;" role="button" data-toggle="modal" data-target="#suggestionModal">Suggestions and Recommendations</a>
-                            <a class="dropdown-item" style="cursor: pointer;" role="button" data-toggle="modal" data-target="#inquiryModal">Inquire</a>
-                            <a class="dropdown-item" style="cursor: pointer;" role="button" data-toggle="modal" data-target="#alertModal">File a complaint</a>
-                            <a class="dropdown-item" style="cursor: pointer;" role="button" data-toggle="modal" data-target="#faqModal">FAQ's</a>
-                        </div>
+                    <li class="nav-item">
+                        <a class="nav-link" id="viewContactUs" href="#contactUs"><span class="fas fa-comments"></span> Contact us</a>
                     </li>
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
@@ -101,7 +102,7 @@
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white;"><span class="fas fa-user-alt"></span> <?php echo $_SESSION['Username'];?></a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a href="profile.php" class="dropdown-item">Profile</a>
+                                <a href="profile.php#titleProfile" class="dropdown-item">Profile</a>
                                 <a href='update.resident.php' class="dropdown-item">Account Settings</a>
                                 <a href='#' class="dropdown-item">Security Settings</a>
                                 <div class="dropdown-divider"></div>

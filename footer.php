@@ -21,7 +21,7 @@
         </div>
     </div>
 </div>
-<footer style="background-color: rgba(34, 34, 34, 0.65);padding: 100px;" class="mt-3">
+<footer style="background-color: #353639;padding: 100px;" class="mt-3">
     <div class="row text-center">
         <div class="col-lg-4">
             <img src="img/250px-Coat_of_arms_of_the_Philippines.svg.png" class="img-fluid" style="opacity: 0.05;">

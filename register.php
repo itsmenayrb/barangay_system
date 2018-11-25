@@ -151,13 +151,13 @@
                                             <h1 class="lead">Gender</h1>
                                             <div class="form-check form-check-inline">
                                                 <div class="custom-control custom-radio">
-                                                    <input type="radio" class="custom-control-input" name="gender" value="Male"/>
-                                                    <label class="custom-control-label">Male</label>
+                                                    <input type="radio" class="custom-control-input" name="gender" value="Male" id="Male"/>
+                                                    <label class="custom-control-label" for="Male">Male</label>
                                                 </div>
                                                 &nbsp;&nbsp;&nbsp;
                                                 <div class="custom-control custom-radio">
-                                                    <input type="radio" class="custom-control-input" name="gender" value="Female"/>
-                                                    <label class="custom-control-label">Female</label>
+                                                    <input type="radio" class="custom-control-input" name="gender" value="Female" id="Female"/>
+                                                    <label class="custom-control-label" for="Female">Female</label>
                                                 </div>
                                             </div>
                                         </div>

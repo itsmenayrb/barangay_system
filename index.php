@@ -40,7 +40,7 @@
     </div> <!-- END OF CAROUSEL -->
     </div>
     <section class="church"></section>
-    <section class="text-center mt-2" id="news"><p class="h1" style="letter-spacing: 5px;">Be Informed!</p></section>
+    <section class="text-center text-white p-2" id="news" style="background: #353639"><p class="h1" style="letter-spacing: 10px;">Be Informed!</p></section>
     <div class="container-fluid">
         <div class="row ml-md-3 p-md-3">
             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7 col-xl-7">
@@ -81,12 +81,23 @@
     <div class="container-fluid">
         <section style="width: 80%; margin: 0 auto;" class="p-3">
             <p class="h3 text-center">About Salitran II</p>
-            <p class="lead text-justify">This place is known for the name "Salitran" even during the Spanish period.
-            There are no exact historical accounts for the origin of the name. Some says that such
-            name was given because the early settlers of this place were from Pampanga, Visayas,
-            Tagalog region and some Chinese that served the Spanish friars. However, according
-            to the original settlers here, the place was originally called "Bayanan".</p>
-            <p class="lead text-justify">They said that this has numerous big Spanish houses which is like in a small town. An old house in the eastern part of Salitran was used by the Spanish friars as the storage place for the rice and was called "Makina". It was also used as a headquarters by the Guardia Civil. When the revolution ignited, the "Makina" became the center of attack by the revolucionarios from the Poblacion and this barrio.</p>
+            <blockquote class="blockquote">
+                <p class="lead text-justify">This place is known for the name "Salitran" even during the Spanish period.
+                There are no exact historical accounts for the origin of the name. Some says that such
+                name was given because the early settlers of this place were from Pampanga, Visayas,
+                Tagalog region and some Chinese that served the Spanish friars. However, according
+                to the original settlers here, the place was originally called "Bayanan".</p>
+                <p class="lead text-justify">They said that this has numerous big Spanish houses which is like in a small town. An old house in the eastern part of Salitran was used by the Spanish friars as the storage place for the rice and was called "Makina". It was also used as a headquarters by the Guardia Civil. When the revolution ignited, the "Makina" became the center of attack by the revolucionarios from the Poblacion and this barrio.</p>
+                <footer class="blockquote-footer">
+                    Source:
+                    <cite title="Salitran II">
+                        Wikipedia
+                    </cite>
+                    <cite title="https://en.wikipedia.org/wiki/Dasmari%C3%B1as#Salitran" class="float-right mb-0">
+                        <a href="https://en.wikipedia.org/wiki/Dasmari%C3%B1as#Salitran" class="btn-link">Read more...</a>
+                    </cite>
+                </footer>
+            </blockquote>
         </section>
     </div>
     <a href="#top" class="scrollToTop"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
