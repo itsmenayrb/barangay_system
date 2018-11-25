@@ -143,20 +143,28 @@
 										</div>
 										<div id="requestForm-desc">
 											<h6 class="lead">Just fill up the following:</h6>
-											<form method="post" action="">
+											<form method="post" action="preview.php">
+											<select name="forms" required>
+													<option disabled selected>FORMS</option>
+													<option value="indigency">Indigency Certificate</option>
+													<option value="clearance">Barangay Clearance</option>
+													<option value="endorsement">Barangay Endorsement</option>
+													<option value="certification">Barangay Certificate</option>
+													<option value="business">Business Clearance</option>
+													</select>
 												<div class="form-group">
-													<small class="form-text text-muted">Active contact number:</small>
-													<input type="text" class="form-control"/>
+													<small class="form-text text-muted" >Active contact number:</small>
+													<input type="text" class="form-control" required placeholder="(+63)-###-###-####"></input>
 												</div>
 												<div class="form-group">
 													<small clas="form-text text-muted">Purpose:</small><br>
-													<textarea name="" id="" rows="2" class="form-control"></textarea>
+													<textarea name="purpose" rows="2" class="form-control" required placeholder="e.g. Financial Assistance" value ="<?php echo $purpose;?>"></textarea>
 												</div>
-											</form>
 										</div>
 										<div id="requestForm-btn">
-											<a href="appointment.request.php" class="btn btn-primary btn-primary-design mb-3" role="button">Proceed</a>
+											<input  name="request" class="btn btn-primary btn-primary-design mb-3" type="submit" value="Proceed"></input>
 										</div>
+										</form>
 									</div>
 								</div>
 							</div>

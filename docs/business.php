@@ -9,11 +9,19 @@ session_start();
 isset($_SESSION['id']);
 $id= $_SESSION['id'];
 
-$sql = mysqli_query($conn,"SELECT * FROM residents INNER JOIN homeaddress
-ON residents.user_ID = homeaddress.id
+/*
+$sql = mysqli_query($conn,"SELECT * FROM residents INNER JOIN business_cle
+ON residents.user_ID = business_cle.id
 WHERE residents.user_ID = '".$id."'");
 
 $invoice = mysqli_fetch_array($sql);
+*/
+
+$query = "SELECT * FROM residents WHERE user_ID = '".$id."';";
+$query .= "SELECT * FROM homeaddress WHERE id ='".$id."';";
+$query .= "SELECT * FROM subusers WHERE id = '".$id."';";
+$query .= "SELECT * FROM user_req WHERE id = '".$id."';";
+$query .= "SELECT * FROM business_cle JOIN residents ON business_cle.id = residents.user_ID WHERE business.id ='".$id."'";
 
 $tDate = date("F, Y");
 $dDate=date("j");
@@ -63,6 +71,12 @@ $pdf->AddPage();
 //$image_file = K_PATH_IMAGES.'image.png'; 
 //$pdf->Image($image_file,15,400,190,195,'PNG','','T',false,300,'C',false,false,0,false,false,false);
 
+if (mysqli_multi_query($conn, $query)) {
+do {
+
+     if ($result = mysqli_store_result($conn)) {
+        while ($row = mysqli_fetch_array($result)){
+
 $pdf->SetFont('Times','B',12);
 $html = <<<EOD
 <h1>OFFICE OF THE SANGGUNIANG BARANGAY&nbsp;</h1>
@@ -97,6 +111,14 @@ $html = <<<EOD
 <p>Control No. : </p>
 EOD;
 $pdf->writeHTMLCell(0,0,150,75,$html,0,1,0,true,'C',true);
+
+$pdf->Cell(0,10,'',0,1);//dummycell
+$pdf->Cell(0,10,'',0,1);//dummycell
+$pdf->Cell(0,10,'',0,1);//dummycell
+$pdf->Cell(80,10,'',1,0);//dummycell
+$pdf->Cell(80,10,$row['business'],1,1);//dummycell
+$pdf->Cell(0,6,'',0,1);//dummycell
+$pdf->Cell(0,10,'',1,1);//dummycell
 
 $html = <<<EOD
 <p><b>To whom it may concern:</b></p>
@@ -147,4 +169,11 @@ $pdf->Line(65,65,65,275);
 
 
 $pdf->Output('barangay business.pdf','I');
+
+}
+mysqli_free_result($result);
+}
+}while (mysqli_next_result($conn));
+}
+
 ?>

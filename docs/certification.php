@@ -9,11 +9,19 @@ session_start();
 isset($_SESSION['id']);
 $id= $_SESSION['id'];
 
+isset($_POST['']);
+/*
 $sql = mysqli_query($conn,"SELECT * FROM residents INNER JOIN homeaddress
 ON residents.user_ID = homeaddress.id
 WHERE residents.user_ID = '".$id."'");
 
 $invoice = mysqli_fetch_array($sql);
+*/
+
+$query = "SELECT * FROM residents WHERE user_ID = '".$id."';";
+$query .= "SELECT id.*,lot.*,street.*,subdivision.*,barangay.* FROM homeaddress WHERE id = user_ID;";
+$query .= "SELECT * FROM subusers WHERE id = '".$id."';";
+$query .= "SELECT * FROM user_req WHERE id = '".$id."';";
 
 $tDate = date("F j, Y");
 
@@ -62,6 +70,13 @@ if (@file_exists(dirname(__FILE__).'/lang/eng.php'))
 
 $pdf->AddPage();
 
+
+if (mysqli_multi_query($conn, $query)) {
+do {
+
+     if ($result = mysqli_store_result($conn)) {
+        while ($row = mysqli_fetch_array($result)){
+
 $image_file = K_PATH_IMAGES.'image.png';
 $pdf->Image($image_file,15,350,150,155,'PNG','','T',false,300,'C',false,false,0,false,false,false);
 
@@ -82,12 +97,12 @@ $pdf->SetFont('','',16);
 $pdf->writeHTMLCell(0,0,30,90,'To whom it may concern:',0,1,0,true,'L',true);
 $pdf->Cell(0,10,'',0,1);//dummycell
 $pdf->Cell(65,10,'',0,0);//dummycell
-$pdf->Cell(80,13,' '.$invoice['Prefix'].' '.$invoice['FirstName'].' '.$invoice['MiddleName'].' '.$invoice['LastName'].' '.$invoice['Suffix'],0,0,'');
+$pdf->Cell(80,13,' '.$row['Prefix'].' '.$row['FirstName'].' '.$row['MiddleName'].' '.$row['LastName'].' '.$row['Suffix'],0,0,'');
 $pdf->writeHTMLCell(0,0,40,110,'This is to certify that _______________________',0,1,0,true,'',true);
 
 
 $pdf->Cell(0,10,'',0,1);//dummycell
-$pdf->Cell(0,10,$invoice['Homeaddress'],0,1);//dummycell
+$pdf->Cell(0,10,$row['lot'].' '.$row['street'].' '.$row['subdivision'].' '.$row['barangay'],0,1);//dummycell
 $html = <<<EOD
 is a resident of barangay Salitran II with known address at __________________________________________________
 EOD;
@@ -103,7 +118,7 @@ This <b>CERTIFICATION</b> is being issued upon the request of
 EOD;
 $pdf->writeHTMLCell(0,0,30,150,$html,0,1,0,true,'',true);
 
-$pdf->Cell(90,10,$invoice['Prefix'].' '.$invoice['FirstName'].' '.$invoice['MiddleName'].' '.$invoice['LastName'].' '.$invoice['Suffix'],0,0);//dummycell
+$pdf->Cell(90,10,'      '.$row['Prefix'].' '.$row['FirstName'].' '.$row['MiddleName'].' '.$row['LastName'].' '.$row['Suffix'],0,0);//dummycell
 
 $html = <<<EOD
 __________________________for __________________ purposes only.
@@ -129,4 +144,11 @@ $pdf->writeHTMLCell(0,0,120,215,'Punong Barangay',0,1,0,true,'C',true);
 
 
 $pdf->Output('barangay certification.pdf','I');
+
+}
+mysqli_free_result($result);
+}
+}while (mysqli_next_result($conn));
+}
+
 ?>

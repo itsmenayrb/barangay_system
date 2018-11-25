@@ -294,12 +294,31 @@ DROP TABLE IF EXISTS `user_req`;
 CREATE TABLE `user_req` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(255) NOT NULL,
-  `contactnumber` varchar(255) NOT NULL,
+  `contact` varchar(255) NOT NULL,
   `purpose` varchar(255) NOT NULL,
+  `status` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 /*Data for the table `user_req` */
+insert into `user_req` (`id`,`username`,`contact`,`purpose`,`status`) values 
+(1,'user213','09123456789','iwannadierytnowcuzimhumantrash','Pending');
+/*Table structure for business clearance*/
+
+DROP TABLE IF EXISTS `business_cle`;
+
+CREATE TABLE `business_cle`(
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `business` varchar(255) NOT NULL,
+  `operator` varchar(255) NOT NULL,
+  `location` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+/*Data for the table `business`*/
+
+insert into `business_cle`(`id`,`business`,`operator`,`location`) values
+(1,'trashcompany','boPauls','wasteland');
 
 /*Table structure for table `users` */
 
@@ -334,3 +353,4 @@ insert  into `users`(`id`,`Username`,`Pwd`,`Email`,`SecurityQuestion1`,`AnswerOn
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
