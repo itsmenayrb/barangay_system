@@ -47,7 +47,7 @@
 										<div class="custom-control custom-checkbox" id="terms">
 											<input type="checkbox" class="custom-control-input" id="checkboxRM" name="checkboxRM"/>
 											<label class="custom-control-label" for="checkboxRM">Remember me.</label>
-											<a class="float-right" href="forgotpassword.php" role="button">Forgot Password?</a>
+											<a class="float-right" href="forgotpassword.php#troubleTitle" role="button">Forgot Password?</a>
 										</div>
 									</div>
 									<div id="signIn-btn">

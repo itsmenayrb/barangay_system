@@ -3,7 +3,7 @@
 ?>
 <?php if (isset($_SESSION['Username'])) { ?>
     <section style="margin-top: 10px;">
-      <div class="container-fluid">
+      <div class="container">
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1 style="margin-top: 10px;" class="text-danger">404 Error Page</h1>

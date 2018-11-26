@@ -290,6 +290,7 @@ if(isset($_POST['verifyUsername'])){
     while($row = $result->fetch_assoc()){
       $displaySecOne = $row['SecurityQuestion1'];
       $displaySecTwo = $row['SecurityQuestion2'];
+      $username = $row['Username'];
     }
   }
   $conn->close();

@@ -303,27 +303,76 @@ div.contact{
 
 /* FORGOT PASSWORD STYLE */
 
-#security-question-form{
-    width: 80%;
-    margin: 20px auto;
+#securityQuestionDiv-bg-diagonal{
+    width: 60%;
+    height: 800px;
+    float: right;
+    background-image: url(img/Dangerous-Question.png);
+    background-position: fixed;
 }
 
-#email-form{
-    width: 70%;
-    margin: 80px auto;
+#securityQuestionDiv-content-box{
+    float: left;
+    height: 800px;
 }
 
-#fpContainer .carousel .carousel-inner{
+#securityQuestionDiv-content-box-outer{
     width: 100%;
-    height: 450px;
+    height: 100%;
+    display: table;
 }
 
-#con-security-question-form{
-    width: 80%;
-    margin: 0 auto;
-    padding-bottom: 20px;
+#securityQuestionDiv-content-box-inner{
+    display: table-cell;
+    vertical-align: middle;
 }
 
+#securityQuestionDiv .content-title h3{
+    text-align: left;
+    font-weight: bold;
+}
+
+#securityQuestionDiv-desc h6{
+    margin-bottom: 30px;
+}
+
+#emailDiv{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#emailDiv-bg-diagonal{
+    width: 60%;
+    height: 500px;
+    float: left;
+    background-image: url(img/gmail-unsend-599318fd68e1a200111244db.png);
+    background-position: fixed;
+}
+
+#emailDiv-content-box{
+    float: right;
+    height: 500px;
+}
+
+#emailDiv-content-box-outer{
+    width: 100%;
+    height: 100%;
+    display: table;
+}
+
+#emailDiv-content-box-inner{
+    display: table-cell;
+    vertical-align: middle;
+}
+
+#emailDiv .content-title h3{
+    text-align: left;
+    font-weight: bold;
+}
+
+#emailDiv-desc h6{
+    margin-bottom: 30px;
+}
 /* RESULT DISPLAY */
 .error{
     color: red;

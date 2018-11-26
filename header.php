@@ -104,7 +104,7 @@
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a href="profile.php#titleProfile" class="dropdown-item">Profile</a>
                                 <a href='update.resident.php' class="dropdown-item">Account Settings</a>
-                                <a href='#' class="dropdown-item">Security Settings</a>
+                                <a href='security.settings.php' class="dropdown-item">Security Settings</a>
                                 <div class="dropdown-divider"></div>
                                 <a href='includes/logout.inc.php' class="dropdown-item">Sign Out</a>
                             </div>
