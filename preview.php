@@ -17,7 +17,7 @@
 	            </ol>
 	          </div>
 	        </div>
-	      </div><!-- /.container-fluid -->
+	      </div>
     	</section>
     	<p class="text-center display-4"><i class="fas fa-exclamation-triangle text-warning"></i> Oops! Page not found.</p>
     	<p class="text-center h1">
@@ -85,7 +85,7 @@
 								<h6 class="form-text text-muted">Please fill this up to proceed.</h6>
 								<small class="form-text text-muted">Business Name or Trade: </small>
 								<input type="text" class="form-control" name="business" required/>
-								<small class="form-text text-muted">Location: <i>(Location must be in Barangay Salitran II sovereignty only).</i></small>
+								<small class="form-text text-muted">Location: <i>(Location must be in Barangay Salitran II jurisdiction only).</i></small>
 								<input type="text" class="form-control" name="location" required/>
 								<small class="form-text text-muted">Operator: <i>(Who will manage this business).</i></small>
                                 <input type="text" class="form-control" name="operator" required/>

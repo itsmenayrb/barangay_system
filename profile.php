@@ -153,17 +153,30 @@
 													</select>
 												<div class="form-group">
 													<small class="form-text text-muted" >Active contact number:</small>
-													<input type="text" class="form-control" required placeholder="(+63)-###-###-####"></input>
+													<input type="text" name="contact"class="form-control" required placeholder="(+63)-###-###-####"></input>
 												</div>
 												<div class="form-group">
 													<small clas="form-text text-muted">Purpose:</small><br>
-													<textarea name="purpose" rows="2" class="form-control" required placeholder="e.g. Financial Assistance" value ="<?php echo $purpose;?>"></textarea>
+													<textarea name="purpose" rows="2" class="form-control" required placeholder="e.g. Financial Assistance"></textarea>
 												</div>
 										</div>
 										<div id="requestForm-btn">
 											<input  name="request" class="btn btn-primary btn-primary-design mb-3" type="submit" value="Proceed"></input>
+											<br>
+											<a href="view.appointment.and.subaccount.php#requestForm" class="btn-link" role="button" style="left: 0;">Requests Record</a>
 										</div>
 										</form>
+										<?php
+if(isset($_POST['request']))
+{
+	$forms = $_POST['forms'];
+	$contact= $_POST['contact'];
+	$purpose= $_POST['purpose'];
+
+     $SQL = "INSERT INTO user_req VALUES (NULL, '$current', '$contact','$purpose','$forms','Pending')";
+     $result = mysql_query($SQL);
+}
+?>
 									</div>
 								</div>
 							</div>
