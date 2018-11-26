@@ -9,11 +9,11 @@ session_start();
 isset($_SESSION['id']);
 $id= $_SESSION['id'];
 
-$sql = mysqli_query($conn,"SELECT * FROM residents INNER JOIN homeaddress
+$sql = "SELECT * FROM residents INNER JOIN homeaddress
 ON residents.user_ID = homeaddress.id
-WHERE residents.user_ID = '".$id."'");
+WHERE residents.user_ID = '".$id."'";
 
-$invoice = mysqli_fetch_array($sql);
+$result = mysqli_query($conn,$sql);
 
 $tDate = date("F, Y");
 $dDate=date("j");
@@ -63,6 +63,11 @@ if (@file_exists(dirname(__FILE__).'/lang/eng.php'))
 
 $pdf->AddPage();
 
+            if (mysqli_num_rows($result)>0){
+
+while ($invoice = mysqli_fetch_array($result)){
+
+
 $image_file = K_PATH_IMAGES.'image.png';
 $pdf->Image($image_file,15,350,150,155,'PNG','','T',false,300,'C',false,false,0,false,false,false);
 
@@ -95,7 +100,7 @@ This is to endorse
 EOD;
 $pdf->writeHTMLCell(0,0,30,130,$html,0,1,0,true,'',true);
 
-$pdf->Cell(0,15,$invoice['Homeaddress'],0,1,'J');
+$pdf->Cell(0,15,'   '.$invoice['lot'].' '.$invoice['street'].' '.$invoice['subdivision'].' '.$invoice['barangay'],0,1);
 $pdf->Cell(0,1,'',0,1);//dummycell
 
 $html = <<<EOD
@@ -112,15 +117,19 @@ $html = <<<EOD
 Subject is known to be of good moral character and law-abiding citizen.
 EOD;
 $pdf->writeHTMLCell(0,0,30,155,$html,0,1,0,true,'',true);
+$pdf->Cell(70,18,$invoice['Prefix'].' '.$invoice['FirstName'].' '.$invoice['MiddleName'].' '.$invoice['LastName'].' '.$invoice['Suffix'],0,0);
+$pdf->Cell(15,18,'',0,0);//dummy
+$pdf->Cell(0,18,'',0,1);//purpose
 
 $html = <<<EOD
-This <b>ENDORSEMENT</b> is being issued upon the request of
-for
-Purpose.
+This <b>ENDORSEMENT</b> is being issued upon the request of<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for
 EOD;
 $pdf->writeHTMLCell(0,0,30,170,$html,0,1,0,true,'',true);
 
-$pdf->Cell(35,13,'',0,0);//dummycell
+$pdf->Cell(35,10,'',0,0);//dummycell
 $pdf->Cell(22,13,$dDate,0,0);//date
 $pdf->Cell(8,13,'',0,0);//dummycell
 $pdf->Cell(35,13,$tDate,0,0);//date
@@ -141,4 +150,5 @@ $pdf->writeHTMLCell(0,0,120,240,'Punong Barangay',0,1,0,true,'C',true);
 
 
 $pdf->Output('barangay endorsement.pdf','I');
+}}
 ?>

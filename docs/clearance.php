@@ -9,11 +9,11 @@ session_start();
 isset($_SESSION['id']);
 $id= $_SESSION['id'];
 
-$sql = mysqli_query($conn,"SELECT * FROM residents INNER JOIN homeaddress
+$sql = "SELECT * FROM residents INNER JOIN homeaddress
 ON residents.user_ID = homeaddress.id
-WHERE residents.user_ID = '".$id."'");
+WHERE residents.user_ID = '".$id."'";
 
-$invoice = mysqli_fetch_array($sql);
+$result = mysqli_query($conn,$sql);
 
 $tDate = date("F j, Y");
 
@@ -63,6 +63,9 @@ $pdf->AddPage();
 //$pdf->Image($image_file,15,400,190,195,'PNG','','T',false,300,'C',false,false,0,false,false,false);
 
 
+            if (mysqli_num_rows($result)>0){
+
+while ($invoice = mysqli_fetch_array($result)){
 
 $pdf->SetFont('Times','B',12);
 $html = <<<EOD
@@ -116,7 +119,7 @@ $pdf->Cell(40,8,'    '.$invoice['Prefix'].' '.$invoice['FirstName'].' '.$invoice
 $pdf->Cell(10,8,$invoice['Age'],0,1,'C');
 $pdf->Cell(0,5,'',0,1);//dummycell
 $pdf->Cell(45,10,'',0,0);//dummycell
-$pdf->Cell(72,10,$invoice['Homeaddress'],0,1);
+$pdf->Cell(72,10,' '.$invoice['lot'].' '.$invoice['street'].' '.$invoice['subdivision'].' '.$invoice['barangay'],0,1);
 $pdf->writeHTMLCell(0,0,70,90,$html,0,1,0,true,'',true);
 $html = <<<EOD
 <br>
@@ -125,11 +128,20 @@ $html = <<<EOD
 EOD;
 $pdf->writeHTMLCell(0,0,70,115,$html,0,1,0,true,'J',true);
 
+$pdf->Cell(0,23,'',0,1);//dummycell
+$pdf->Cell(55,14,'',0,0);//dummycell
+$pdf->Cell(60,17,'',0,1);//purpose
+
 $html = <<<EOD
 <p>This <b>CERTIFICATION</b> is issued upon the request of the above named for the purpose stated below.</p>
 <p>For  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b> Purpose</b> only</p>
 EOD;
 $pdf->writeHTMLCell(0,0,70,160,$html,0,1,0,true,'J',true);
+
+$pdf->Cell(0,10,'',0,1);//dummycell
+$pdf->Cell(0,10,'',0,1);//dummycell
+$pdf->Cell(70,10,'',0,0);//dummycell
+$pdf->Cell(40,10,'',0,1);//cert.no
 
 $html = <<<EOD
 <p>Specimen Signature</p>
@@ -139,6 +151,8 @@ $pdf->SetFont('','',11);
 $pdf->writeHTMLCell(25,20,130,194,'Left Thumb mark',1,1,0,true,'C',true);
 $pdf->writeHTMLCell(25,20,160,194,'Right Thumb mark',1,1,0,true,'C',true);
 
+$pdf->Cell(60,12,'',0,0);//dummycell
+$pdf->Cell(60,15,$tDate,0,0);//dummycell
 
 $pdf->SetFont('','',12);
 $html = <<<EOD
@@ -182,4 +196,5 @@ $pdf->Line(65,65,65,275);
 
 
 $pdf->Output('barangay clearance.pdf','I');
+}}
 ?>

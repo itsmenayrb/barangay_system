@@ -6,16 +6,24 @@ require_once('../includes/action.inc.php');
 session_start();
 
 isset($_SESSION['id']);
-
 $id= $_SESSION['id'];
 $tDate = date("F j, Y");
 
-//get db data
-$sql = mysqli_query($conn,"SELECT * FROM residents INNER JOIN homeaddress
-ON residents.user_ID = homeaddress.id
-WHERE residents.user_ID = '".$id."'");
+/*
+$sql = mysqli_query($conn,"SELECT user_ID,Prefix,FirstName,MiddleName,LastName,Suffix FROM residents WHERE user_ID ='".$id."'" UNION "SELECT id,lot,street,subdivision,barangay,city FROM homeaddress WHERE id ='".$id."'");
+UNION PA ULUL!!!!!!!
+*/
 
-$invoice = mysqli_fetch_array($sql);
+
+//get db data
+$sql = "SELECT * FROM residents INNER JOIN homeaddress
+ON residents.user_ID = homeaddress.id
+WHERE residents.user_ID = '".$id."'";
+
+
+$result = mysqli_query($conn,$sql);
+
+
 
 class MYPDF extends TCPDF
 {
@@ -43,7 +51,6 @@ class MYPDF extends TCPDF
 
 }//end of class
 
-
 $pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 $pdf->SetTitle('Barangay Indigency');
 $pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE, PDF_HEADER_STRING);
@@ -60,7 +67,12 @@ if (@file_exists(dirname(__FILE__).'/lang/eng.php'))
     $pdf->SetLanguageArray($l);
 }//end if
 
+            if (mysqli_num_rows($result)>0){
+
+while ($row = mysqli_fetch_array($result)){
+
 $pdf->AddPage();
+
 
 $image_file = K_PATH_IMAGES.'image.png';
 $pdf->Image($image_file,15,350,150,155,'PNG','','T',false,300,'C',false,false,0,false,false,false);
@@ -81,10 +93,11 @@ $pdf->writeHTMLCell(0,0,25,75,$html,0,1,0,true,'C',true);
 $pdf->SetFont('','',16);
 $pdf->writeHTMLCell(0,0,30,90,'To whom it may concern:',0,1,0,true,'L',true);
 $pdf->writeHTMLCell(0,0,40,110,'This is to certify that',0,1,0,true,'',true);
-$pdf->Cell(0,10,'    '.$invoice['Prefix'].' '.$invoice['FirstName'].' '.$invoice['MiddleName'].' '.$invoice['LastName'].' '.$invoice['Suffix'],0,1,'');
+
+$pdf->Cell(0,10,'    '.$row['Prefix'].' '.$row['FirstName'].' '.$row['MiddleName'].' '.$row['LastName'].' '.$row['Suffix'],0,1,'');
 $pdf->Cell(58,10,'',0,0);//dummy cell
-$pdf->SetFont('','',10);
-$pdf->Cell(95,10,' '.$invoice['Homeaddress'],0,0);
+$pdf->SetFont('','',16);
+$pdf->Cell(95,8,' '.$row['lot'].' '.$row['street'].' '.$row['subdivision'].' '.$row['barangay'],0,0);
 
 $pdf->SetFont('','',16);
 $html = <<<EOD
@@ -104,7 +117,7 @@ $pdf->writeHTMLCell(0,0,30,150,$html,0,1,0,true,'',true);
 
 $pdf->Cell(0,7,'',0,1);//dummycell
 $pdf->Cell(5,10,'',0,0);//dummycell
-$pdf->Cell(90,10,'    '.$invoice['Prefix'].' '.$invoice['FirstName'].' '.$invoice['MiddleName'].' '.$invoice['LastName'].' '.$invoice['Suffix'],0,0,'');
+$pdf->Cell(90,10,'    '.$row['Prefix'].' '.$row['FirstName'].' '.$row['MiddleName'].' '.$row['LastName'].' '.$row['Suffix'],0,0,'');
 $pdf->Cell(7,10,'',0,0);//dummycell
 $pdf->Cell(65,10,'',0,1);//purpose
 $html = <<<EOD
@@ -129,5 +142,6 @@ $pdf->writeHTMLCell(0,0,120,220,'Punong Barangay',0,1,0,true,'C',true);
 
 
 $pdf->Output('barangay indigency.pdf','I');
-
+}
+}
 ?>
