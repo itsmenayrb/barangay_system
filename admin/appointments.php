@@ -120,7 +120,7 @@
                                     </button>
                                   </div>
                                   <div class="modal-body">
-                                    <input type="hidden" id="hiddenValue" name="hiddenIdDeclineAppointment" value=""/>
+                                    <input type="text" id="hiddenValue" name="hiddenIdDeclineAppointment" value=""/>
                                     <textarea name="reasonAppointmentDecline" cols="50" rows="2" class="form-control"></textarea>
                                   </div>
                                   <div class="modal-footer">

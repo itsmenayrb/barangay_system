@@ -458,6 +458,7 @@ in admin site -->
                     //Log in the user here
                     $_SESSION['adminPosition'] = $row['Position'];
                     $_SESSION['adminUsername'] = $row['adminUsername'];
+                    
                      header("Location: dashboard.php");
                     exit();
                 }
@@ -794,7 +795,7 @@ in admin site -->
     if(!empty($_GET['accomplished'])){
         $autoID = checkInput($_GET['accomplished']);
         $dateAccomplished = date('Y-m-d');
-        $staus = "Accomplished";
+        $status = "Accomplished";
         $sql = "UPDATE appointment SET date_accomplished=?, status=? WHERE id='$autoID'";
         $stmt = mysqli_stmt_init($conn);
 
@@ -822,7 +823,7 @@ in admin site -->
 
         if($resultsCheck < 1){
             echo "<script>alert('Something went wrong.');</script>";
-            exit();
+            
         } else {
             while($row = $results->fetch_assoc()){
 
