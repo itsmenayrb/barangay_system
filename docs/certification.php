@@ -11,8 +11,7 @@ $id= $_SESSION['id'];
 
 isset($_POST['']);
 
-$sql = "SELECT * FROM residents INNER JOIN homeaddress
-ON residents.user_ID = homeaddress.id
+$sql = "SELECT * FROM residents 
 WHERE residents.user_ID = '".$id."'";
 
 $result = mysqli_query($conn,$sql);
@@ -82,7 +81,7 @@ $pdf->writeHTMLCell(0,0,40,110,'This is to certify that _______________________'
 
 
 $pdf->Cell(0,10,'',0,1);
-$pdf->Cell(0,8,'       '.$row['lot'].' '.$row['street'].' '.$row['subdivision'].' '.$row['barangay'],0,1);
+$pdf->Cell(0,8,'       '.$row['Homeaddress'],0,1);
 $html = <<<EOD
 is a resident of barangay Salitran II with known address at __________________________________________________
 EOD;

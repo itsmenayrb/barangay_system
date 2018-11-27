@@ -9,8 +9,7 @@ session_start();
 isset($_SESSION['id']);
 $id= $_SESSION['id'];
 
-$sql = "SELECT * FROM residents INNER JOIN homeaddress
-ON residents.user_ID = homeaddress.id
+$sql = "SELECT * FROM residents
 WHERE residents.user_ID = '".$id."'";
 
 $result = mysqli_query($conn,$sql);
@@ -88,7 +87,7 @@ This is to endorse
 EOD;
 $pdf->writeHTMLCell(0,0,30,130,$html,0,1,0,true,'',true);
 
-$pdf->Cell(0,15,'   '.$invoice['lot'].' '.$invoice['street'].' '.$invoice['subdivision'].' '.$invoice['barangay'],0,1);
+$pdf->Cell(0,15,'   '.$invoice['Homeaddress'],0,1);
 $pdf->Cell(0,1,'',0,1);
 
 $html = <<<EOD

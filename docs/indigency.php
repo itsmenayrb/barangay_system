@@ -5,17 +5,41 @@ require_once('../fpdf17/fpdf.php');
 require_once('../includes/action.inc.php');
 
 session_start();
-
+$tDate = date("F j, Y");
 isset($_SESSION['id']);
 $id= $_SESSION['id'];
-$tDate = date("F j, Y");
 
+$sql = mysqli_query($conn,"SELECT * FROM residents WHERE user_ID = $id");
+
+
+
+$row = mysqli_fetch_array($sql);
+/*
 $sql = "SELECT * FROM residents INNER JOIN homeaddress
 ON residents.user_ID = homeaddress.id
-WHERE residents.user_ID = '".$id."'";
+WHERE residents.user_ID = ".$id."";
 
-$result = mysqli_query($conn,$sql);
-
+$result = mysqli_query($conn,$sql); 
+ $result = mysqli_query($conn,$sql);
+ */
+ 
+ /*
+ isset($_POST['pref']);
+ $pref = $_POST['pref'];
+ 
+ isset($_POST['pref']);
+ $fname = $_POST['fname'];
+ 
+ isset($_POST['pref']);
+ $mname = $_POST['mname'];
+ 
+ isset($_POST['pref']);
+  $lname = $_POST['lname'];
+  
+  isset($_POST['pref']);
+  $suf = $_POST['suf'];
+ */
+ 
 class MYPDF extends TCPDF
 {
     public function Header()
@@ -48,11 +72,14 @@ if (@file_exists(dirname(__FILE__).'/lang/eng.php'))
     require_once(dirname(__FILE__).'lang/eng.php');
     $pdf->SetLanguageArray($l);
 }
-
+/*
 if (mysqli_num_rows($result)>0)
 {
 while ($row = mysqli_fetch_array($result))
 {
+*/
+
+ //while($rows=mysqli_fetch_array($result)){
 
 $pdf->AddPage();
 
@@ -75,10 +102,10 @@ $pdf->SetFont('','',16);
 $pdf->writeHTMLCell(0,0,30,90,'To whom it may concern:',0,1,0,true,'L',true);
 $pdf->writeHTMLCell(0,0,40,110,'This is to certify that',0,1,0,true,'',true);
 
-$pdf->Cell(0,10,'    '.$row['Prefix'].' '.$row['FirstName'].' '.$row['MiddleName'].' '.$row['LastName'].' '.$row['Suffix'],0,1,'');
+$pdf->Cell(0,10,'    '.$row['Prefix'].' '.$row['FirstName'].' '.$row['MiddleName'].' '.$row['LastName'].' '.$row['Suffix'],0,1);
 $pdf->Cell(58,10,'',0,0);
 $pdf->SetFont('','',16);
-$pdf->Cell(95,8,' '.$row['lot'].' '.$row['street'].' '.$row['subdivision'].' '.$row['barangay'],0,0);
+$pdf->Cell(95,8, "  " . $row['Homeaddress'],0,0);
 
 $pdf->SetFont('','',16);
 $html = <<<EOD
@@ -122,6 +149,8 @@ $pdf->writeHTMLCell(0,0,120,210,$html,0,1,0,true,'',true);
 $pdf->writeHTMLCell(0,0,120,220,'Punong Barangay',0,1,0,true,'C',true);
 
 $pdf->Output('barangay indigency.pdf','I');
+/*
 }
 }
+}*/
 ?>

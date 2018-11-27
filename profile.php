@@ -1,4 +1,5 @@
 <?php include 'header.php'; ?>
+<?php include 'includes/dbh.inc.php';?>
 <?php if(isset($_SESSION['Username'])) { ?>
 <?php
 	$appointment_date = "";
@@ -143,6 +144,25 @@
 										<div id="requestForm-desc">
 											<h6 class="lead">Just fill up the following:</h6>
 											<form method="post" action="preview.php">
+											<?php
+												$current = $_SESSION['id'];
+												$sql = "SELECT * FROM users INNER JOIN residents ON users.id = residents.user_ID WHERE id = '$current'";
+												$results = mysqli_query($conn, $sql);
+												$resultsCheck = mysqli_num_rows($results);
+												
+												if($resultsCheck < 1){
+													
+												}
+												else{ 
+													while($row = $results->fetch_assoc()){ ?>
+														<input type="hidden" name="pref"value="<?php echo $row['Prefix']; ?>"/>
+														<input type="hidden" name="fname"value="<?php echo $row['FirstName']; ?>"/>
+														<input type="hidden" name="mname"value="<?php echo $row['MiddleName']; ?>"/>
+														<input type="hidden" name="lname"value="<?php echo $row['LastName']; ?>"/>
+														<input type="hidden" name="suf"value="<?php echo $row['Suffix']; ?>"/>
+
+													<?php } ?>
+											<?php } ?>
 											<select name="forms" class="form-control" required>
 													<option disabled selected>FORMS</option>
 													<option value="indigency">Indigency Certificate</option>
@@ -166,17 +186,7 @@
 											<a href="view.appointment.and.subaccount.php#requestForm" class="btn-link" role="button" style="left: 0;">Requests Record</a>
 										</div>
 										</form>
-										<?php
-if(isset($_POST['request']))
-{
-	$forms = $_POST['forms'];
-	$contact= $_POST['contact'];
-	$purpose= $_POST['purpose'];
-
-     $SQL = "INSERT INTO user_req VALUES (NULL, '$current', '$contact','$purpose','$forms','Pending')";
-     $result = mysql_query($SQL);
-}
-?>
+										
 									</div>
 								</div>
 							</div>

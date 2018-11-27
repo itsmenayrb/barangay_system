@@ -6,15 +6,14 @@ require_once('../includes/action.inc.php');
 
 session_start();
 
-isset($_SESSION['id']);
-$id= $_SESSION['id'];
+isset($_SESSION['Username']);
+$id= $_SESSION['Username'];
 
-$sql = "SELECT * FROM business_cle INNER JOIN residents
-ON business_cle.id = residents.user_ID 
-WHERE residents.user_ID = '".$id."'";
+$sql = "SELECT * FROM users inner join business_cle
+on users.username = business_cle.username
+WHERE residents.user_ID = $id";
 
 $result = mysqli_query($conn,$sql);
-
 $tDate = date("F, Y");
 $dDate=date("j");
 
@@ -51,6 +50,8 @@ if (@file_exists(dirname(__FILE__).'/lang/eng.php'))
 }
 
 $pdf->AddPage();
+
+
 if (mysqli_num_rows($result)>0)
 {
 while ($row = mysqli_fetch_array($result))

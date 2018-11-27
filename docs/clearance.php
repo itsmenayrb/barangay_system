@@ -9,8 +9,7 @@ session_start();
 isset($_SESSION['id']);
 $id= $_SESSION['id'];
 
-$sql = "SELECT * FROM residents INNER JOIN homeaddress
-ON residents.user_ID = homeaddress.id
+$sql = "SELECT * FROM residents
 WHERE residents.user_ID = '".$id."'";
 
 $result = mysqli_query($conn,$sql);
@@ -105,7 +104,7 @@ $pdf->Cell(40,8,'    '.$invoice['Prefix'].' '.$invoice['FirstName'].' '.$invoice
 $pdf->Cell(10,8,$invoice['Age'],0,1,'C');
 $pdf->Cell(0,5,'',0,1);
 $pdf->Cell(45,10,'',0,0);
-$pdf->Cell(72,10,' '.$invoice['lot'].' '.$invoice['street'].' '.$invoice['subdivision'].' '.$invoice['barangay'],0,1);
+$pdf->Cell(72,10,' '.$invoice['Homeaddress'],0,1);
 $pdf->writeHTMLCell(0,0,70,90,$html,0,1,0,true,'',true);
 $html = <<<EOD
 <br>
