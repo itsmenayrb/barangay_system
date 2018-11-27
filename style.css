@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'Quicksand';
+    src: url("./Quicksand-Regular.ttf");
+}
+
 /**
  * Style for the minimum height of the <body> tag
  * @author Renz
