@@ -78,6 +78,8 @@
 		</div>
 	</div>
 </div>
+
+
 <div id="viewRelationship">
 	<div id="viewRelationship-bg-diagonal" class="bg-parallax"></div>
 	<div class="container">
@@ -86,7 +88,7 @@
 				<div id="viewRelationship-content-box">
 					<div id="viewRelationship-content-box-outer">
 						<div id="viewRelationship-content-box-inner">
-							<div class="content-title mb-5">
+							<div class="content-title">
 								<h3>Your sub-accounts</h3>
 							</div>
 							<div id="viewRelationship-desc">
@@ -152,6 +154,89 @@
 		</div>
 	</div>
 </div>
+<!--i insert records of transactions teehee-->
+<div id="requestForm">
+				<div id="requestForm-bg-diagonal" class="bg-parallax"></div>
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+							<div id="requestForm-content-box">
+								<div id="requestForm-content-box-outer">
+									<div id="requestForm-content-box-inner">
+										<div class="content-title mb-5">
+											<h3>Here is the record of your requests.</h3>
+										</div>
+										<div id="viewReq-desc">
+								<table class="table table-hover nowrap" id="appointmentProfileTable">
+									<thead class='thead-light'>
+										<tr>
+											<th> Document </th>
+											<th> Purpose </th>
+											<th> Date </th>
+											<th> Time </th>
+											<th> Status </th>
+											<th> Date Requested </th>
+											<th><i class='fas fa-cogs'></i></th>
+										</tr>
+									</thead>
+										<tr>
+											<?php
+												$appointment_date = "";
+												$appointment_time = "";
+												$current = $_SESSION['Username'];
+
+												$sql = "SELECT * FROM user_req WHERE username = '$current' AND status = 'Pending'";
+												$results = mysqli_query($conn,$sql);
+												$resultsCheck = mysqli_num_rows($results);
+
+												if($resultsCheck < 1){
+													echo "<td colspan='6'>
+															<p class='h4 lead text-center'>
+																Nothing to display.
+															</p>
+														  </td>
+														</tr>
+													</table>";
+												} else { ?>
+													<?php while($row = $results->fetch_assoc()) : ?>
+														<td><?php echo $row['forms']; ?></td>
+														<td><?php echo $row['purpose']; ?></td>
+														<?php
+															$appointment_date = $row['req_date'];
+                            								$appointment_date = new DateTime($appointment_date);
+                            								$appointment_time = $row['req_time'];
+                            								$appointment_time = date('h:i A', strtotime($appointment_time));
+														?>
+														<td><?php echo $appointment_date->format('F-d-y'); ?></td>
+														<td><?php echo $appointment_time; ?></td>
+														<td><?php echo $row['status']; ?></td>
+														<td><?php echo $row['date_requested']; ?></td>
+														<?php
+															echo "<td>
+															<a href='user_req.php?id={$row['id']}' role='button' name='reqBtnEdit' id='reqBtnEdit' data-toggle='tooltip' data-placement='right' title='Edit'>
+																<i class='fas fa-edit text-warning'></i>
+															</a>&nbsp;&nbsp;
+															<a href='user_req.php?del={$row['id']}' role='button' name='reqBtnDel' id='appointmentBtnDel' data-toggle='tooltip' data-placement='right' title='Delete' onClick='return myFunctionReq(this); return false;'>
+																<i class='fas fa-trash text-danger'></i>
+															</a>
+															</td>";
+														?>
+														</tr>
+													<?php endwhile ?>
+													</table>
+												<?php } ?>
+							</div>
+							<div class="viewReq-btn mt-2">
+								<a href="profile.php" class="btn btn-primary btn-primary-design" role="button">Request Forms</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--bop0ls here-->
 <script type="text/javascript">
 	$(document).ready(function(){
 		$('#appointmentProfileTable').DataTable({
@@ -162,8 +247,9 @@
 			"scrollX" : true
 		});
 	});
-	function myFunctionAppointment(f){
-		var r = confirm("Are you sure you want to delete this appointment? \n\nThis process is irreversible.");
+	
+	function myFunctionRelationship(f){
+		var r = confirm("Are you sure you want to delete this sub-account? \n\nThis process is irreversible.");
 		if(r == true){
 			f.submit();
 			return false;
@@ -171,8 +257,19 @@
 			return false;
 		}
 	}
-	function myFunctionRelationship(f){
-		var r = confirm("Are you sure you want to delete this sub-account? \n\nThis process is irreversible.");
+	//x
+	function myFunctionReq(f){
+		var r = confirm("Are you sure you want to delete this request? \n\nThis process is irreversible.");
+		if(r == true){
+			f.submit();
+			return false;
+		} else {
+			return false;
+		}
+	}
+	//D
+	function myFunctionAppointment(f){
+		var r = confirm("Are you sure you want to delete this appointment? \n\nThis process is irreversible.");
 		if(r == true){
 			f.submit();
 			return false;

@@ -296,13 +296,14 @@ CREATE TABLE `user_req` (
   `username` varchar(255) NOT NULL,
   `contact` varchar(255) NOT NULL,
   `purpose` varchar(255) NOT NULL,
+  `forms`   varchar(255) NOT NULL,
   `status` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 /*Data for the table `user_req` */
-insert into `user_req` (`id`,`username`,`contact`,`purpose`,`status`) values 
-(1,'user213','09123456789','iwannadierytnowcuzimhumantrash','Pending');
+insert into `user_req` (`id`,`username`,`contact`,`purpose`,`forms`,`status`) values 
+(1,'user213','09123456789','iwannadierytnowcuzimhumantrash','clearance','Pending');
 /*Table structure for business clearance*/
 
 DROP TABLE IF EXISTS `business_cle`;

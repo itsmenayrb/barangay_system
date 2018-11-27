@@ -17,7 +17,7 @@
 	            </ol>
 	          </div>
 	        </div>
-	      </div><!-- /.container-fluid -->
+	      </div>
     	</section>
     	<p class="text-center display-4"><i class="fas fa-exclamation-triangle text-warning"></i> Oops! Page not found.</p>
     	<p class="text-center h1">
