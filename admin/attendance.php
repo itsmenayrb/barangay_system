@@ -103,6 +103,18 @@
 					<h4 class="card-title">Time Sheet</h4>
 				</div>
 				<div class="card-body p-0">
+						<table border="0" cellspacing="5" cellpadding="5">
+					        <tbody>
+					            <tr>
+					                <td>Minimum Date:</td>
+					                <td><input name="min" id="min" type="text" class="form-control-sm"></td>
+					            </tr>
+					            <tr>
+					                <td>Maximum Date:</td>
+					                <td><input name="max" id="max" type="text" class="form-control-sm"></td>
+					            </tr>
+					        </tbody>
+					    </table>
 						<table id="timesheetTable" class="table table-bordered table-hover nowrap" style="width: 100%;">
 							<thead class="thead-light">
 								<tr>
@@ -203,5 +215,28 @@
         $('#' + $(this).val()).show();
       });
     });
+
+    $(document).ready(function(){
+        $.fn.dataTable.ext.search.push(
+        function (settings, data, dataIndex) {
+            var min = $('#min').datepicker("getDate");
+            var max = $('#max').datepicker("getDate");
+            var startDate = new Date(data[3]);
+            if (min == null && max == null) { return true; }
+            if (min == null && startDate <= max) { return true;}
+            if(max == null && startDate >= min) {return true;}
+            if (startDate <= max && startDate >= min) { return true; }
+            return false;
+        }
+        );
+            $("#min").datepicker({ onSelect: function () { table.draw(); }, changeMonth: true, changeYear: true });
+            $("#max").datepicker({ onSelect: function () { table.draw(); }, changeMonth: true, changeYear: true });
+            var table = $('#timesheetTable').DataTable();
+
+            // Event listener to the two range filtering inputs to redraw on input
+            $('#min, #max').change(function () {
+                table.draw();
+            });
+        });
 </script>
 </html>

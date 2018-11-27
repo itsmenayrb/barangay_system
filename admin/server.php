@@ -794,14 +794,15 @@ in admin site -->
     if(!empty($_GET['accomplished'])){
         $autoID = checkInput($_GET['accomplished']);
         $dateAccomplished = date('Y-m-d');
-        $sql = "UPDATE appointment SET date_accomplished=? WHERE id='$autoID'";
+        $staus = "Accomplished";
+        $sql = "UPDATE appointment SET date_accomplished=?, status=? WHERE id='$autoID'";
         $stmt = mysqli_stmt_init($conn);
 
         if(!mysqli_stmt_prepare($stmt, $sql)){
             array_push($errors, "Something went wrong. Please try again later.");
         }
         else{
-            mysqli_stmt_bind_param($stmt, "s", $dateAccomplished);
+            mysqli_stmt_bind_param($stmt, "ss", $dateAccomplished, $status);
             mysqli_stmt_execute($stmt);
         }
         mysqli_stmt_close($stmt);

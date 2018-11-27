@@ -23,6 +23,7 @@
     <script type="text/javascript" src="../assets/alertifyjs/alertify.min.js"></script>
     <!-- DATATABLES -->
     <link rel="stylesheet" type="text/css" href="../assets/datatables/datatables.min.css">
+    <script type="text/javascript" src="../assets/datatables/range_dates.js"></script>
     <script type="text/javascript" src="../assets/datatables/datatables.min.js"></script>
     <script type="text/javascript" src="../assets/datatables/buttons.print.min.js"></script>
     <script type="text/javascript" src="../assets/datatables/pdfmake.min.js"></script>

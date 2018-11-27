@@ -10,7 +10,6 @@
     $query = "SELECT * FROM complaints WHERE id=$id";
     $result = $conn -> query($query);
     
-
     // Print or redirect
     if($result) {
       $row = $result -> fetch_assoc();
@@ -28,7 +27,7 @@
 
       while($row = $image_result -> fetch_assoc()) {
         $directory = $row['filedirectory'];
-        echo "<img src='../$directory' style='width: 25%'>";
+        echo "<img class='img-fluid' src='../$directory' style='width: 25%'>";
       }
 
       return;

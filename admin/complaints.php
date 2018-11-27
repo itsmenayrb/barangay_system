@@ -5,7 +5,7 @@
 <?php if(!isset($_SESSION['adminPosition'])) :?>
     <?php header("Location: index.php"); ?>
 <?php endif ?>
-<div id="main">
+<main class="col bg-faded py-3">
 	<div class="container">
         <div style="margin-top: 10px;">
 	        <ol class="breadcrumb">
@@ -109,7 +109,7 @@
 																<td class='mailbox-name'><a href='./message.display.php?complaint=$id'>$subject</a></td>
 																<td class='mailbox-subject'>$message</td>
 																<td class='mailbox-attachment'></td>
-																<td class='mailbox-date'>1 min ago</td>
+																<td class='mailbox-date'>&nbsp;</td>
 															</tr>
 														";
 														echo $template;
@@ -126,4 +126,4 @@
 			</div>
 		</section>
 	</div>
-</div>
+</main>

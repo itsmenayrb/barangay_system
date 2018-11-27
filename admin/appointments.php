@@ -28,6 +28,7 @@
                                         </div>
                                         <div class="card-body">
                                             <div class='table-responsive'>
+                                                
                                             <table class="table table-sm table-hover nowrap" id="appointmentRequestTable">
                                                 <thead class="thead-light">
                                                     <tr>
@@ -80,6 +81,8 @@
                                                                     echo "Appointment Deleted";
                                                                 } elseif ($row['status'] == 'Accepted') {
                                                                     echo "Appointment Accepted";
+                                                                } elseif ($row['status'] == "Accomplished"){
+                                                                    echo "Accomplished";
                                                                 } else {
                                                                     echo "Appointment Declined";
                                                                 }
@@ -137,7 +140,17 @@
 <?php } ?>
 </body>
 <script type="text/javascript">
-    $("#appointmentRequestTable").DataTable();
+    $("#appointmentRequestTable").DataTable({
+        "scrollX" : true,
+        "pagingType": "full_numbers",
+        dom: 'Bfrtip',
+        buttons : [
+            { extend: 'pdf' , className: 'form-control btn btn-primary'},
+            { extend: 'print', className: 'form-control btn btn-info'},
+            { extend: 'excel', className: 'form-control btn btn-primary' },
+            { extend: 'copy', className: 'form-control btn btn-info'}
+        ]
+    });
     function myFunctionAcceptAppointment(f){
         var r = confirm("Accept this appointment?");
 

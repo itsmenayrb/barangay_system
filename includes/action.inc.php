@@ -62,7 +62,7 @@ if (isset($_POST['submit'])) {
   $telephonenumber = checkInput($_POST['telephonenumber']);
   $cellphonenumber = checkInput($_POST['cellphonenumber']);
 
-  $address = $block . " " .$street . " " .$subdivision . " Barangay Salitran II, Dasmariñas City, Cavite, Philippines, 4114. ";
+  $address = $block . " " .$street . " " .$subdivision . " Barangay Salitran II, Dasmariñas City.";
 
   $dateCreated = date('Y-m-d');
 
