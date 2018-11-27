@@ -45,6 +45,8 @@ in admin site -->
     $appointmentTime = "";
     $appointmentPurpose = "";
 
+    $reasonAppointmentDecline = "";
+
     // REGISTRATION
     // REGISTRATION
     // REGISTRATION
@@ -806,4 +808,79 @@ in admin site -->
         mysqli_close($conn);
         header("Location: appointments.php");
         exit();
+    }
+
+    if(isset($_POST['declineAppointmentBtn'])){
+        $reasonAppointmentDecline = checkInput($_POST['reasonAppointmentDecline']);
+        $hiddenIdDeclineAppointment = checkInput($_POST['hiddenIdDeclineAppointment']);
+        $status = "Declined";
+
+        $sql = "SELECT * FROM appointment WHERE id = '$hiddenIdDeclineAppointment'";
+        $results = mysqli_query($conn, $sql);
+        $resultsCheck = mysqli_num_rows($results);
+
+        if($resultsCheck < 1){
+            echo "<script>alert('Something went wrong.');</script>";
+            exit();
+        } else {
+            while($row = $results->fetch_assoc()){
+
+                require '../includes/PHPMailer-5.2-stable/PHPMailerAutoload.php';
+
+                  $mail = new PHPMailer;
+                  $mail->isSMTP();                                      // Set mailer to use SMTP
+                  $mail->Host = 'smtp.gmail.com';             // Specify main and backup SMTP servers
+                  $mail->SMTPAuth = true;                               // Enable SMTP authentication
+                  $mail->Username = 'service.salitrandos@gmail.com';                 // SMTP username
+                  $mail->Password = 'p@ssphr@s3';                           // SMTP password
+                  $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+                  $mail->Port = 587;                                    // TCP port to connect to
+
+                  $mail->setFrom('service.salitrandos@gmail.com', 'Barangay Salitran II');
+                  $mail->addAddress($row['email']);     // Add a recipient
+
+                  $mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
+                  $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
+                  $mail->isHTML(true);                                  // Set email format to HTML
+
+                  $mail->Subject = 'Appointment Request';
+                  $mail->Body    = "
+                      Hi, <br><br>
+                      Your requested appointment on ".$row['appointment_date'].", ".$row['appointment_time']." to ".$row['purpose']." has been declined due to ".$reasonAppointmentDecline.".<br><br>
+
+                    If you think that this is a mistake. Please contact us at 0912-345-6789 or reply to this email.<br><br>
+                      Best Regards,<br>
+                      Administrator
+                  ";
+                  $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+                  if(!$mail->send()) {
+                      echo 'Message could not be sent.';
+                      echo 'Mailer Error: ' . $mail->ErrorInfo;
+                  } else {
+                     
+                  }
+
+                    $sql = "UPDATE appointment SET status=? WHERE id='$hiddenIdDeclineAppointment'";
+                    $stmt = mysqli_stmt_init($conn);
+
+                    if($resultsCheck < 1){
+                        echo "<script>alert('Something went wrong.');</script>";
+                        exit();
+                    } else {
+                        if(!mysqli_stmt_prepare($stmt, $sql)){
+                            array_push($errors, "Something went wrong. Please try again later.");
+                        }
+                        else{
+                            mysqli_stmt_bind_param($stmt, "s", $status);
+                            mysqli_stmt_execute($stmt);
+                        }
+                        mysqli_stmt_close($stmt);
+                        mysqli_close($conn);
+                        header("Location: appointments.php");
+                    }
+            }
+
+        }
+
     }

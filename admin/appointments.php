@@ -73,8 +73,9 @@
                                                                     role='button' name='acceptAppointmentBtn' id='acceptAppointmentBtn' data-toggle='tooltip' data-placement='right' title='Accept' onClick='return myFunctionAcceptAppointment(this); return false;'>
                                                                         Accept</a>";
                                                                     echo "<a href='appointments.php?decline={$row['id']}' class='btn-sm btn-danger'
-                                                                    role='button' title='Decline' onClick='return myFunctionDeclineAppointment(this); return false;'>Decline</a>";
+                                                                    role='button' title='Decline' data-toggle='modal' data-target='#exampleModal' id='exampleId' data-id='".$row['id']."'>Decline</a>";
                                                                     echo "</td>";
+
                                                                 } elseif ($row['status'] == 'Deleted'){
                                                                     echo "Appointment Deleted";
                                                                 } elseif ($row['status'] == 'Accepted') {
@@ -105,6 +106,28 @@
                                 </div>
                             </div>
                         </main>
+                        <div class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <form method="post" action="appointments.php">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Reason:</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <div class="modal-body">
+                                    <input type="hidden" id="hiddenValue" name="hiddenIdDeclineAppointment" value=""/>
+                                    <textarea name="reasonAppointmentDecline" cols="50" rows="2" class="form-control"></textarea>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <input type="submit" class="btn btn-danger" name="declineAppointmentBtn" value="Decline">
+                                  </div>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
                     </div>
                 </div>
             <?php } else { ?>
@@ -135,17 +158,12 @@
             return false;
         }
     }
-    function myFunctionDeclineAppointment(f){
-        var r = alertify.prompt("Declining...", "Reason: ", ""
-            , function(evt, value) { alertify.success("Success!")}
-            , function () { alertify.error('Cancelled') });
 
-        if(r==true){
-            f.submit();
-            return false;
-        } else {
-            return false;
-        }
-    }
+    $(function () {
+        $("#exampleId").click(function () {
+            var my_id_value = $(this).data('id');
+            $(".modal-body #hiddenValue").val(my_id_value);
+        })
+    });
 </script>
 </html>
