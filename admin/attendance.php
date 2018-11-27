@@ -2,7 +2,7 @@
 -- Display over all data regarding to attendance
 -- such as timesheet for time-in, time-out, etc -->
 <?php include 'header.php'; ?>
-<?php if(!isset($_SESSION['Position'])) :?> <!-- If user is not logged in -->
+<?php if(!isset($_SESSION['adminPosition'])) :?> <!-- If user is not logged in -->
     <?php header("Location: index.php"); ?>
 <?php endif ?>
 <!-- navigation -->

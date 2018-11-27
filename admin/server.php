@@ -33,6 +33,8 @@ in admin site -->
     $officialOut = '17:00:00';
     $date = date('Y-m-d');
 
+    $interval = "";
+
     $status = "";
     $appointmentId = "";
     $appointmentUsername = "";
@@ -40,8 +42,6 @@ in admin site -->
     $appointmentDate = "";
     $appointmentTime = "";
     $appointmentPurpose = "";
-
-    use PHPMailer\PHPMailer\PHPMailer;
 
     // REGISTRATION
     // REGISTRATION
@@ -60,16 +60,16 @@ in admin site -->
         $email = checkInput($_POST['admin-email']);
         $password = checkInput($_POST['admin-password']);
 
-        $sql=$conn->prepare("SELECT Username,Email,Position FROM employee WHERE Username=? OR Email=? OR Position=?");
+        $sql=$conn->prepare("SELECT adminUsername,adminEmail,Position FROM employee WHERE adminUsername=? OR adminEmail=? OR Position=?");
         $sql->bind_param("sss",$username,$email,$position);
         $sql->execute();
         $result=$sql->get_result();
         $row=$result->fetch_array(MYSQLI_ASSOC);
 
-        if($row['Username'] == $username){
+        if($row['adminUsername'] == $username){
             array_push($errors, "Username is already used.");
         }
-        if($row['Email'] == $email){
+        if($row['adminEmail'] == $email){
             array_push($errors, "Email is already used.");
         }
         if (!preg_match("/^[a-zA-Z0-9]{5,}$/" , $username)){
@@ -101,7 +101,7 @@ in admin site -->
                         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
                         $conn->beginTransaction();
-                        $conn->exec("INSERT INTO employee (Prefix, FirstName, MiddleName, LastName, Suffix, Position, Username, Email, Password, Status) VALUES
+                        $conn->exec("INSERT INTO employee (Prefix, FirstName, MiddleName, LastName, Suffix, Position, adminUsername, adminEmail, adminPassword, Status) VALUES
                         ('$prefix','$fname','$mname','$lname','$suffix','$position','$username','$email','$hashedPassword','$status')");
 
                         $conn->commit();
@@ -135,7 +135,7 @@ in admin site -->
                         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
                         $conn->beginTransaction();
-                        $conn->exec("INSERT INTO employee (Prefix, FirstName, MiddleName, LastName, Suffix, Position, Username, Email, Password, Status) VALUES
+                        $conn->exec("INSERT INTO employee (Prefix, FirstName, MiddleName, LastName, Suffix, Position, adminUsername, adminEmail, adminPassword, Status) VALUES
                         ('$prefix','$fname','$mname','$lname','$suffix','$position','$username','$email','$hashedPassword','$status')");
 
                         $conn->commit();
@@ -169,7 +169,7 @@ in admin site -->
                         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
                         $conn->beginTransaction();
-                        $conn->exec("INSERT INTO employee (Prefix, FirstName, MiddleName, LastName, Suffix, Position, Username, Email, Password, Status) VALUES
+                        $conn->exec("INSERT INTO employee (Prefix, FirstName, MiddleName, LastName, Suffix, Position, adminUsername, adminEmail, adminPassword, Status) VALUES
                         ('$prefix','$fname','$mname','$lname','$suffix','$position','$username','$email','$hashedPassword','$status')");
 
                         $conn->commit();
@@ -203,7 +203,7 @@ in admin site -->
                         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
                         $conn->beginTransaction();
-                        $conn->exec("INSERT INTO employee (Prefix, FirstName, MiddleName, LastName, Suffix, Position, Username, Email, Password, Status) VALUES
+                        $conn->exec("INSERT INTO employee (Prefix, FirstName, MiddleName, LastName, Suffix, Position, adminUsername, adminEmail, adminPassword, Status) VALUES
                         ('$prefix','$fname','$mname','$lname','$suffix','$position','$username','$email','$hashedPassword','$status')");
 
                         $conn->commit();
@@ -237,7 +237,7 @@ in admin site -->
                         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
                         $conn->beginTransaction();
-                        $conn->exec("INSERT INTO employee (Prefix, FirstName, MiddleName, LastName, Suffix, Position, Username, Email, Password, Status) VALUES
+                        $conn->exec("INSERT INTO employee (Prefix, FirstName, MiddleName, LastName, Suffix, Position, adminUsername, adminEmail, adminPassword, Status) VALUES
                         ('$prefix','$fname','$mname','$lname','$suffix','$position','$username','$email','$hashedPassword','$status')");
 
                         $conn->commit();
@@ -271,7 +271,7 @@ in admin site -->
                         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
                         $conn->beginTransaction();
-                        $conn->exec("INSERT INTO employee (Prefix, FirstName, MiddleName, LastName, Suffix, Position, Username, Email, Password, Status) VALUES
+                        $conn->exec("INSERT INTO employee (Prefix, FirstName, MiddleName, LastName, Suffix, Position, adminUsername, adminEmail, adminPassword, Status) VALUES
                         ('$prefix','$fname','$mname','$lname','$suffix','$position','$username','$email','$hashedPassword','$status')");
 
                         $conn->commit();
@@ -305,7 +305,7 @@ in admin site -->
                         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
                         $conn->beginTransaction();
-                        $conn->exec("INSERT INTO employee (Prefix, FirstName, MiddleName, LastName, Suffix, Position, Username, Email, Password, Status) VALUES
+                        $conn->exec("INSERT INTO employee (Prefix, FirstName, MiddleName, LastName, Suffix, Position, adminUsername, adminEmail, adminPassword, Status) VALUES
                         ('$prefix','$fname','$mname','$lname','$suffix','$position','$username','$email','$hashedPassword','$status')");
 
                         $conn->commit();
@@ -339,7 +339,7 @@ in admin site -->
                         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
                         $conn->beginTransaction();
-                        $conn->exec("INSERT INTO employee (Prefix, FirstName, MiddleName, LastName, Suffix, Position, Username, Email, Password, Status) VALUES
+                        $conn->exec("INSERT INTO employee (Prefix, FirstName, MiddleName, LastName, Suffix, Position, adminUsername, adminEmail, adminPassword, Status) VALUES
                         ('$prefix','$fname','$mname','$lname','$suffix','$position','$username','$email','$hashedPassword','$status')");
 
                         $conn->commit();
@@ -373,7 +373,7 @@ in admin site -->
                         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
                         $conn->beginTransaction();
-                        $conn->exec("INSERT INTO employee (Prefix, FirstName, MiddleName, LastName, Suffix, Position, Username, Email, Password, Status) VALUES
+                        $conn->exec("INSERT INTO employee (Prefix, FirstName, MiddleName, LastName, Suffix, Position, adminUsername, adminEmail, adminPassword, Status) VALUES
                         ('$prefix','$fname','$mname','$lname','$suffix','$position','$username','$email','$hashedPassword','$status')");
 
                         $conn->commit();
@@ -407,7 +407,7 @@ in admin site -->
                         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
                         $conn->beginTransaction();
-                        $conn->exec("INSERT INTO employee (Prefix, FirstName, MiddleName, LastName, Suffix, Position, Username, Email, Password, Status) VALUES
+                        $conn->exec("INSERT INTO employee (Prefix, FirstName, MiddleName, LastName, Suffix, Position, adminUsername, adminEmail, adminPassword, Status) VALUES
                         ('$prefix','$fname','$mname','$lname','$suffix','$position','$username','$email','$hashedPassword','$status')");
 
                         $conn->commit();
@@ -431,7 +431,7 @@ in admin site -->
         $Username = checkInput($_POST['admin-username']);
         $Password = checkInput($_POST['admin-password']);
 
-        $sql = "SELECT * FROM employee WHERE Username='$Username' OR Email='$Username'";
+        $sql = "SELECT * FROM employee WHERE adminUsername='$Username' OR adminEmail='$Username'";
         $results = mysqli_query($conn, $sql);
         $resultsCheck = mysqli_num_rows($results);
 
@@ -441,17 +441,15 @@ in admin site -->
         else{
             if ($row = mysqli_fetch_assoc($results)) {
                 //De-hashing the password
-                $hashedPasswordCheck = password_verify($Password, $row['Password']);
+                $hashedPasswordCheck = password_verify($Password, $row['adminPassword']);
                 if ($hashedPasswordCheck == false) {
                     array_push($errors, "Incorrect username or password.");
                 }
                 elseif ($hashedPasswordCheck == true) {
                     //Log in the user here
-                    $_SESSION['Username'] = $row['Username'];
-                    $_SESSION['id'] = $row['id'];
-                    $_SESSION['Email'] = $row['Email'];
-                    $_SESSION['Position'] = $row['Position'];
-                    header("Location: dashboard.php");
+                    $_SESSION['adminPosition'] = $row['Position'];
+                    $_SESSION['adminUsername'] = $row['adminUsername'];
+                     header("Location: dashboard.php");
                     exit();
                 }
             }
@@ -560,10 +558,23 @@ in admin site -->
                 }
             }
             else {
+                $timeIn = $row['time_in'];
                 $timeOut = date('h:i:sa');
 
-                if(str_replace(':','',$officialOut) > $timeOut){
-                    echo "orayt";
+                $interval = get_time_difference($timeIn, $timeOut);
+
+                function get_time_difference($timeIn, $timeOut){
+                    $timeIn = strtotime($timeIn);
+                    $timeOut = strtotime($timeOut);
+
+                    if ($timeOut < $timeIn){
+                        $timeOut = $timeOut + 86400;
+                    }
+                    return ($timeOut - $timeIn) / 3600;
+                }
+
+                if($interval <> NULL ){
+                    echo "<script>alert('".$interval."');</script>";
                 }
                 else{
                     $sql = "UPDATE attendance SET time_out=? WHERE employee_id = '$employeeNumber' AND dateofyear = '$date'";
@@ -705,43 +716,55 @@ in admin site -->
     }
 
     //If admin accepted the appointment
-    if (isset($_POST['acceptAppointmentBtn'])) {
-        $appointmentEmail = checkInput($_POST['appointmentEmail']);
-        $appointmentId = checkInput($_POST['appointmentId']);
-        $appointmentUsername = checkInput($_POST['appointmentUsername']);
-        $appointmentDate = checkInput($_POST['appointmentDate']);
-        $appointmentTime = checkInput($_POST['appointmentTime']);
-        $appointmentPurpose = checkInput($_POST['appointmentPurpose']);
-
-        $sql = "SELECT * FROM appointment WHERE id='$appointmentId' AND username='$appointmentUsername'";
+    if (!empty($_GET['accept'])) {
+        $acceptId = checkInput($_GET['accept']);
+        $sql = "SELECT * FROM appointment WHERE id='$acceptId'";
         $results = mysqli_query($conn, $sql);
         $resultsCheck = mysqli_num_rows($results);
 
         if($resultsCheck > 0){
-            $status = "Accepted";
+            if($row = $results->fetch_assoc()){
 
-            require_once "../includes/PHPMailer/PHPMailer.php";
-            require_once "../includes/PHPMailer/Exception.php";
+                $status = "Accepted";
 
-            $mail = new PHPMailer();
-            $mail->addAddress($email);
-            $mail->setFrom("yourhelpdesk@salitrandos.x10host.com" , "Reset Password");
-            $mail->Subject = "Reset Password";
-            $mail->isHTML(true);
-            $mail->Body = "
-              Hi, <br><br>
-              Your request for appointment on $appointmentDate, $appointmentTime to $appointmentPurpose has been approved.<br>
-              If you have further questions, do not hesitate to contact us.<br><br>
-              Thank you,<br>
-              Administrator";
+                require '../includes/PHPMailer-5.2-stable/PHPMailerAutoload.php';
 
-            if($mail->send()){
-                echo "<script>alert('Message sent!');</script>";
-            } else {
-                echo "<script>alert('Message sending failed');</script>";
+                $mail = new PHPMailer;
+                $mail->isSMTP();                                      // Set mailer to use SMTP
+                $mail->Host = 'smtp.gmail.com';             // Specify main and backup SMTP servers
+                $mail->SMTPAuth = true;                               // Enable SMTP authentication
+                $mail->Username = 'service.salitrandos@gmail.com';                 // SMTP username
+                $mail->Password = 'p@ssphr@s3';                           // SMTP password
+                $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+                $mail->Port = 587;                                    // TCP port to connect to
+
+                $mail->setFrom('service.salitrandos@gmail.com', 'Barangay Salitran II');
+                $mail->addAddress($row['email']);     // Add a recipient
+
+                $mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
+                $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
+                $mail->isHTML(true);
+
+                $mail->Subject = 'Appointment Request';
+                $mail->Body    = "
+                      Good day! <br><br>
+                      Your request for appointment on ".$row['appointment_date'].", ".$row['appointment_time']." has been approved.<br><br>
+                      If you have further questions. Do not hesitate to contact us.<br><br>
+                      Thank you.
+                      <br>
+                      Administrator
+                  ";
+                $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+                if(!$mail->send()) {
+                    echo 'Message could not be sent.';
+                    echo 'Mailer Error: ' . $mail->ErrorInfo;
+                } else {
+                    echo "<script type='text'/javascript>alert('Message sent!');";
+                }
             }
 
-            $sql = "UPDATE appointment SET status=? WHERE id='$appointmentId' AND username='$appointmentUsername'";
+            $sql = "UPDATE appointment SET status=? WHERE id='$acceptId'";
             $stmt = mysqli_stmt_init($conn);
 
             if(!mysqli_stmt_prepare($stmt, $sql)){
@@ -753,7 +776,27 @@ in admin site -->
             }
             mysqli_stmt_close($stmt);
             mysqli_close($conn);
+            header("Location: appointments.php");
         } else {
             array_push($errors, "There is nothing to accept.");
         }
+    }
+
+    if(!empty($_GET['accomplished'])){
+        $autoID = checkInput($_GET['accomplished']);
+        $dateAccomplished = date('Y-m-d');
+        $sql = "UPDATE appointment SET date_accomplished=? WHERE id='$autoID'";
+        $stmt = mysqli_stmt_init($conn);
+
+        if(!mysqli_stmt_prepare($stmt, $sql)){
+            array_push($errors, "Something went wrong. Please try again later.");
+        }
+        else{
+            mysqli_stmt_bind_param($stmt, "s", $dateAccomplished);
+            mysqli_stmt_execute($stmt);
+        }
+        mysqli_stmt_close($stmt);
+        mysqli_close($conn);
+        header("Location: appointments.php");
+        exit();
     }

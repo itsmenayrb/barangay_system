@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<!-- saved from url=(0055)http://localhost/barangay_system/admin/appointments.php -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Administrator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="http://localhost/barangay_system/img/favicon.ico">
+    <!-- BOOTSTRAP, js AND CSS SCRIPT -->
+    <script type="text/javascript" src="./Administrator_files/jquery-3.3.1.min.js.download"></script>
+    <script type="text/javascript" src="./Administrator_files/jquery.validate.min.js.download"></script>
+    <link rel="stylesheet" type="text/css" href="./Administrator_files/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="./Administrator_files/jquery-ui.css">
+    <script type="text/javascript" src="./Administrator_files/bootstrap.min.js.download"></script>
+    <script type="text/javascript" src="./Administrator_files/jquery-ui.js.download"></script>
+    <!-- DATATABLES -->
+    <link rel="stylesheet" type="text/css" href="./Administrator_files/datatables.min.css">
+    <script type="text/javascript" src="./Administrator_files/datatables.min.js.download"></script>
+    <script type="text/javascript" src="./Administrator_files/buttons.print.min.js.download"></script>
+    <script type="text/javascript" src="./Administrator_files/pdfmake.min.js.download"></script>
+    <script type="text/javascript" src="./Administrator_files/jszip.min.js.download"></script>
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet" href="./Administrator_files/all.min.css">
+    <link rel="stylesheet" type="text/css" href="./Administrator_files/style.css">
+    <!-- END OF BOOSTRAP AND CSS SCRIPT -->
+</head>
+<body class="modal-open">
+            <div class="container-fluid">
+            <div class="row wrapper">
+                <aside class="col-12 col-sm-3 p-0 bg-dark">
+                    <nav class="navbar navbar-expand-sm navbar-dark bg-dark align-items-start flex-sm-column flex-row">
+                        <a class="navbar-brand" href="http://localhost/barangay_system/admin/appointments.php#"><img src="./Administrator_files/logo.circle.brand.png" width="30" height="30" alt=""> Barangay Salitran II</a>
+                        <a href="http://localhost/barangay_system/admin/appointments.php" class="navbar-toggler" data-toggle="collapse" data-target=".sidebar">
+                            <span class="navbar-toggler-icon"></span>
+                        </a>
+                        <div class="collapse navbar-collapse sidebar">
+                            <ul class="flex-column navbar-nav w-100 justify-content-between">
+                                <p class="lead text-light pl-0">You are signed-in as <a href="http://localhost/barangay_system/admin/appointments.php#" class="btn-link">bryan</a></p>
+                                <img src="./Administrator_files/profile-photo-png.png" class="offset-4 offset-sm-0 offset-lg-4 offset-md-4" width="120" height="120">
+                                <small class="form-text text-muted offset-4 offset-md-4 mb-4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Administrator</small>
+                                <li class="nav-item">
+                                    <a class="nav-link pl-0" href="http://localhost/barangay_system/admin/dashboard.php"><i class="fa fa-home fa-fw"></i> Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link pl-0" href="http://localhost/barangay_system/admin/appointments.php"><i class="fa fa-calendar-check fa-fw"></i> Appointments</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link pl-0" href="http://localhost/barangay_system/admin/message.php"><i class="fa fa-envelope fa-fw"></i> Messages</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link pl-0" href="http://localhost/barangay_system/admin/members.php"><i class="fa fa-user fa-fw"></i> Members</a>
+                                </li>
+                                <li class="nav-item mb-3">
+                                    <a class="nav-link pl-0" href="http://localhost/barangay_system/admin/user_req.php"><i class="fa fa-question fa-fw"></i> User Requests</a>
+                                </li>
+                                <div class="dropdown-divider" style="width: 100%; margin: 0 auto;"></div>
+                                <li class="nav-item">
+                                    <a class="nav-link pl-0" href="http://localhost/barangay_system/admin/attendance.php"><i class="fa fa-user-check fa-fw"></i> Attendance</a>
+                                </li>
+                                <div class="dropdown-divider mb-3" style="width: 100%; margin: 0 auto;"></div>
+                                <li class="nav-item">
+                                    <a class="nav-link pl-0" href="http://localhost/barangay_system/admin/signout.php"><i class="fa fa-sign-out-alt fa-fw"></i> Sign Out</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </aside>
+                         <!--NAVIGATION -->
+                        <main class="col bg-faded py-3">
+                            <div>
+                                <ol class="breadcrumb">
+                                  <li class="breadcrumb-item"><a href="http://localhost/barangay_system/admin/dashboard.php">Home</a></li>
+                                  <li class="breadcrumb-item active">Appointments</li>
+                                </ol>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="card rounded-0">
+                                        <div class="card-header alert-success">
+                                            <p class="lead">Appointment Request</p>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="table-responsive">
+                                            <div id="appointmentRequestTable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer"><div class="row"><div class="col-sm-12 col-md-6"><div class="dataTables_length" id="appointmentRequestTable_length"><label>Show <select name="appointmentRequestTable_length" aria-controls="appointmentRequestTable" class="custom-select custom-select-sm form-control form-control-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label></div></div><div class="col-sm-12 col-md-6"><div id="appointmentRequestTable_filter" class="dataTables_filter"><label>Search:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="appointmentRequestTable"></label></div></div></div><div class="row"><div class="col-sm-12"><table class="table table-sm table-hover nowrap dataTable no-footer" id="appointmentRequestTable" role="grid" aria-describedby="appointmentRequestTable_info">
+                                                <thead class="thead-light">
+                                                    <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="appointmentRequestTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label=": activate to sort column descending" style="width: 13.2031px;"><input type="checkbox" class="custom-control custom-checkbox" name="checkboxAppointmentAll"></th><th class="sorting" tabindex="0" aria-controls="appointmentRequestTable" rowspan="1" colspan="1" aria-label="No.: activate to sort column ascending" style="width: 27.2031px;">No.</th><th class="sorting" tabindex="0" aria-controls="appointmentRequestTable" rowspan="1" colspan="1" aria-label="Username: activate to sort column ascending" style="width: 76.2031px;">Username</th><th class="sorting" tabindex="0" aria-controls="appointmentRequestTable" rowspan="1" colspan="1" aria-label="Fullname: activate to sort column ascending" style="width: 87.2031px;">Fullname</th><th class="sorting" tabindex="0" aria-controls="appointmentRequestTable" rowspan="1" colspan="1" aria-label="Contact Number: activate to sort column ascending" style="width: 125.203px;">Contact Number</th><th class="sorting" tabindex="0" aria-controls="appointmentRequestTable" rowspan="1" colspan="1" aria-label="Appointment Date: activate to sort column ascending" style="width: 140.203px;">Appointment Date</th><th class="sorting" tabindex="0" aria-controls="appointmentRequestTable" rowspan="1" colspan="1" aria-label="Appointment Time: activate to sort column ascending" style="width: 142.203px;">Appointment Time</th><th class="sorting" tabindex="0" aria-controls="appointmentRequestTable" rowspan="1" colspan="1" aria-label="Purpose: activate to sort column ascending" style="width: 124.203px;">Purpose</th><th class="sorting" tabindex="0" aria-controls="appointmentRequestTable" rowspan="1" colspan="1" aria-label="Date Requested: activate to sort column ascending" style="width: 119.203px;">Date Requested</th><th class="sorting" tabindex="0" aria-controls="appointmentRequestTable" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending" style="width: 51.2031px;">Status</th><th class="sorting" tabindex="0" aria-controls="appointmentRequestTable" rowspan="1" colspan="1" aria-label=": activate to sort column ascending" style="width: 149.203px;"><i class="fas fa-cogs"></i></th><th class="sorting" tabindex="0" aria-controls="appointmentRequestTable" rowspan="1" colspan="1" aria-label="Date Accomplished: activate to sort column ascending" style="width: 145.203px;">Date Accomplished</th></tr>
+                                                </thead>
+                                                <tbody><tr role="row" class="odd">
+                                                    <td class="sorting_1"><input type="checkbox" class="custom-control custom-checkbox" name="checkboxAppointment"></td><td>1</td><td>bryan</td><td>Bryan Balaga</td><td>09878787785</td><td>November-30-18</td><td>08:00 AM</td><td>ole</td><td>2018-11-18</td><td>Accepted</td><td>Appointment Accepted</td><td>2018-11-27</td></tr><tr role="row" class="even"><td class="sorting_1"><input type="checkbox" class="custom-control custom-checkbox" name="checkboxAppointment"></td><td>2</td><td>bryan</td><td>Apple Rose</td><td>32131231231</td><td>November-30-18</td><td>12:00 PM</td><td>Financial Assistance</td><td>2018-11-27</td><td>Deleted</td><td>Appointment Deleted</td><td>2018-11-27</td></tr><tr role="row" class="odd"><td class="sorting_1"><input type="checkbox" class="custom-control custom-checkbox" name="checkboxAppointment"></td><td>3</td><td>bryan</td><td>asdasd</td><td>12312321312</td><td>November-30-18</td><td>01:00 PM</td><td>123213123</td><td>2018-11-27</td><td>Deleted</td><td>Appointment Deleted</td><td>2018-11-27</td></tr><tr role="row" class="even"><td class="sorting_1"><input type="checkbox" class="custom-control custom-checkbox" name="checkboxAppointment"></td><td>4</td><td>bryan</td><td>Bryan Balaga</td><td>09809809888</td><td>November-30-18</td><td>02:00 PM</td><td>Financial assistance</td><td>2018-11-27</td><td>Accepted</td><td>Appointment Accepted</td><td><a href="http://localhost/barangay_system/admin/appointments.php?accomplished=4" role="button" name="accomplishedBtn" id="accomplishedBtnDel" data-toggle="tooltip" data-placement="right" title="Accomplished" onclick="return myFunctionAccomplished(this); return false;">
+                                                                                <i class="fa fa-check text-success float-right fa-fw"></i>
+                                                                            </a></td></tr><tr role="row" class="odd"><td class="sorting_1"><input type="checkbox" class="custom-control custom-checkbox" name="checkboxAppointment"></td><td>5</td><td>bryan</td><td>Bryan Balaga</td><td>09123123213</td><td>December-27-18</td><td>08:00 AM</td><td>Financial Assistance</td><td>2018-11-27</td><td>Accepted</td><td>Appointment Accepted</td><td><a href="http://localhost/barangay_system/admin/appointments.php?accomplished=5" role="button" name="accomplishedBtn" id="accomplishedBtnDel" data-toggle="tooltip" data-placement="right" title="Accomplished" onclick="return myFunctionAccomplished(this); return false;">
+                                                                                <i class="fa fa-check text-success float-right fa-fw"></i>
+                                                                            </a></td></tr><tr role="row" class="even"><td class="sorting_1"><input type="checkbox" class="custom-control custom-checkbox" name="checkboxAppointment"></td><td>6</td><td>bryan</td><td>Paul Camerino</td><td>09988878777</td><td>January-01-70</td><td>04:00 PM</td><td>Libreng tuli</td><td>2018-11-27</td><td>Accepted</td><td>Appointment Accepted</td><td><a href="http://localhost/barangay_system/admin/appointments.php?accomplished=6" role="button" name="accomplishedBtn" id="accomplishedBtnDel" data-toggle="tooltip" data-placement="right" title="Accomplished" onclick="return myFunctionAccomplished(this); return false;">
+                                                                                <i class="fa fa-check text-success float-right fa-fw"></i>
+                                                                            </a></td></tr><tr role="row" class="odd"><td class="sorting_1"><input type="checkbox" class="custom-control custom-checkbox" name="checkboxAppointment"></td><td>7</td><td>bryan</td><td>Emman</td><td>01231312312</td><td>January-01-70</td><td>02:00 PM</td><td>Libreng tuli</td><td>2018-11-27</td><td>Accepted</td><td>Appointment Accepted</td><td><a href="http://localhost/barangay_system/admin/appointments.php?accomplished=7" role="button" name="accomplishedBtn" id="accomplishedBtnDel" data-toggle="tooltip" data-placement="right" title="Accomplished" onclick="return myFunctionAccomplished(this); return false;">
+                                                                                <i class="fa fa-check text-success float-right fa-fw"></i>
+                                                                            </a></td></tr><tr role="row" class="even"><td class="sorting_1"><input type="checkbox" class="custom-control custom-checkbox" name="checkboxAppointment"></td><td>8</td><td>bryan</td><td>Emmanuel</td><td>09988787877</td><td>January-01-70</td><td>11:00 AM</td><td>Libreng kasal</td><td>2018-11-27</td><td>Accepted</td><td>Appointment Accepted</td><td><a href="http://localhost/barangay_system/admin/appointments.php?accomplished=8" role="button" name="accomplishedBtn" id="accomplishedBtnDel" data-toggle="tooltip" data-placement="right" title="Accomplished" onclick="return myFunctionAccomplished(this); return false;">
+                                                                                <i class="fa fa-check text-success float-right fa-fw"></i>
+                                                                            </a></td></tr><tr role="row" class="odd"><td class="sorting_1"><input type="checkbox" class="custom-control custom-checkbox" name="checkboxAppointment"></td><td>9</td><td>bryan</td><td>Jeric</td><td>01231231312</td><td>January-01-70</td><td>10:00 AM</td><td>Libreng kain</td><td>2018-11-27</td><td>Accepted</td><td>Appointment Accepted</td><td><a href="http://localhost/barangay_system/admin/appointments.php?accomplished=9" role="button" name="accomplishedBtn" id="accomplishedBtnDel" data-toggle="tooltip" data-placement="right" title="Accomplished" onclick="return myFunctionAccomplished(this); return false;">
+                                                                                <i class="fa fa-check text-success float-right fa-fw"></i>
+                                                                            </a></td></tr><tr role="row" class="even"><td class="sorting_1"><input type="checkbox" class="custom-control custom-checkbox" name="checkboxAppointment"></td><td>10</td><td>bryan</td><td>Diana Galang</td><td>01231231312</td><td>January-01-70</td><td>08:00 AM</td><td>Libreng kain</td><td>2018-11-27</td><td>Pending</td><td><a href="http://localhost/barangay_system/admin/appointments.php?accept=10" class="btn-sm btn-primary" role="button" name="acceptAppointmentBtn" id="acceptAppointmentBtn" data-toggle="tooltip" data-placement="right" title="Accept" onclick="return myFunctionAcceptAppointment(this); return false;">
+                                                                        Accept</a><a href="http://localhost/barangay_system/admin/appointments.php?decline=10" class="btn-sm btn-danger" role="button" data-toggle="modal" data-target="#appointmentModal" data-placement="right" title="Decline">Decline</a>                                                                    <div class="modal fade show" style="z-index: 3; display: block; padding-left: 17px;" tabindex="-1" id="appointmentModal" role="dialog">
+                                                                        <div class="modal-dialog" role="document">
+                                                                            <div class="modal-content">
+                                                                                <div class="modal-header">
+                                                                                    <h4 class="modal-title">Reason:</h4>
+                                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                        <span aria-hidden="true">×</span>
+                                                                                    </button>
+                                                                                </div>
+                                                                                <div class="modal-body">
+                                                                                    <textarea name=" id=" cols="50" rows="2"></textarea>
+                                                                                </div>
+                                                                                <div class="modal-footer form-inline">
+                                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                    <input type="submit" class="btn btn-danger" value="Decline" name="declineAppointmentBtn" id="declineAppointmentBtnId" onclick="return myFunctionAppointmentDecline(this); return false;">
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    </td><td></td></tr></tbody></table></div></div><div class="row"><div class="col-sm-12 col-md-5"><div class="dataTables_info" id="appointmentRequestTable_info" role="status" aria-live="polite">Showing 1 to 10 of 11 entries</div></div><div class="col-sm-12 col-md-7"><div class="dataTables_paginate paging_simple_numbers" id="appointmentRequestTable_paginate"><ul class="pagination"><li class="paginate_button page-item previous disabled" id="appointmentRequestTable_previous"><a href="http://localhost/barangay_system/admin/appointments.php#" aria-controls="appointmentRequestTable" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li><li class="paginate_button page-item active"><a href="http://localhost/barangay_system/admin/appointments.php#" aria-controls="appointmentRequestTable" data-dt-idx="1" tabindex="0" class="page-link">1</a></li><li class="paginate_button page-item "><a href="http://localhost/barangay_system/admin/appointments.php#" aria-controls="appointmentRequestTable" data-dt-idx="2" tabindex="0" class="page-link">2</a></li><li class="paginate_button page-item next" id="appointmentRequestTable_next"><a href="http://localhost/barangay_system/admin/appointments.php#" aria-controls="appointmentRequestTable" data-dt-idx="3" tabindex="0" class="page-link">Next</a></li></ul></div></div></div></div>                                                </div>
+                                        </div>
+                                        <div class="card-footer alert-success"></div>
+                                    </div> <!-- end of card -->
+                                </div>
+                            </div>
+                        </main>
+                    </div>
+                </div>
+                        
+<script type="text/javascript">
+    $("#appointmentRequestTable").DataTable();
+    function myFunctionAcceptAppointment(f){
+        var r = confirm("Accept this appointment?");
+
+        if(r == true){
+            f.submit();
+            return false;
+        } else {
+            return false;
+        }
+    }
+    function myFunctionAccomplished(f){
+        var r = confirm("Accomplished this appointment?");
+
+        if(r == true){
+            f.submit();
+            return false;
+        } else {
+            return false;
+        }
+    }
+</script>
+<div class="modal-backdrop fade show"></div></body></html>

@@ -19,6 +19,8 @@
     <link rel="stylesheet" type="text/css" href="../assets/css/jquery-ui.css">
     <script type="text/javascript" src="../assets/bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../assets/js/jquery-ui.js"></script>
+    <link rel="stylesheet" type="text/css" href="../assets/alertifyjs/css/alertify.min.css">
+    <script type="text/javascript" src="../assets/alertifyjs/alertify.min.js"></script>
     <!-- DATATABLES -->
     <link rel="stylesheet" type="text/css" href="../assets/datatables/datatables.min.css">
     <script type="text/javascript" src="../assets/datatables/datatables.min.js"></script>
@@ -31,7 +33,7 @@
     <!-- END OF BOOSTRAP AND CSS SCRIPT -->
 </head>
 <body>
-    <?php if(isset($_SESSION['Username'])) : ?>
+    <?php if(isset($_SESSION['adminPosition'])) : ?>
         <div class="container-fluid">
             <div class="row wrapper">
                 <aside class="col-12 col-sm-3 p-0 bg-dark">
@@ -42,7 +44,7 @@
                         </a>
                         <div class="collapse navbar-collapse sidebar">
                             <ul class="flex-column navbar-nav w-100 justify-content-between">
-                                <p class="lead text-light pl-0">You are signed-in as <a href="#" class="btn-link"><?php echo $_SESSION['Username']; ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></p>
+                                <p class="lead text-light pl-0">You are signed-in as <a href="#" class="btn-link"><?php echo $_SESSION['adminUsername']; ?></a></p>
                                 <img src="../img/profile-photo-png.png" class="offset-4 offset-sm-0 offset-lg-4 offset-md-4" width="120" height="120" />
                                 <small class="form-text text-muted offset-4 offset-md-4 mb-4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Administrator</small>
                                 <li class="nav-item">

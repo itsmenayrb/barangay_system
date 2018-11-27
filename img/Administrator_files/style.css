@@ -1,0 +1,304 @@
+/* MAIN STYLE FOR ADMIN
+*/
+/**
+ * Style for the minimum height of the <body> tag
+ * @author Renz
+ */
+body { min-height: 100vh; }
+/* FORM VALIDATION STYLE */
+.form-error {
+    width: 92%;
+    margin: 0px auto;
+    padding: 10px;
+    border: 1px solid #a94442;
+    color: #a94442;
+    background: #f2dede;
+    border-radius: 5px;
+    text-align: left;
+}
+
+.form-success {
+    color: #3c763d;
+    background: #dff0d8;
+    border: 1px solid #3c763d;
+    margin: 0 auto;
+    padding: 5px;
+    border-radius: 5px;
+    width: 92%;
+    text-align: center;
+}
+
+.error{
+    color: red;
+    font-size: 0.8em;
+}
+
+/* SIDEBAR MENU */
+html, body, .container-fluid {
+    height: 100%;
+}
+
+.wrapper {
+    height: 100%;
+}
+
+main {
+    max-height: 100%;
+    overflow-y: auto;
+}
+
+/* LOGIN STYLE */
+#login-container{
+    padding: 10px;
+    max-width: 500px;
+    width: 100%;
+    margin-top: 0;
+}
+
+#login-container form{
+    width: 90%;
+    margin: 0 auto;
+}
+
+/* REGISTER STYLE */
+#register-container{
+    padding: 10px;
+    width: 40%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    box-shadow: 0.5px 0.5px 0.5px 0.5px;
+    background-image: url("../img/ph-flag-eagle.jpg");
+    background-size: auto;
+}
+
+#admin-reg-form{
+    width: 90%;
+    margin: 0 auto;
+}
+
+/* GENERAL */
+
+body{
+    background: #f4f6f9;
+}
+
+/* MESSAGE Style */
+
+.card-header .card-tools{
+    position:absolute;
+    right:1rem;
+    top:.5rem
+}
+
+.card-header .card-tools [data-toggle=tooltip]{
+    position:relative
+}
+
+.card-body .mailbox-messages .table{
+    margin:0;
+}
+
+.card-body .mailbox-controls{
+    padding:5px;
+}
+
+.card-body .mailbox-controls .with-border{
+    border-bottom: 1px solid rgba(0,0,0,.125);
+}
+
+.card-body .mailbox-messages>.table{margin:0}
+
+/* ATTENDANCE */
+
+.btnAttendance {
+    display: none;
+}
+
+/*
+ * Employee Dashboard
+ *
+ * CSS Animation
+ *
+ */
+
+/* entire container, keeps perspective */
+.card-container {
+      -webkit-perspective: 800px;
+   -moz-perspective: 800px;
+     -o-perspective: 800px;
+        perspective: 800px;
+        margin-bottom: 30px;
+}
+/* flip the pane when hovered */
+.card-container:not(.manual-flip):hover .card,
+.card-container.hover.manual-flip .card{
+    -webkit-transform: rotateY( 180deg );
+-moz-transform: rotateY( 180deg );
+ -o-transform: rotateY( 180deg );
+    transform: rotateY( 180deg );
+}
+
+
+.card-container.static:hover .card,
+.card-container.static.hover .card {
+    -webkit-transform: none;
+-moz-transform: none;
+ -o-transform: none;
+    transform: none;
+}
+/* flip speed goes here */
+.card {
+     -webkit-transition: -webkit-transform .5s;
+   -moz-transition: -moz-transform .5s;
+     -o-transition: -o-transform .5s;
+        transition: transform .5s;
+-webkit-transform-style: preserve-3d;
+   -moz-transform-style: preserve-3d;
+     -o-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+    position: relative;
+}
+
+/* hide back of pane during swap */
+.front, .back {
+    -webkit-backface-visibility: hidden;
+   -moz-backface-visibility: hidden;
+     -o-backface-visibility: hidden;
+        backface-visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #FFF;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.14);
+}
+
+/* front pane, placed above back */
+.front {
+    z-index: 2;
+}
+
+/* back, initially hidden pane */
+.back {
+        -webkit-transform: rotateY( 180deg );
+   -moz-transform: rotateY( 180deg );
+     -o-transform: rotateY( 180deg );
+        transform: rotateY( 180deg );
+        z-index: 3;
+}
+
+.card{
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-radius: 4px;
+    color: #444444;
+}
+.card-container, .front, .back {
+    width: 100%;
+    height: 300px;
+    border-radius: 4px;
+}
+.card .cover{
+    height: 105px;
+    overflow: hidden;
+    border-radius: 4px 4px 0 0;
+}
+.card .cover img{
+    width: 100%;
+}
+.card .user{
+    border-radius: 50%;
+    display: block;
+    height: 170px;
+    margin: -55px auto 0;
+    overflow: hidden;
+    width: 170px;
+}
+.card .user img{
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 4px solid #FFFFFF;
+    width: 100%;
+}
+
+.card .content{
+    background-color: rgba(0, 0, 0, 0);
+    box-shadow: none;
+    padding: 10px 20px 20px;
+}
+.card .content .section {
+    min-height: 160px;
+}
+.card .back .content .section {
+    height: 150px;
+}
+
+.card .back .content .section h5{
+    margin-top: -30px;
+}
+
+.card .name {
+    font-size: 22px;
+    line-height: 20px;
+    margin: 1px 0 0;
+    text-align: center;
+    text-transform: capitalize;
+}
+
+.card h5{
+    margin: 5px 0;
+    font-weight: 400;
+    line-height: 20px;
+}
+.card .profession{
+    color: #999999;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.card .header {
+    padding: 15px 20px;
+    height: 90px;
+}
+.card .motto{
+    border-bottom: 1px solid #EEEEEE;
+    color: #999999;
+    font-size: 14px;
+    font-weight: 400;
+    padding-bottom: 5px;
+    text-align: center;
+}
+
+html {
+  font-size: 1rem;
+}
+
+@include media-breakpoint-up(sm) {
+  html {
+    font-size: 1.2rem;
+  }
+}
+
+@include media-breakpoint-up(md) {
+  html {
+    font-size: 1.4rem;
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  html {
+    font-size: 1.6rem;
+  }
+}
+
+.card .footer {
+    border-top: 1px solid #EEEEEE;
+    color: #999999;
+    margin: -30px 0 0;
+    padding: 10px 0 0;
+    text-align: center;
+}
+.card .footer .social-links{
+    font-size: 18px;
+}
+.card .footer .social-links a{
+    margin: 0 7px;
+}

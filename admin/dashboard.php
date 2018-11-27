@@ -3,8 +3,10 @@
 -- as possible may picture nila, mission and vision --
 -- and kaya pa lagyan ng chart is mas okay -->
 <?php include 'header.php'; ?>
-<?php if(!isset($_SESSION['Position'])) :?>
-    <?php header("Location: index.php"); ?>
+<?php if(!isset($_SESSION['adminPosition'])) : ?>
+    <script type="text/javascript">
+        windows.location="index.php";
+    </script>
 <?php endif ?>
 <?php
     $sql = "SELECT Position FROM employee";
@@ -13,7 +15,7 @@
 
     if ($resultsCheck > 0) : ?>
         <?php if ($row = mysqli_fetch_assoc($results)) : ?>
-            <?php if (isset($_SESSION['Position']) == 'Barangay Captain') { ?> <!--NAVIGATION -->
+            <?php if (isset($_SESSION['adminPosition']) == 'Barangay Captain') { ?> <!--NAVIGATION -->
                     <main class="col bg-faded py-3">
                         <div class="row" style="margin-top: 10px;"> <!-- Employees Profile Punong Barangay-->
                             <div class="col-sm-12 col-md-6 offset-md-3">
@@ -227,7 +229,7 @@
                     </main>
                 </div>
             </div>
-            <?php } elseif (isset($_SESSION['Position']) == 'Barangay Tanod') { ?>
+            <?php } elseif (isset($_SESSION['adminPosition']) == 'Barangay Tanod') { ?>
                 <span class="fas fa-bars fa-3x" style="margin-top: 5px; margin-left: 15px;" onclick="openNav()"></span>
                 <div id="mySidenav" class="sidenav">
                     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>

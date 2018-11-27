@@ -2,7 +2,7 @@
 -- this is page will display all the inquiries or messages --> 
 
 <?php include 'header.php'; ?>
-<?php if(!isset($_SESSION['Position'])) :?>
+<?php if(!isset($_SESSION['adminPosition'])) :?>
     <?php header("Location: index.php"); ?>
 <?php endif ?>
 <div id="main">

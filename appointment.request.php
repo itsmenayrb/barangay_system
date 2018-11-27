@@ -47,7 +47,7 @@
 						<div class="card-body">
 							<?php include 'includes/errors.inc.php'; ?>
 							<?php include 'includes/success.inc.php'; ?>
-							<form action="appointment.request.php" id="appointmentForm" method="post" style="width: 90%;margin: 0 auto;">
+							<form action="appointment.request.php" id="appointmentForm" method="post" style="width: 90%;margin: 0 auto;" autocomplete="off">
 								<h6 class="form-text text-muted">Please enter all the details.</h6>
 								<small class="form-text text-muted">Full Name: <i>(Do not include dot or period on your middle initial as well as on your suffix).</i></small>
 								<input type="text" class="form-control" name="fullname" required/>

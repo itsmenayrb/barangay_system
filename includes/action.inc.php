@@ -31,7 +31,6 @@
   $success = array();
 
   include 'dbh.inc.php';
-  use PHPMailer\PHPMailer\PHPMailer;
 
 //-----------------------------------------------------------------------------------
 /*
@@ -178,7 +177,6 @@ if(isset($_POST['login'])) {
       elseif ($hashedPasswordCheck == true) {
         //Log in the user here
         $_SESSION['Username'] = $row['Username'];
-        $_SESSION['id'] = $row['id'];
         $_SESSION['Email'] = $row['Email'];
         header("Location: index.php");
         exit();
@@ -208,31 +206,41 @@ if(isset($_POST['send'])){
       $sql = "UPDATE users SET Token = '$token' WHERE Email = '$email'";
       mysqli_query($conn,$sql);
 
-      require_once 'PHPMailer/PHPMailer.php';
-      require_once 'PHPMailer/Exception.php';
+      require 'PHPMailer-5.2-stable/PHPMailerAutoload.php';
 
-      $mail = new PHPMailer();
-      $mail->addAddress($email);
-      $mail->setFrom("yourhelpdesk@salitrandos.x10host.com" , "Reset Password");
-      $mail->Subject = "Reset Password";
-      $mail->isHTML(true);
-      $mail->Body = "
+      $mail = new PHPMailer;
+      $mail->isSMTP();                                      // Set mailer to use SMTP
+      $mail->Host = 'smtp.gmail.com';             // Specify main and backup SMTP servers
+      $mail->SMTPAuth = true;                               // Enable SMTP authentication
+      $mail->Username = 'service.salitrandos@gmail.com';                 // SMTP username
+      $mail->Password = 'p@ssphr@s3';                           // SMTP password
+      $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+      $mail->Port = 587;                                    // TCP port to connect to
+
+      $mail->setFrom('service.salitrandos@gmail.com', 'Barangay Salitran II');
+      $mail->addAddress($email);     // Add a recipient
+
+      $mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
+      $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
+      $mail->isHTML(true);                                  // Set email format to HTML
+
+      $mail->Subject = 'Password Reset';
+      $mail->Body    = "
           Hi, <br><br>
           In order to reset your password, please click on the link below:<br>
-          <a href='http://salitrandos.x10host.com/resetPassword.php?email=$email&token=$token'>http://salitrandos.x10host.com/resetPassword.php?email=$email&token=$token</a><br><br>
+          <a href='localhost/barangay_system/resetPassword.php?email=$email&token=$token'>Reset your password here.</a><br><br>
           Kind Regards,<br>
-          Admin
+          Administrator
       ";
+      $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
-      if($mail->send()){
-          echo "<script>alert('Message sent! Please check your email.');</script>";
-          header("Location: ../login.php");
-          exit();
+      if(!$mail->send()) {
+          echo 'Message could not be sent.';
+          echo 'Mailer Error: ' . $mail->ErrorInfo;
+      } else {
+          array_push($success,"Password reset request has been sent. You will be redirected to the log in page after 5 seconds. If not, click <a href='login.php#signIn' class='btn-link'>here</a>.");
       }
-      else{
-          array_push($errors,"Message sending failed. Please check your inputs!");
-      }
-
+      header("refresh:5;url=login.php#signIn");
   }
 }
 /*

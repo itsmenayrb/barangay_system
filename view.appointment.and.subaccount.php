@@ -28,7 +28,7 @@
 												$appointment_time = "";
 												$current = $_SESSION['Username'];
 
-												$sql = "SELECT * FROM appointment WHERE username = '$current' AND status = 'Pending'";
+												$sql = "SELECT * FROM appointment WHERE username = '$current' AND status <> 'Deleted'";
 												$results = mysqli_query($conn,$sql);
 												$resultsCheck = mysqli_num_rows($results);
 
@@ -269,7 +269,7 @@
 	}
 	//D
 	function myFunctionAppointment(f){
-		var r = confirm("Are you sure you want to delete this appointment? \n\nThis process is irreversible.");
+		var r = confirm("Are you sure you want to cancel this appointment? \n\nThis process is irreversible.");
 		if(r == true){
 			f.submit();
 			return false;

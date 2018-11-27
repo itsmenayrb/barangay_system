@@ -1,7 +1,7 @@
 <?php
 include 'header.php';
 ?>
-<?php if(!isset($_SESSION['Username'])) { ?>
+<?php if(isset($_SESSION['Username'])) { ?>
     <section style="margin-top: 10px;">
       <div class="container">
         <div class="row mb-2">
@@ -46,16 +46,16 @@ include 'header.php';
                             <div class="content-title mb-3">
                                 <h3 class="lead">Via Security Question</h3>
                             </div>
-                            <div id="securityQuestionDiv-desc">
-                                <form action="forgotpassword.php" method="POST" id="security-question-form"> <!-- FORM FOR SECURITY QUESTION -->
-                                        <div class="row">
-                                            <div class="col-md-8">
-                                                <input type="text" class="form-control" name="username" id="username" autofocus="true" minlength="5" aria-describedby="rusernameHelpBlock" placeholder="Username or Email" value="<?php echo $username; ?>" required/>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <input type="submit" class="form-control btn btn-info" name="verifyUsername" id="verifyUsername" value="Verify"/>
-                                            </div>
+                            <form action="forgotpassword.php" method="POST" id="security-question-form"> <!-- FORM FOR SECURITY QUESTION -->
+                                <div id="securityQuestionDiv-desc">
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" name="username" id="username" autofocus="true" minlength="5" aria-describedby="rusernameHelpBlock" placeholder="Username or Email" value="<?php echo $username; ?>" required/>
                                         </div>
+                                        <div class="col-md-4">
+                                            <input type="submit" class="form-control btn btn-info" name="verifyUsername" id="verifyUsername" value="Verify"/>
+                                        </div>
+                                    </div>
                                     <?php if ($verified == true) : ?>
                                         <small class="form-text text-muted">Security Question One</small>
 
@@ -82,12 +82,12 @@ include 'header.php';
                                         </small>
 
                                         <input type='password' class='form-control' name='cpassword' id='cpassword' aria-describedby='rcpasswordHelpBlock' minlength='8' required/>
-                            </div>
-                            <div id="securityQuestionDiv-btn">
-                                <input type='submit' class='mt-3 btn btn-primary btn-primary-design' name='resetPassword' id='reset' value='Reset Password'/>
-                            </div>
-                                </form>
-                                <?php endif ?>
+                                </div>
+                                <div id="securityQuestionDiv-btn">
+                                    <input type='submit' class='mt-3 btn btn-primary btn-primary-design' name='resetPassword' id='reset' value='Reset Password'/>
+                                </div>
+                                    <?php endif ?>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -106,17 +106,17 @@ include 'header.php';
                             <div class="content-title mb-3">
                                 <h3 class="lead">Via Email</h3>
                             </div>
-                            <div id="emailDiv-desc">
-                               <form action="forgotpassword.php" method="POST" id="email-form"> <!-- FORM FOR EMAIL -->
+                            <form action="forgotpassword.php" method="POST" id="email-form"> <!-- FORM FOR EMAIL -->
+                                <div id="emailDiv-desc">
                                     <div class="form-group">
                                         <input type="email" name="email" id="remail" autofocus="true" class="form-control" placeholder="Enter your email address" class="emailforresetpwd" aria-describedby="remailHelpBlock" required/>
                                         <small id="remailHelpBlock" class="form-text text-muted">To reset your password, enter your email and we will send reset password instructions on your email.</small><br>
                                     </div>
-                            </div>
-                                    <div id="emailDiv-btn">
-                                        <input type="submit" class="btn btn-primary btn-primary-design" id="send" name="send" value="Send"/>
-                                    </div>
-                                </form> <!-- END OF FORM FOR EMAIL -->
+                                </div>
+                                <div id="emailDiv-btn">
+                                    <input type="submit" class="btn btn-primary btn-primary-design" id="send" name="send" value="Send"/>
+                                </div>
+                            </form> <!-- END OF FORM FOR EMAIL -->
                         </div>
                     </div>
                 </div>
@@ -153,7 +153,7 @@ include 'header.php';
             }, 1000);
         });
     });
-    $('#email-form').validate();
+    /*$('#email-form').validate();
     $('#security-question-form').validate();
     $('#con-security-question-form').validate({
         rules:{
@@ -161,7 +161,7 @@ include 'header.php';
                 equalTo:"#password",
             }
         }
-    });
+    });*/
 </script>
 <?php
 include ('footer.php');

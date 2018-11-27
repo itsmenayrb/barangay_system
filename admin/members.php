@@ -1,7 +1,7 @@
 <!-- PAGE FOR RECORD REGISTERED
 	OF REGISTERED USERS AND SUBUSERS -->
 <?php include 'header.php'; ?>
-<?php if(!isset($_SESSION['Position'])) :?>
+<?php if(!isset($_SESSION['adminPosition'])) :?>
     <?php header("Location: index.php"); ?>
 <?php endif ?>
 <?php
@@ -11,7 +11,7 @@
 
     if ($resultsCheck > 0) : ?>
         <?php if ($row = mysqli_fetch_assoc($results)) : ?>
-            <?php if (isset($_SESSION['Position']) == 'Barangay Captain') { ?> <!--NAVIGATION -->
+            <?php if (isset($_SESSION['adminPosition']) == 'Barangay Captain') { ?> <!--NAVIGATION -->
             			<main class="col bg-faded py-3">
             				<div>
 						        <ol class="breadcrumb">
