@@ -170,6 +170,7 @@ if(isset($_POST['login'])) {
         //Log in the user here
         $_SESSION['Username'] = $row['Username'];
         $_SESSION['Email'] = $row['Email'];
+        $_SESSION['id'] = $row['id'];
         header("Location: index.php");
         exit();
       }
