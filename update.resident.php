@@ -24,7 +24,7 @@
 <div class="container">
   <div id="registration-container">
     <p>Update your personal details</p>
-    <form id="form" action="includes/update.resident.request.handler.php" method="put">
+    <form id="form" action="includes/update.resident.request.handler.php" method="POST">
       <div class="row">
         <div class="form-group col-md-3">
           <label for="prefix">Prefix</label>
@@ -84,48 +84,6 @@
           <div class="form-group">
             <label for="age">Age</label>
             <input type="text" id="reg-age" value="<?php echo $row['Age']; ?>" name="age" class="form-control" readonly/>
-          </div>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label>Address</label><small class="form-class text-muted">(Write N/A if not applicable)</small>
-        <div class="row">
-          <div class="col-md-4">
-              <small id="blockHelpBlock" class="form-text text-muted">Block</small>
-              <input type="text" value="<?php echo $addressRow['block']; ?>" class="form-control" id="reg-block" name="block" aria-describedby="blockHelpBlock" required/>
-          </div>
-          <div class="col-md-4">
-              <small id="streetHelpBlock" class="form-text text-muted">Street</small>
-              <input type="text" value="<?php echo $addressRow['street']; ?>" class="form-control" id="reg-street" name="street" aria-describedby="streetHelpBlock"  required/>
-          </div>
-          <div class="col-md-4">
-              <small id="subdivisionHelpBlock" class="form-text text-muted">Subdivision</small>
-              <input type="text" value="<?php echo $addressRow['subdivision'] ?>" class="form-control" id="reg-subdivision" name="subdivision" aria-describedby="subdivisionHelpBlock" required/>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-4">
-              <small id="barangayHelpBlock" class="form-text text-muted">Barangay</small>
-              <input type="text" class="form-control" placeholder="Salitran II" aria-describedby="subdivisionHelpBlock" readonly/>
-          </div>
-          <div class="col-md-4">
-              <small id="cityHelpBlock" class="form-text text-muted">City/Municipality</small>
-              <input type="text" class="form-control" placeholder="Dasmariñas City" aria-describedby="cityHelpBlock" readonly/>
-          </div>
-          <div class="col-md-4">
-              <small id="provinceHelpBlock" class="form-text text-muted">Province</small>
-              <input type="text" class="form-control" placeholder="Cavite" aria-describedby="provinceHelpBlock" readonly/>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-8">
-              <small id="countryHelpBlock" class="form-text text-muted">Country</small>
-              <input type="text" class="form-control" placeholder="Philippines" aria-describedby="countryHelpBlock" readonly/>
-          </div>
-          <div class="col-md-4">
-              <small id="zipHelpBlock" class="form-text text-muted">Zip Code</small>
-              <input type="text" class="form-control" placeholder="4114" aria-describedby="zipHelpBlock" readonly/>
           </div>
         </div>
       </div>

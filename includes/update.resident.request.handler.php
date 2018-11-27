@@ -67,7 +67,6 @@
   }
   else {
     header("Location: ../index.php?status=invalid_request");
-    session_abort();
     exit();
   }
 ?>
