@@ -1,6 +1,6 @@
 <!-- form requests -->
 <?php include 'header.php'; ?>
-<?php if(!isset($_SESSION['Position'])) :?>
+<?php if(!isset($_SESSION['adminPosition'])) :?>
     <?php header("Location: index.php"); ?>
 <?php endif ?>
 <?php
