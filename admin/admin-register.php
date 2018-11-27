@@ -67,7 +67,7 @@
                             <input type="text" class="form-control" name="admin-lname" placeholder="Cruz" required/>
                         </div>
                         <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-                            <small class="form-text text-muted">Prefix</small>
+                            <small class="form-text text-muted">Suffix</small>
                             <select class="form-control" name="admin-suffix">
                                 <option value=""></option>
                                 <option value="Jr">Jr</option>
@@ -81,6 +81,14 @@
                             </select>
                         </div>
                     </div>
+                </div>
+                <div class="form-group">
+                    <label for="address" class="form-text">Address</label>
+                    <input type="text" class="form-control" name="admin-address" id="address" required/>
+                </div>
+                <div class="form-group">
+                    <label for="contact" class="form-text">Contact</label>
+                    <input type="text" class="form-control" name="admin-contact" maxlength="11" id="contact" required/>
                 </div>
                 <div class="form-group">
                     <label for="username" class="form-text">Username</label>

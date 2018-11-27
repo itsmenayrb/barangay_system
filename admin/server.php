@@ -14,6 +14,8 @@ in admin site -->
     $mname = "";
     $lname = "";
     $suffix = "";
+    $address = "";
+    $contactNumber = "";
     $username = "";
     $email = "";
     $password = "";
@@ -56,6 +58,8 @@ in admin site -->
         $mname = checkInput($_POST['admin-mname']);
         $lname = checkInput($_POST['admin-lname']);
         $suffix = checkInput($_POST['admin-suffix']);
+        $address = checkInput($_POST['admin-address']);
+        $contactNumber = checkInput($_POST['admin-contact']);
         $username = checkInput($_POST['admin-username']);
         $email = checkInput($_POST['admin-email']);
         $password = checkInput($_POST['admin-password']);
@@ -77,6 +81,9 @@ in admin site -->
         }
         if (!preg_match("/^[a-zA-Z ]*$/" , $fname) ||!preg_match("/^[a-zA-Z ]*$/" , $mname) || !preg_match("/^[a-zA-Z ]*$/" , $lname)) {
             array_push($errors, "Your name must not contain numbers or special characters.");
+        }
+        if(!preg_match("/^[0-9]*$/",$contactNumber) ){
+            array_push($errors, "You have entered invalid contact number. Please check your inputs!");
         }
 
         if(count($errors) == 0){
@@ -101,8 +108,8 @@ in admin site -->
                         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
                         $conn->beginTransaction();
-                        $conn->exec("INSERT INTO employee (Prefix, FirstName, MiddleName, LastName, Suffix, Position, adminUsername, adminEmail, adminPassword, Status) VALUES
-                        ('$prefix','$fname','$mname','$lname','$suffix','$position','$username','$email','$hashedPassword','$status')");
+                        $conn->exec("INSERT INTO employee (Prefix, FirstName, MiddleName, LastName, Suffix, Position, homeaddress, contactnumber, adminUsername, adminEmail, adminPassword, Status) VALUES
+                        ('$prefix','$fname','$mname','$lname','$suffix','$position', '$address', '$contactNumber', '$username','$email','$hashedPassword','$status')");
 
                         $conn->commit();
                         array_push($success,"Registered Successfully!");
@@ -135,8 +142,8 @@ in admin site -->
                         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
                         $conn->beginTransaction();
-                        $conn->exec("INSERT INTO employee (Prefix, FirstName, MiddleName, LastName, Suffix, Position, adminUsername, adminEmail, adminPassword, Status) VALUES
-                        ('$prefix','$fname','$mname','$lname','$suffix','$position','$username','$email','$hashedPassword','$status')");
+                        $conn->exec("INSERT INTO employee (Prefix, FirstName, MiddleName, LastName, Suffix, Position, homeaddress, contactnumber, adminUsername, adminEmail, adminPassword, Status) VALUES
+                        ('$prefix','$fname','$mname','$lname','$suffix','$position', '$address', '$contactNumber','$username','$email','$hashedPassword','$status')");
 
                         $conn->commit();
                         array_push($success,"Registered Successfully!");
@@ -169,8 +176,8 @@ in admin site -->
                         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
                         $conn->beginTransaction();
-                        $conn->exec("INSERT INTO employee (Prefix, FirstName, MiddleName, LastName, Suffix, Position, adminUsername, adminEmail, adminPassword, Status) VALUES
-                        ('$prefix','$fname','$mname','$lname','$suffix','$position','$username','$email','$hashedPassword','$status')");
+                        $conn->exec("INSERT INTO employee (Prefix, FirstName, MiddleName, LastName, Suffix, Position, homeaddress, contactnumber, adminUsername, adminEmail, adminPassword, Status) VALUES
+                        ('$prefix','$fname','$mname','$lname','$suffix','$position', '$address', '$contactNumber','$username','$email','$hashedPassword','$status')");
 
                         $conn->commit();
                         array_push($success,"Registered Successfully!");
@@ -203,8 +210,8 @@ in admin site -->
                         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
                         $conn->beginTransaction();
-                        $conn->exec("INSERT INTO employee (Prefix, FirstName, MiddleName, LastName, Suffix, Position, adminUsername, adminEmail, adminPassword, Status) VALUES
-                        ('$prefix','$fname','$mname','$lname','$suffix','$position','$username','$email','$hashedPassword','$status')");
+                        $conn->exec("INSERT INTO employee (Prefix, FirstName, MiddleName, LastName, Suffix, Position, homeaddress, contactnumber, adminUsername, adminEmail, adminPassword, Status) VALUES
+                        ('$prefix','$fname','$mname','$lname','$suffix','$position', '$address', '$contactNumber', '$username','$email','$hashedPassword','$status')");
 
                         $conn->commit();
                         array_push($success,"Registered Successfully!");
@@ -237,8 +244,8 @@ in admin site -->
                         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
                         $conn->beginTransaction();
-                        $conn->exec("INSERT INTO employee (Prefix, FirstName, MiddleName, LastName, Suffix, Position, adminUsername, adminEmail, adminPassword, Status) VALUES
-                        ('$prefix','$fname','$mname','$lname','$suffix','$position','$username','$email','$hashedPassword','$status')");
+                        $conn->exec("INSERT INTO employee (Prefix, FirstName, MiddleName, LastName, Suffix, Position, homeaddress, contactnumber, adminUsername, adminEmail, adminPassword, Status) VALUES
+                        ('$prefix','$fname','$mname','$lname','$suffix','$position', '$address', $contactNumber, '$username','$email','$hashedPassword','$status')");
 
                         $conn->commit();
                         array_push($success,"Registered Successfully!");
@@ -271,8 +278,8 @@ in admin site -->
                         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
                         $conn->beginTransaction();
-                        $conn->exec("INSERT INTO employee (Prefix, FirstName, MiddleName, LastName, Suffix, Position, adminUsername, adminEmail, adminPassword, Status) VALUES
-                        ('$prefix','$fname','$mname','$lname','$suffix','$position','$username','$email','$hashedPassword','$status')");
+                        $conn->exec("INSERT INTO employee (Prefix, FirstName, MiddleName, LastName, Suffix, Position, homeaddress, contactnumber, adminUsername, adminEmail, adminPassword, Status) VALUES
+                        ('$prefix','$fname','$mname','$lname','$suffix','$position', '$address', '$contactNumber','$username','$email','$hashedPassword','$status')");
 
                         $conn->commit();
                         array_push($success,"Registered Successfully!");
@@ -305,8 +312,8 @@ in admin site -->
                         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
                         $conn->beginTransaction();
-                        $conn->exec("INSERT INTO employee (Prefix, FirstName, MiddleName, LastName, Suffix, Position, adminUsername, adminEmail, adminPassword, Status) VALUES
-                        ('$prefix','$fname','$mname','$lname','$suffix','$position','$username','$email','$hashedPassword','$status')");
+                        $conn->exec("INSERT INTO employee (Prefix, FirstName, MiddleName, LastName, Suffix, Position, homeaddress, contactnumber, adminUsername, adminEmail, adminPassword, Status) VALUES
+                        ('$prefix','$fname','$mname','$lname','$suffix','$position', '$address', '$contactNumber','$username','$email','$hashedPassword','$status')");
 
                         $conn->commit();
                         array_push($success,"Registered Successfully!");
@@ -339,8 +346,8 @@ in admin site -->
                         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
                         $conn->beginTransaction();
-                        $conn->exec("INSERT INTO employee (Prefix, FirstName, MiddleName, LastName, Suffix, Position, adminUsername, adminEmail, adminPassword, Status) VALUES
-                        ('$prefix','$fname','$mname','$lname','$suffix','$position','$username','$email','$hashedPassword','$status')");
+                        $conn->exec("INSERT INTO employee (Prefix, FirstName, MiddleName, LastName, Suffix, Position, homeaddress, contactnumber, adminUsername, adminEmail, adminPassword, Status) VALUES
+                        ('$prefix','$fname','$mname','$lname','$suffix','$position', '$address', '$contactNumber','$username','$email','$hashedPassword','$status')");
 
                         $conn->commit();
                         array_push($success,"Registered Successfully!");
@@ -373,8 +380,8 @@ in admin site -->
                         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
                         $conn->beginTransaction();
-                        $conn->exec("INSERT INTO employee (Prefix, FirstName, MiddleName, LastName, Suffix, Position, adminUsername, adminEmail, adminPassword, Status) VALUES
-                        ('$prefix','$fname','$mname','$lname','$suffix','$position','$username','$email','$hashedPassword','$status')");
+                        $conn->exec("INSERT INTO employee (Prefix, FirstName, MiddleName, LastName, Suffix, Position, homeaddress, contactnumber, adminUsername, adminEmail, adminPassword, Status) VALUES
+                        ('$prefix','$fname','$mname','$lname','$suffix','$position', '$address','$contactNumber','$username','$email','$hashedPassword','$status')");
 
                         $conn->commit();
                         array_push($success,"Registered Successfully!");
@@ -407,8 +414,8 @@ in admin site -->
                         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
                         $conn->beginTransaction();
-                        $conn->exec("INSERT INTO employee (Prefix, FirstName, MiddleName, LastName, Suffix, Position, adminUsername, adminEmail, adminPassword, Status) VALUES
-                        ('$prefix','$fname','$mname','$lname','$suffix','$position','$username','$email','$hashedPassword','$status')");
+                        $conn->exec("INSERT INTO employee (Prefix, FirstName, MiddleName, LastName, Suffix, Position, homeaddress, contactnumber, adminUsername, adminEmail, adminPassword, Status) VALUES
+                        ('$prefix','$fname','$mname','$lname','$suffix','$position', '$address', '$contactNumber','$username','$email','$hashedPassword','$status')");
 
                         $conn->commit();
                         array_push($success,"Registered Successfully!");
