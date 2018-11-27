@@ -30,22 +30,13 @@ CREATE TABLE `appointment` (
   `status` varchar(255) NOT NULL,
   `date_accomplished` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 /*Data for the table `appointment` */
 
 insert  into `appointment`(`id`,`username`,`fullname`,`contactnumber`,`email`,`appointment_date`,`appointment_time`,`purpose`,`date_requested`,`decision`,`status`,`date_accomplished`) values 
-(1,'bryan','Bryan Balaga','09878787785','asdad@gmail.com','2018-11-30','08:00:00','ole','2018-11-18',NULL,'Accepted','2018-11-27'),
-(2,'bryan','Apple Rose','32131231231','Apple@gmail.com','2018-11-30','12:00:00','Financial Assistance','2018-11-27',NULL,'Deleted','2018-11-27'),
-(3,'bryan','asdasd','12312321312','sadasd@gmal.com','2018-11-30','13:00:00','123213123','2018-11-27',NULL,'Deleted','2018-11-27'),
-(4,'bryan','Bryan Balaga','09809809888','bryan.balaga@gmail.com','2018-11-30','14:00:00','Financial assistance','2018-11-27',NULL,'Accepted',NULL),
-(5,'bryan','Bryan Balaga','09123123213','akobahalasayo@gmail.com','2018-12-27','08:00:00','Financial Assistance','2018-11-27',NULL,'Accepted',NULL),
-(6,'bryan','Paul Camerino','09988878777','bryan.balaga@gmail.com','1970-01-01','16:00:00','Libreng tuli','2018-11-27',NULL,'Accepted',NULL),
-(7,'bryan','Emman','01231312312','bryan.balaga@gmail.com','1970-01-01','14:00:00','Libreng tuli','2018-11-27',NULL,'Accepted',NULL),
-(8,'bryan','Emmanuel','09988787877','bryan.balaga@gmail.com','1970-01-01','11:00:00','Libreng kasal','2018-11-27',NULL,'Accepted',NULL),
-(9,'bryan','Jeric','01231231312','bryan.balaga@gmail.com','1970-01-01','10:00:00','Libreng kain','2018-11-27',NULL,'Accepted',NULL),
-(10,'bryan','Diana Galang','01231231312','bryan.balaga@gmail.com','1970-01-01','08:00:00','Libreng kain','2018-11-27',NULL,'Pending',NULL),
-(11,'bryan','Anne Curtis','09123456789','bryan.balaga@gmail.com','2018-11-27','18:41:55','Libreng kain','2018-11-27',NULL,'Pending',NULL);
+(1,'bryan','Bryan Balaga','09999919239','bryan.balaga@gmail.com','2018-11-28','03:46:51','Libreng kasal','2018-11-28',NULL,'Accepted',NULL),
+(2,'bryan','Eddie Madrona','09809880980','bryan.balaga@gmail.com','2018-11-28','11:00:00','Libreng tuli','2018-11-28',NULL,'Declined',NULL);
 
 /*Table structure for table `attendance` */
 
@@ -81,6 +72,23 @@ insert  into `attendance`(`id`,`employee_id`,`fullname`,`position`,`dateofyear`,
 (9,201902,'Apple Rose Catalino Gabales','Barangay Secretary','2018-11-08','06:02:23',NULL,NULL,NULL,NULL,NULL,'active'),
 (10,201901,'Bryan Villanueva Balaga','Barangay Chairman','2018-11-27','09:02:45','09:40:08',NULL,NULL,NULL,NULL,'active'),
 (11,201902,'Apple Rose Catalino Gabales','Barangay Secretary','2018-11-27','09:44:07',NULL,NULL,NULL,NULL,NULL,'active');
+
+/*Table structure for table `business_cle` */
+
+DROP TABLE IF EXISTS `business_cle`;
+
+CREATE TABLE `business_cle` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `business` varchar(255) NOT NULL,
+  `operator` varchar(255) NOT NULL,
+  `location` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+/*Data for the table `business_cle` */
+
+insert  into `business_cle`(`id`,`business`,`operator`,`location`) values 
+(1,'trashcompany','boPauls','wasteland');
 
 /*Table structure for table `commendations` */
 
@@ -162,7 +170,7 @@ CREATE TABLE `employee` (
   `Token` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`employee_id`),
   KEY `employee_id` (`employee_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=201905 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=201907 DEFAULT CHARSET=latin1;
 
 /*Data for the table `employee` */
 
@@ -170,7 +178,9 @@ insert  into `employee`(`employee_id`,`Prefix`,`FirstName`,`MiddleName`,`LastNam
 (201901,'Mr','Bryan','Villanueva','Balaga','','Barangay Chairman',NULL,NULL,'bryan','bryan@gmail.com','$2y$10$yCbom5bkGlE6t59L16l2huz6Adz4xfP5V0fz8Io./0dlUDZrB6h5e','active',NULL,NULL),
 (201902,'Ms','Apple Rose','Catalino','Gabales','','Barangay Secretary',NULL,NULL,'apple','apple@gmail.com','$2y$10$qmaYWR6ZTMsmPpdzmBNcMORVaLFy58K/DCsgO6c/MavMFibEZg1he','active',NULL,NULL),
 (201903,'Mr','Victor','','Magtanggol','','Barangay Councilor',NULL,NULL,'victor','victor@gmail.com','$2y$10$FH18Oi3y6IRa04MNbeBI7e9.OpRlWuj8uRTP4.8ZOujgQ2drcWkE.','active',NULL,NULL),
-(201904,'Dr','Mia','','Khalifa','','Barangay Assistant Secretary',NULL,NULL,'test1','test@gmail.com','$2y$10$DMuZK5HzY5AwaF6ufTPYvu6EreWc65CWcnv0.F89ZZSmkHZj6ZkzW','active',NULL,NULL);
+(201904,'Dr','Mia','','Khalifa','','Barangay Assistant Secretary',NULL,NULL,'test1','test@gmail.com','$2y$10$DMuZK5HzY5AwaF6ufTPYvu6EreWc65CWcnv0.F89ZZSmkHZj6ZkzW','active',NULL,NULL),
+(201905,'Mr','Eddie','','Madrona','Jr','Barangay Tanod','alskdjsalkdj','09809889808','eddie','eddie@gmail.com','$2y$10$pBtDnVMannu8yBLYzlaW/unqMP4oFWdudqmhkXuIdOukcbxTYiYFi','active',NULL,NULL),
+(201906,'Ms','Willie','','Revillame','','Barangay Treasurer','aslkdjalsjkklj','23123123123','willie','willie@gmail.com','$2y$10$GfUQ6d/TQAGUKbsr.2h6Ee/MEXbGvp6XAzRK4K9Ht36xC1WJwp/wu','active',NULL,NULL);
 
 /*Table structure for table `filecomplaint` */
 
@@ -204,7 +214,7 @@ CREATE TABLE `homeaddress` (
   `country` varchar(255) DEFAULT 'Philippines',
   `zipcode` int(11) DEFAULT '4114',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 /*Data for the table `homeaddress` */
 
@@ -212,7 +222,8 @@ insert  into `homeaddress`(`id`,`lot`,`street`,`subdivision`,`barangay`,`city`,`
 (1,'Block 8','Lot 6','GreenSquare','Salitran II','Dasmariñas','Cavite','Philippines',4114),
 (2,'Block 1','Solar System','Milky Way','Salitran II','Dasmariñas','Cavite','Philippines',4114),
 (3,'Block 1','Lot 2','Palico III','Salitran II','Dasmariñas','Cavite','Philippines',4114),
-(4,'imus','bacoor','dasma','Salitran II','Dasmariñas','Cavite','Philippines',4114);
+(4,'imus','bacoor','dasma','Salitran II','Dasmariñas','Cavite','Philippines',4114),
+(5,'gasdasd','asdasdasd','adasdasd','Salitran II','Dasmariñas','Cavite','Philippines',4114);
 
 /*Table structure for table `inquiries` */
 
@@ -253,6 +264,7 @@ DROP TABLE IF EXISTS `residents`;
 
 CREATE TABLE `residents` (
   `user_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(255) NOT NULL,
   `Prefix` varchar(255) NOT NULL,
   `FirstName` varchar(256) NOT NULL,
   `MiddleName` varchar(256) NOT NULL,
@@ -266,18 +278,20 @@ CREATE TABLE `residents` (
   `TelephoneNumber` bigint(11) DEFAULT NULL,
   `CellphoneNumber` bigint(11) DEFAULT NULL,
   PRIMARY KEY (`user_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 /*Data for the table `residents` */
 
-insert  into `residents`(`user_ID`,`Prefix`,`FirstName`,`MiddleName`,`LastName`,`Suffix`,`Sex`,`Bday`,`Age`,`Bplace`,`Homeaddress`,`TelephoneNumber`,`CellphoneNumber`) values 
-(1,'Mr','Bryan','Villanueva','Balaga','Jr',NULL,'2006-11-01',12,NULL,'Block 8 Lot 6 GreenSquare Barangay Salitran II, DasmariÃ±as City, Cavite, Philippines, 4114. ',0,9123456789),
-(2,'Dr','Juana','Dela','Torre','',NULL,'2017-11-02',1,NULL,'Block 8 Lot 6 Greensquare Barangay Salitran II, DasmariÃ±as City, Cavite, Philippines, 4114.',0,9123456789),
-(3,'Mr','Jose','Protacio','Rizal','',NULL,'2002-11-20',16,NULL,'Taga Jan Jan Barangay Salitran II, DasmariÃ±as City, Cavite, Philippines, 4114.',461231232,0),
-(4,'Mr','James','Reid','Balaga','',NULL,'2001-11-02',17,NULL,'Butaw butaw butaw Barangay Salitran II, DasmariÃ±as City, Cavite, Philippines, 4114.',2193810298,10293810938),
-(5,'Ms','Apple Rose','Catalino','Gabales','','Female','1995-11-28',23,'New Manila, Quezon City','Block 1 Solar System Milky Way Barangay Salitran II, DasmariÃ±as City, Cavite, Philippines, 4114. ',0,9123123123),
-(6,'Mr','Bryan','Villanueva','Balaga','','Male','1995-08-28',23,'Cavite State University','Block 1 Lot 2 Palico III Barangay Salitran II, DasmariÃ±as City, Cavite, Philippines, 4114. ',980809808,0),
-(7,'Mr','Emman','','Balleta','','Male','2006-11-02',12,'Imus','imus bacoor dasma Barangay Salitran II, DasmariÃ±as City, Cavite, Philippines, 4114. ',0,9888888882);
+insert  into `residents`(`user_ID`,`username`,`Prefix`,`FirstName`,`MiddleName`,`LastName`,`Suffix`,`Sex`,`Bday`,`Age`,`Bplace`,`Homeaddress`,`TelephoneNumber`,`CellphoneNumber`) values 
+(1,'','Mr','Bryan','Villanueva','Balaga','Jr',NULL,'2006-11-01',12,NULL,'Block 8 Lot 6 GreenSquare Barangay Salitran II, DasmariÃ±as City, Cavite, Philippines, 4114. ',0,9123456789),
+(2,'','Dr','Juana','Dela','Torre','',NULL,'2017-11-02',1,NULL,'Block 8 Lot 6 Greensquare Barangay Salitran II, DasmariÃ±as City, Cavite, Philippines, 4114.',0,9123456789),
+(3,'','Mr','Jose','Protacio','Rizal','',NULL,'2002-11-20',16,NULL,'Taga Jan Jan Barangay Salitran II, DasmariÃ±as City, Cavite, Philippines, 4114.',461231232,0),
+(4,'','Mr','James','Reid','Balaga','',NULL,'2001-11-02',17,NULL,'Butaw butaw butaw Barangay Salitran II, DasmariÃ±as City, Cavite, Philippines, 4114.',2193810298,10293810938),
+(5,'','Ms','Apple Rose','Catalino','Gabales','','Female','1995-11-28',23,'New Manila, Quezon City','Block 1 Solar System Milky Way Barangay Salitran II, DasmariÃ±as City, Cavite, Philippines, 4114. ',0,9123123123),
+(6,'','Mr','Bryan','Villanueva','Balaga','','Male','1995-08-28',23,'Cavite State University','Block 1 Lot 2 Palico III Barangay Salitran II, DasmariÃ±as City, Cavite, Philippines, 4114. ',980809808,0),
+(7,'','Mr','Emman','','Balleta','','Male','2006-11-02',12,'Imus','imus bacoor dasma Barangay Salitran II, DasmariÃ±as City, Cavite, Philippines, 4114. ',0,9888888882),
+(8,'','Mr','Jeric','Jeric','Jeric','','Male','2006-11-01',12,'asdasd','gasdasd asdasdasd adasdasd Barangay Salitran II, DasmariÃ±as City, Cavite, Philippines, 4114. ',461231203,0),
+(9,'victor','Mr','Victor','','Magtanggol','','Male','1987-02-04',31,'lakdjalskjd','laksjdlkj alskdj asldkj Barangay Salitran II, DasmariÃ±as City.',0,9983749587);
 
 /*Table structure for table `subusers` */
 
@@ -325,9 +339,19 @@ CREATE TABLE `user_req` (
   `contactnumber` varchar(255) NOT NULL,
   `purpose` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 /*Data for the table `user_req` */
+
+insert  into `user_req`(`id`,`username`,`contactnumber`,`purpose`) values 
+(1,'victor','0888888123123','Bagong a'),
+(2,'victor','0888888123123','Bagong b'),
+(3,'victor','0888888123123','Bagong c'),
+(4,'victor','0888888123123','Bagong d'),
+(5,'victor','0888888123123','Bagong e'),
+(6,'victor','0888888123123','Bagong f'),
+(7,'victor','0888888123123','Bagong g'),
+(8,'victor','0888888123123','Bagong f');
 
 /*Table structure for table `users` */
 
@@ -348,7 +372,7 @@ CREATE TABLE `users` (
   `DateDeleted` date DEFAULT NULL,
   `DateDeceased` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 /*Data for the table `users` */
 
@@ -359,7 +383,9 @@ insert  into `users`(`id`,`Username`,`Pwd`,`Email`,`SecurityQuestion1`,`AnswerOn
 (4,'bryan123','$2y$10$k5A46Zae5sJR4q3t2rq5NOBgwEz50y3rL5tI7YsH0kEWlV6qnxG5m','bryan123@gmail.com','What is the name of your first pet?','$2y$10$FvRJAF6zeQfAyMNIuUWUWuC7BqvKeYkki7M102DOnPH8P6TANWiuq','Who is your favorite singer?','$2y$10$LDsBGtac8VufT3mtjNufleTxS87fWSeCSc4Vc2mdO1YFAZbXmey06',NULL,'2018-11-18','Active',NULL,NULL),
 (5,'apple','$2y$10$DiJUShmIqgUWapREfY.a6.Lryv62rzRH7g1YBbTx3gGXHxtpZQKue','apple@gmail.com','What is the name of your first pet?','$2y$10$Yop17B0lcyU78NMBt.JlnefxPKA/9Zwxy.StvqNyvriVJgJZVWoCC','Who is your favorite singer?','$2y$10$j.TPhr2IvO/ObCE9oRD3pe3z7ZcUcyKj4fPIiENLabBJjI3kF.RYe',NULL,'2018-11-25','',NULL,NULL),
 (6,'eddie','$2y$10$k1o6Kx0qVYBUzD4DNuhB9.Vr8NT57bksMNbQq51X4hFTUo/1mGP5q','bryan.balaga@gmail.com','What is the name of your first pet?','$2y$10$4riq/dMYgZqWGSZy/8rzZ.Wsnp8U1Xs6xfRKyxpIZBWET9Vkc5UXi','Who is your favorite singer?','$2y$10$12HNtfuVnXh6hHtGqI2MBu7DO4ZZyoGak1mTjIhzqm5ek4eEnCbPO','4E2UHcdAFw','2018-11-27','',NULL,NULL),
-(7,'emman','$2y$10$AAy0gLvTq90C5fGXR02PveD85jDrh47Gx7DJKioP0fdrqw/z8pctG','emman@gmail.com','What is the name of your first pet?','$2y$10$A.neMgeBtZgetXV7F1afjOXtvzq/JnXCODCIXe6CcdOBpdQHsrMc6','Who is your favorite singer?','$2y$10$gnI1g987PqF0SAA/v552gewwSyqbWPM1WlKJl4jU75G/zniZEZJZu',NULL,'2018-11-27','',NULL,NULL);
+(7,'emman','$2y$10$AAy0gLvTq90C5fGXR02PveD85jDrh47Gx7DJKioP0fdrqw/z8pctG','emman@gmail.com','What is the name of your first pet?','$2y$10$A.neMgeBtZgetXV7F1afjOXtvzq/JnXCODCIXe6CcdOBpdQHsrMc6','Who is your favorite singer?','$2y$10$gnI1g987PqF0SAA/v552gewwSyqbWPM1WlKJl4jU75G/zniZEZJZu',NULL,'2018-11-27','',NULL,NULL),
+(8,'jeric','$2y$10$ZFZ2MKBrAUouBhtVHcylMOnhdC2Cdn6LHcZMjhv1g6ndg7zpO3mJa','jeric@gmail.com','What is the name of your first pet?','$2y$10$sAiXv9TssXPCiSzCnctWWOcYDE3LK.dm4wOqXoFtFSojK4H.BnGn.','Who is your favorite singer?','$2y$10$HYUcR0dlOPI31./t922Fa.ZzAFuiByZmaHaFQXp9M2slKgtgNxsNm',NULL,'2018-11-27','',NULL,NULL),
+(9,'victor','$2y$10$bjY4vpunV5rRAOufNds1TeQMF4u5Ayu9wjKuuESlgq8lS.Uztl222','asdo@gmail.com','What is the name of your first pet?','$2y$10$81/69YNWYpvOk36tJHLY.uimEVccd2kxFFSv7BWvcpUZttHASNCsS','Who is your favorite singer?','$2y$10$H1nMAbHUpHZX3uqB5FofZey67/zBY2BSB1FwkWK1DD.kFKYtVhcaa',NULL,'2018-11-28','Active',NULL,NULL);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

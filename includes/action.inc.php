@@ -113,7 +113,7 @@ if (isset($_POST['submit'])) {
     $hashedSecurityQuestionTwoAnswer = password_hash($securityquestiontwoanswer, PASSWORD_DEFAULT);
     $sql = "INSERT INTO users (Username, Email, Pwd, SecurityQuestion1, AnswerOne, SecurityQuestion2, AnswerTwo, DateCreated, Status)
     VALUES (?,?,?,?,?,?,?,?, 'Active')";
-    $sql2 = "INSERT INTO residents (Prefix, FirstName, MiddleName, LastName, Suffix, Sex, Bday, Age, Bplace, HomeAddress, TelephoneNumber,CellphoneNumber) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+    $sql2 = "INSERT INTO residents (Prefix, username ,FirstName, MiddleName, LastName, Suffix, Sex, Bday, Age, Bplace, HomeAddress, TelephoneNumber,CellphoneNumber) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
     
     $stmt = mysqli_stmt_init($conn);
     $stmt2 = mysqli_stmt_init($conn);
@@ -126,7 +126,7 @@ if (isset($_POST['submit'])) {
     }
     else{
       mysqli_stmt_bind_param($stmt, "ssssssss", $username, $email, $hashedPassword, $securityquestionone, $hashedSecurityQuestionOneAnswer, $securityquestiontwo, $hashedSecurityQuestionTwoAnswer, $dateCreated);
-      mysqli_stmt_bind_param($stmt2, "sssssssissii", $prefix, $fname, $mname, $lname, $suffix, $gender, $birthday, $age, $birthplace, $address, $telephonenumber, $cellphonenumber);
+      mysqli_stmt_bind_param($stmt2, "ssssssssissii", $prefix, $username, $fname, $mname, $lname, $suffix, $gender, $birthday, $age, $birthplace, $address, $telephonenumber, $cellphonenumber);
       
       mysqli_stmt_execute($stmt);
       mysqli_stmt_execute($stmt2);

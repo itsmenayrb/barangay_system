@@ -8,8 +8,10 @@ session_start();
 $tDate = date("F j, Y");
 isset($_SESSION['id']);
 $id= $_SESSION['id'];
+$user = $_SESSION['Username'];
 
-$sql = mysqli_query($conn,"SELECT * FROM residents WHERE user_ID = $id");
+
+$sql = mysqli_query($conn,"SELECT * FROM residents LEFT JOIN user_req ON residents.username = user_req.username ORDER BY user_req.id DESC LIMIT 1");
 
 
 
@@ -102,7 +104,7 @@ $pdf->SetFont('','',16);
 $pdf->writeHTMLCell(0,0,30,90,'To whom it may concern:',0,1,0,true,'L',true);
 $pdf->writeHTMLCell(0,0,40,110,'This is to certify that',0,1,0,true,'',true);
 
-$pdf->Cell(0,10,'    '.$row['Prefix'].' '.$row['FirstName'].' '.$row['MiddleName'].' '.$row['LastName'].' '.$row['Suffix'],0,1);
+$pdf->Cell(0,10,'    '.$row['Prefix'].' '.$row['FirstName'].' '.$row['MiddleName'].' '.$row['LastName'].' '.$row['purpose'],0,1);
 $pdf->Cell(58,10,'',0,0);
 $pdf->SetFont('','',16);
 $pdf->Cell(95,8, "  " . $row['Homeaddress'],0,0);

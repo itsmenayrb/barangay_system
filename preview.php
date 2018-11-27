@@ -44,6 +44,28 @@
 			</div>
     <?php } ?>
 
+    <?php
+    	$contactNumber = "";
+    	$purpose = "";
+    	if(isset($_POST['request'])){
+    		$contactNumber = checkInput($_POST['contact']);
+    		$purpose = checkInput($_POST['purpose']);
+
+    		$sql = "INSERT INTO user_req (username, contactnumber, purpose) VALUES (?,?,?)";
+    		$stmt = mysqli_stmt_init($conn);
+    		if(!mysqli_stmt_prepare($stmt, $sql)){
+		      array_push($errors, "Something went wrong. Please try again later.");
+		    }
+		     else {
+		     	mysqli_stmt_bind_param($stmt, "sss", $current, $contactNumber, $purpose);
+		     	mysqli_stmt_execute($stmt);
+		     }
+		     mysqli_stmt_close($stmt);
+    			mysqli_close($conn);
+    	}
+
+    ?>
+
  <?php if(isset($_POST['forms']))
 {
         if($_POST['forms']=='clearance')//barangay clearance

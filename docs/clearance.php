@@ -9,8 +9,7 @@ session_start();
 isset($_SESSION['id']);
 $id= $_SESSION['id'];
 
-$sql = "SELECT * FROM residents
-WHERE residents.user_ID = '".$id."'";
+$sql = mysqli_query($conn,"SELECT * FROM residents LEFT JOIN user_req ON residents.username = user_req.username ORDER BY user_req.id DESC LIMIT 1");
 
 $result = mysqli_query($conn,$sql);
 
@@ -25,11 +24,11 @@ class MYPDF extends TCPDF
         $this->Image('image.png',10,70,190,190, '', '', '', false, 300, '', false, false, 0);
         $this->SetFont('Times','B',12,'');
         $this->Cell(0, 10, '', 0, 1, 'C', 0, '', 0, false, 'M', 'M');//dummy cell
-		$this->Cell(0, 10, 'Republic of the Philippines', 0, 1, 'C', 0, '', 0, false, 'M', 'M');
-		$this->Cell(0, 10, 'Province of Cavite', 0, 1, 'C', 0, '', 0, false, 'M', 'M');
-		$this->Cell(0, 25, 'City of Dasmariñas', 0, 1, 'C', 0, '', 0, false, 'M', 'M');
-		$this->Cell(0, 10, 'BARANGAY SALITRAN II', 0, 1, 'C', 0, '', 0, false, 'M', 'M');
-		$this->Cell(0, 7, 'Tel.No.(046)540-5804', 0, 1, 'C', 0, '', 0, false, 'M', 'M');
+        $this->Cell(0, 10, 'Republic of the Philippines', 0, 1, 'C', 0, '', 0, false, 'M', 'M');
+        $this->Cell(0, 10, 'Province of Cavite', 0, 1, 'C', 0, '', 0, false, 'M', 'M');
+        $this->Cell(0, 25, 'City of Dasmariñas', 0, 1, 'C', 0, '', 0, false, 'M', 'M');
+        $this->Cell(0, 10, 'BARANGAY SALITRAN II', 0, 1, 'C', 0, '', 0, false, 'M', 'M');
+        $this->Cell(0, 7, 'Tel.No.(046)540-5804', 0, 1, 'C', 0, '', 0, false, 'M', 'M');
     }
 }
 
