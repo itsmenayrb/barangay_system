@@ -111,38 +111,30 @@ if (isset($_POST['submit'])) {
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
     $hashedSecurityQuestionOneAnswer = password_hash($securityquestiononeanswer, PASSWORD_DEFAULT);
     $hashedSecurityQuestionTwoAnswer = password_hash($securityquestiontwoanswer, PASSWORD_DEFAULT);
-    $sql = "INSERT INTO users (Username, Email, Pwd, SecurityQuestion1, AnswerOne, SecurityQuestion2, AnswerTwo, DateCreated)
-    VALUES (?,?,?,?,?,?,?,?)";
+    $sql = "INSERT INTO users (Username, Email, Pwd, SecurityQuestion1, AnswerOne, SecurityQuestion2, AnswerTwo, DateCreated, Status)
+    VALUES (?,?,?,?,?,?,?,?, 'Active')";
     $sql2 = "INSERT INTO residents (Prefix, FirstName, MiddleName, LastName, Suffix, Sex, Bday, Age, Bplace, HomeAddress, TelephoneNumber,CellphoneNumber) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
-    $sql3 = "INSERT INTO homeaddress (lot, street, subdivision) VALUES (?,?,?)";
-
+    
     $stmt = mysqli_stmt_init($conn);
     $stmt2 = mysqli_stmt_init($conn);
-    $stmt3 = mysqli_stmt_init($conn);
-
+    
     if(!mysqli_stmt_prepare($stmt, $sql)){
       array_push($errors, "Something went wrong. Please try again later.");
     }
     else if (!mysqli_stmt_prepare($stmt2, $sql2)) {
       array_push($errors, "Something went wrong. Please try again later.");
     }
-    else if (!mysqli_stmt_prepare($stmt3, $sql3)) {
-      array_push($errors, "Something went wrong. Please try again later.");
-    }
     else{
       mysqli_stmt_bind_param($stmt, "ssssssss", $username, $email, $hashedPassword, $securityquestionone, $hashedSecurityQuestionOneAnswer, $securityquestiontwo, $hashedSecurityQuestionTwoAnswer, $dateCreated);
       mysqli_stmt_bind_param($stmt2, "sssssssissii", $prefix, $fname, $mname, $lname, $suffix, $gender, $birthday, $age, $birthplace, $address, $telephonenumber, $cellphonenumber);
-      mysqli_stmt_bind_param($stmt3, "sss", $block, $street, $subdivision);
-
+      
       mysqli_stmt_execute($stmt);
       mysqli_stmt_execute($stmt2);
-      mysqli_stmt_execute($stmt3);
 
       array_push($success,"Registered Successfully! You will be redirected to the log in page after 5 seconds. If not, click <a href='login.php#signIn class='btn-link'>here.</a>");
     }
     mysqli_stmt_close($stmt);
     mysqli_stmt_close($stmt2);
-    mysqli_stmt_close($stmt3);
     mysqli_close($conn);
     header("refresh:5;url=login.php#signIn");
   }
