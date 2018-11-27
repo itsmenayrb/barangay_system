@@ -88,7 +88,7 @@
                                                                 }
                                                                 echo "</td>";
                                                                 echo "<td>";
-                                                                    if($row['date_accomplished'] == (NULL) && $row['status'] <> "Pending"){
+                                                                    if($row['date_accomplished'] == (NULL) && $row['status'] <> "Pending" && $row['status'] <> "Declined"){
                                                                         echo "<a href='appointments.php?accomplished={$row['id']}' role='button' name='accomplishedBtn' id='accomplishedBtnDel' data-toggle='tooltip' data-placement='right' title='Accomplished' onClick='return myFunctionAccomplished(this); return false;'>
                                                                                 <i class='fa fa-check text-success float-right fa-fw'></i>
                                                                             </a>";
@@ -120,7 +120,7 @@
                                     </button>
                                   </div>
                                   <div class="modal-body">
-                                    <input type="text" id="hiddenValue" name="hiddenIdDeclineAppointment" value=""/>
+                                    <input type="hidden" id="hiddenValue" name="hiddenIdDeclineAppointment" value=""/>
                                     <textarea name="reasonAppointmentDecline" cols="50" rows="2" class="form-control"></textarea>
                                   </div>
                                   <div class="modal-footer">
@@ -140,6 +140,12 @@
 <?php } ?>
 </body>
 <script type="text/javascript">
+    $(function () {
+        $("#exampleId").click(function () {
+            var my_id_value = $(this).data('id');
+            $(".modal-body #hiddenValue").val(my_id_value);
+        })
+    });
     $("#appointmentRequestTable").DataTable({
         "scrollX" : true,
         "pagingType": "full_numbers",
@@ -150,6 +156,16 @@
             { extend: 'excel', className: 'form-control btn btn-primary' },
             { extend: 'copy', className: 'form-control btn btn-info'}
         ]
+    });
+
+    $("#appointmentRequestTable tr td").each(function(){
+        if($(this).text() == "Accepted"){
+            $(this).parent().addClass('bg-info');
+        } else if ($(this).text() == "Declined"){
+            $(this).parent().addClass('bg-warning');
+        } else if ($(this).text() == "Accomplished"){
+            $(this).parent().addClass('bg-success');
+        }
     });
     function myFunctionAcceptAppointment(f){
         var r = confirm("Accept this appointment?");
@@ -171,12 +187,5 @@
             return false;
         }
     }
-
-    $(function () {
-        $("#exampleId").click(function () {
-            var my_id_value = $(this).data('id');
-            $(".modal-body #hiddenValue").val(my_id_value);
-        })
-    });
 </script>
 </html>

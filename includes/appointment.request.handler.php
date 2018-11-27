@@ -68,7 +68,7 @@
 			    array_push($success,"Appointment Request has been sent. You will be redirected to your profile page after 5 seconds. If not, click <a href='profile.php#appointment' class='btn-link'>here</a>.");
 			}
 
-			$appointmentTime = date('H:i:s');
+			
   			$appointmentDate = date('Y-m-d');
 
 	    	$sql = "INSERT INTO appointment (username, fullname, contactnumber, email, appointment_date, appointment_time, purpose, date_requested, status) VALUES (?,?,?,?,?,?,?,?,?)";
