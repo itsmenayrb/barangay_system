@@ -24,7 +24,7 @@
 <div class="container">
   <div id="registration-container">
     <p>Update your personal details</p>
-    <form id="form" action="includes/update.resident.request.handler.php" method="put">
+    <form id="form" action="includes/update.resident.request.handler.php" method="POST">
       <div class="row">
         <div class="form-group col-md-3">
           <label for="prefix">Prefix</label>
