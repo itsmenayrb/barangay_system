@@ -50,11 +50,24 @@ include 'header.php';
                                 <div id="securityQuestionDiv-desc">
                                     <div class="row">
                                         <div class="col-md-8">
-                                            <input type="text" class="form-control" name="username" id="username" autofocus="true" minlength="5" aria-describedby="rusernameHelpBlock" placeholder="Username or Email" value="<?php echo $username; ?>" required/>
+                                            <input type="text" class="form-control" name="username" id="username" autofocus="true" minlength="5" aria-describedby="rusernameHelpBlock" placeholder="<?php if($verified == false){
+                                                    echo 'Email';
+                                                } else {
+                                                        echo 'Username';
+                                                    }?>" value="<?php
+                                                    if (!isset($_GET['verified'])){
+                                                        
+                                                    } else {
+                                                        echo $_GET['verified'];
+                                                    } ?>" required/>
                                         </div>
-                                        <div class="col-md-4">
-                                            <input type="submit" class="form-control btn btn-info" name="verifyUsername" id="verifyUsername" value="Verify"/>
-                                        </div>
+                                        <?php
+                                         if ($verified == false){
+                                            echo '<div class="col-md-4">
+                                                <input type="submit" class="form-control btn btn-info" name="verifyUsername" id="verifyUsername" value="Verify"/>
+                                            </div>';
+                                            }
+                                        ?>
                                     </div>
                                     <?php if ($verified == true) : ?>
                                         <small class="form-text text-muted">Security Question One</small>
@@ -153,7 +166,7 @@ include 'header.php';
             }, 1000);
         });
     });
-    /*$('#email-form').validate();
+    ('#email-form').validate();
     $('#security-question-form').validate();
     $('#con-security-question-form').validate({
         rules:{
@@ -161,7 +174,7 @@ include 'header.php';
                 equalTo:"#password",
             }
         }
-    });*/
+    });
 </script>
 <?php
 include ('footer.php');

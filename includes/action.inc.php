@@ -247,7 +247,7 @@ if(isset($_POST['resetPassword'])){
   $password = checkInput($_POST['password']);
   $cpassword = checkInput($_POST['cpassword']);
 
-  $sql = "SELECT * FROM users WHERE Username = '$username';";
+  $sql = "SELECT * FROM users WHERE Username = '$username' OR Email = '$username'";
   $result = mysqli_query($conn, $sql);
   $resultCheck = mysqli_num_rows($result);
 
@@ -266,6 +266,7 @@ if(isset($_POST['resetPassword'])){
         $sql = "UPDATE users SET Pwd='$fhashedPassword' WHERE Username ='$username'";
         mysqli_query($conn, $sql);
         array_push($success,"Reset Password Successful!");
+        header('refresh:5;url=login.php#signIn');
       }
     }
   }
@@ -277,12 +278,12 @@ if(isset($_POST['resetPassword'])){
 if(isset($_POST['verifyUsername'])){
   $username = checkInput($_POST['username']);
 
-  $sql = "SELECT * FROM users WHERE Username='$username' OR Email='$username'";
+  $sql = "SELECT * FROM users WHERE Email='$username'";
   $result = mysqli_query($conn,$sql);
   $resultCheck = mysqli_num_rows($result);
 
   if($resultCheck < 1){
-    array_push($errors, "Username or Email doesn't exist!");
+    array_push($errors, "Email doesn't exist!");
   }
   else{
     array_push($success, "Verified.");
@@ -291,7 +292,7 @@ if(isset($_POST['verifyUsername'])){
     while($row = $result->fetch_assoc()){
       $displaySecOne = $row['SecurityQuestion1'];
       $displaySecTwo = $row['SecurityQuestion2'];
-      $username = $row['Username'];
+      $username = $row['Email'];
     }
   }
   $conn->close();

@@ -90,7 +90,7 @@
 											<h3>Create an account for your loved ones.</h3>
 										</div>
 										<div id="relationship-desc">
-											<h6 class="lead">You can request forms for them.</h6>
+											<h6 class="lead"></h6>
 										</div>
 										<div id="relationship-btn">
 											<a href="subaccount.php" class="btn btn-primary btn-primary-design mb-3" role="button">Create</a>
