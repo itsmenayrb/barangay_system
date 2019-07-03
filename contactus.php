@@ -9,7 +9,7 @@
 				<option value="" selected disabled>Message Us</option>
 				<option value="suggestRecommend">Suggestions or Recommendations</option>
 				<option value="inquiry">Inquire</option>
-				<option value="fileComplaint">File a complaint</option>
+				<option value="">File a complaint</option>
 			</select>
 		</div>
 	</div>
