@@ -1,3 +1,5 @@
+# NOTE: THE PROJECT WILL BE DISCONTINUED SINCE THE SUBJECT IS ALREADY PASSED.
+
 # barangay_system
 Create an Information System for SAAD Subject
 Defense would be approximately three weeks (Nov 26-30) from now.(Nov 26)
